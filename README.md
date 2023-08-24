@@ -1,2 +1,4 @@
-# Proyecto-Biblioteca
-Sistema de gestion de biblioteca
+# Productos-Sql
+Ejercicio realizado por:
+- Nicolás Vargas Cardona
+- Mateo Loaiza García
