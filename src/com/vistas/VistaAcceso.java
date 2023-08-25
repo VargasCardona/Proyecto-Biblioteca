@@ -240,7 +240,45 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+<<<<<<< HEAD
 
+=======
+//        try {
+//            Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
+//
+//            switch (usuario.getRol()) {
+//                case Usuario.PACIENTE:
+//                VistaPrincipalPaciente vistaPaciente = new VistaPrincipalPaciente((Paciente) usuario);
+//                vistaPaciente.setVisible(true);
+//                this.dispose();
+//                break;
+//
+//                case Usuario.MEDICO:
+//                VistaPrincipalMedico vistaMedico = new VistaPrincipalMedico((Medico) usuario);
+//                vistaMedico.setVisible(true);
+//                this.dispose();
+//                break;
+//
+//                case Usuario.ENFERMERA:
+//                VistaNotificacion vistaEnfermera = new VistaNotificacion("Rol no implementado");
+//                vistaEnfermera.setVisible(true);
+//                break;
+//
+//                case Usuario.ADMINISTRADOR:
+//                VistaPrincipalAdministrador vistaAdministrador = new VistaPrincipalAdministrador((Administrador) usuario);
+//                vistaAdministrador.setVisible(true);
+//                this.dispose();
+//                break;
+//                default:
+//                VistaNotificacion vistaDefault = new VistaNotificacion("Rol no implementado");
+//                vistaDefault.setVisible(true);
+//            }
+//
+//        } catch (ContraseniaIncorrectaException | UsuarioNoEncontradoException | CamposVaciosException e) {
+//            VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+//            vista.setVisible(true);
+//        }
+>>>>>>> 9c13136d15fbf782586e1aa7d4de998444e14ed5
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
