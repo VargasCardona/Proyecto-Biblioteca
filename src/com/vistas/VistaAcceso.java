@@ -1,18 +1,10 @@
 package com.vistas;
 
-import com.controladores.ControladorAcceso;
-import com.excepciones.CamposVaciosException;
-import com.excepciones.ContraseniaIncorrectaException;
-import com.excepciones.UsuarioNoEncontradoException;
-import com.modelos.Administrador;
-import com.modelos.Medico;
-import com.modelos.Paciente;
 import com.modelos.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.UIManager;
 
 /**
  *
@@ -21,13 +13,11 @@ import javax.swing.UIManager;
 public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
 	int xMouse, yMouse;
-	private ControladorAcceso controlador;
 
 	public VistaAcceso() {
 		initComponents();
 		this.setLocationRelativeTo(this);
 		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
-		controlador = new ControladorAcceso();
 
 		txtUsuario.addKeyListener(this);
 		txtContrasenia.addKeyListener(this);
@@ -54,6 +44,7 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setBackground(new java.awt.Color(24, 25, 32));
         bg.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -84,7 +75,7 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ingresar");
         btnLogin.add(jLabel4);
-        jLabel4.setBounds(70, 10, 160, 20);
+        jLabel4.setBounds(0, 10, 310, 20);
 
         bg.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 310, 40));
         Cursor cursorHand = new Cursor(Cursor.HAND_CURSOR);
@@ -243,119 +234,28 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
         bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 289));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        try {
-            Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
 
-            switch (usuario.getRol()) {
-                case Usuario.PACIENTE:
-                VistaPrincipalPaciente vistaPaciente = new VistaPrincipalPaciente((Paciente) usuario);
-                vistaPaciente.setVisible(true);
-                this.dispose();
-                break;
-
-                case Usuario.MEDICO:
-                VistaPrincipalMedico vistaMedico = new VistaPrincipalMedico((Medico) usuario);
-                vistaMedico.setVisible(true);
-                this.dispose();
-                break;
-
-                case Usuario.ENFERMERA:
-                VistaNotificacion vistaEnfermera = new VistaNotificacion("Rol no implementado");
-                vistaEnfermera.setVisible(true);
-                break;
-
-                case Usuario.ADMINISTRADOR:
-                VistaPrincipalAdministrador vistaAdministrador = new VistaPrincipalAdministrador((Administrador) usuario);
-                vistaAdministrador.setVisible(true);
-                this.dispose();
-                break;
-                default:
-                VistaNotificacion vistaDefault = new VistaNotificacion("Rol no implementado");
-                vistaDefault.setVisible(true);
-            }
-
-        } catch (ContraseniaIncorrectaException | UsuarioNoEncontradoException | CamposVaciosException e) {
-            VistaNotificacion vista = new VistaNotificacion(e.getMessage());
-            vista.setVisible(true);
-        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
-    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginMouseEntered
-
-    private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginMouseExited
-
-    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioFocusLost
-
-    private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioMousePressed
-
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
-        if (String.valueOf(txtContrasenia.getPassword()).equals("Contraseña")) {
-            txtContrasenia.setText("");
-            txtContrasenia.setEchoChar('*');
-        }
+	    if (String.valueOf(txtContrasenia.getPassword()).equals("Contraseña")) {
+		    txtContrasenia.setText("");
+		    txtContrasenia.setEchoChar('*');
+	    }
     }//GEN-LAST:event_txtContraseniaFocusGained
 
     private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
-        if (String.valueOf(txtContrasenia.getPassword()).equals("")) {
-            txtContrasenia.setText("Contraseña");
-            txtContrasenia.setEchoChar((char) 0);
-        }
+	    if (String.valueOf(txtContrasenia.getPassword()).equals("")) {
+		    txtContrasenia.setText("Contraseña");
+		    txtContrasenia.setEchoChar((char) 0);
+	    }
     }//GEN-LAST:event_txtContraseniaFocusLost
-
-    private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroMouseClicked
-
-    private void btnRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroMouseEntered
-
-    private void btnRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroMouseExited
-
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirMouseClicked
-
-    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirMouseEntered
-
-    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirMouseExited
-
-    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_headerMouseDragged
-
-    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_headerMousePressed
 
 	// Metodos encargados de placeholders
 	private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_txtUsuarioMousePressed
@@ -419,9 +319,6 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 	}// GEN-LAST:event_btnSalirMouseClicked
 
 	private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnRegistroMouseClicked
-		VistaRegistroPaciente ventana = new VistaRegistroPaciente(this);
-		ventana.setVisible(true);
-		this.dispose();
 	}// GEN-LAST:event_btnRegistroMouseClicked
 
 	/**
