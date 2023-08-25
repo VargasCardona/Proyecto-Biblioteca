@@ -240,9 +240,6 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-<<<<<<< HEAD
-
-=======
 //        try {
 //            Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
 //
@@ -278,7 +275,6 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 //            VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 //            vista.setVisible(true);
 //        }
->>>>>>> 9c13136d15fbf782586e1aa7d4de998444e14ed5
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
