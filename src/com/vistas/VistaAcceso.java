@@ -1,12 +1,5 @@
 package com.vistas;
 
-import com.controladores.ControladorAcceso;
-import com.excepciones.CamposVaciosException;
-import com.excepciones.ContraseniaIncorrectaException;
-import com.excepciones.UsuarioNoEncontradoException;
-import com.modelos.Administrador;
-import com.modelos.Medico;
-import com.modelos.Paciente;
 import com.modelos.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -21,13 +14,11 @@ import javax.swing.UIManager;
 public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
 	int xMouse, yMouse;
-	private ControladorAcceso controlador;
 
 	public VistaAcceso() {
 		initComponents();
 		this.setLocationRelativeTo(this);
 		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
-		controlador = new ControladorAcceso();
 
 		txtUsuario.addKeyListener(this);
 		txtContrasenia.addKeyListener(this);
@@ -258,41 +249,41 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        try {
-            Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
-
-            switch (usuario.getRol()) {
-                case Usuario.PACIENTE:
-                VistaPrincipalPaciente vistaPaciente = new VistaPrincipalPaciente((Paciente) usuario);
-                vistaPaciente.setVisible(true);
-                this.dispose();
-                break;
-
-                case Usuario.MEDICO:
-                VistaPrincipalMedico vistaMedico = new VistaPrincipalMedico((Medico) usuario);
-                vistaMedico.setVisible(true);
-                this.dispose();
-                break;
-
-                case Usuario.ENFERMERA:
-                VistaNotificacion vistaEnfermera = new VistaNotificacion("Rol no implementado");
-                vistaEnfermera.setVisible(true);
-                break;
-
-                case Usuario.ADMINISTRADOR:
-                VistaPrincipalAdministrador vistaAdministrador = new VistaPrincipalAdministrador((Administrador) usuario);
-                vistaAdministrador.setVisible(true);
-                this.dispose();
-                break;
-                default:
-                VistaNotificacion vistaDefault = new VistaNotificacion("Rol no implementado");
-                vistaDefault.setVisible(true);
-            }
-
-        } catch (ContraseniaIncorrectaException | UsuarioNoEncontradoException | CamposVaciosException e) {
-            VistaNotificacion vista = new VistaNotificacion(e.getMessage());
-            vista.setVisible(true);
-        }
+//        try {
+//            Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
+//
+//            switch (usuario.getRol()) {
+//                case Usuario.PACIENTE:
+//                VistaPrincipalPaciente vistaPaciente = new VistaPrincipalPaciente((Paciente) usuario);
+//                vistaPaciente.setVisible(true);
+//                this.dispose();
+//                break;
+//
+//                case Usuario.MEDICO:
+//                VistaPrincipalMedico vistaMedico = new VistaPrincipalMedico((Medico) usuario);
+//                vistaMedico.setVisible(true);
+//                this.dispose();
+//                break;
+//
+//                case Usuario.ENFERMERA:
+//                VistaNotificacion vistaEnfermera = new VistaNotificacion("Rol no implementado");
+//                vistaEnfermera.setVisible(true);
+//                break;
+//
+//                case Usuario.ADMINISTRADOR:
+//                VistaPrincipalAdministrador vistaAdministrador = new VistaPrincipalAdministrador((Administrador) usuario);
+//                vistaAdministrador.setVisible(true);
+//                this.dispose();
+//                break;
+//                default:
+//                VistaNotificacion vistaDefault = new VistaNotificacion("Rol no implementado");
+//                vistaDefault.setVisible(true);
+//            }
+//
+//        } catch (ContraseniaIncorrectaException | UsuarioNoEncontradoException | CamposVaciosException e) {
+//            VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+//            vista.setVisible(true);
+//        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
