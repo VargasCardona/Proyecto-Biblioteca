@@ -29,7 +29,7 @@ public class Utils {
 	 * @return boolean indicando si el String ingresado esta vacio
 	 */
 	public static boolean estaVacio(String entrada) {
-		if (entrada.equals("")) {
+		if (entrada.isBlank()) {
 			return true;
 		}
 		return false;
@@ -44,7 +44,7 @@ public class Utils {
 	 * @return boolean indicando si el String ingresado esta vacio
 	 */
 	public static boolean estaVacio(String entrada, String placeholder) {
-		if (entrada.equals("") || entrada.equals(placeholder)) {
+		if (entrada.isBlank() || entrada.equals(placeholder)) {
 			return true;
 		}
 		return false;
