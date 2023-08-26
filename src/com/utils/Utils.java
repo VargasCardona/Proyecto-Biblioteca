@@ -34,6 +34,21 @@ public class Utils {
 		}
 		return false;
 	}
+	
+	/**
+	 * Verifica si el String ingresado esta vacio considerando que es un
+	 * placeholder.
+	 *
+	 * @param entrada String a procesar
+	 * @param placeholder Placeholder activo
+	 * @return boolean indicando si el String ingresado esta vacio
+	 */
+	public static boolean estaVacio(String entrada, String placeholder) {
+		if (entrada.equals("") || entrada.equals(placeholder)) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Genera un identificador basado en un String ingresado

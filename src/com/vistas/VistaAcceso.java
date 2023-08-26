@@ -6,10 +6,6 @@ import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/**
- *
- * @author Nicolas Vargas Cardona
- */
 public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
 	int xMouse, yMouse;
@@ -229,7 +225,7 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 30));
@@ -278,17 +274,17 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
-	    if (String.valueOf(txtContrasenia.getPassword()).equals("Contraseña")) {
-		    txtContrasenia.setText("");
-		    txtContrasenia.setEchoChar('*');
-	    }
+		if (String.valueOf(txtContrasenia.getPassword()).equals("Contraseña")) {
+			txtContrasenia.setText("");
+			txtContrasenia.setEchoChar('*');
+		}
     }//GEN-LAST:event_txtContraseniaFocusGained
 
     private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
-	    if (String.valueOf(txtContrasenia.getPassword()).equals("")) {
-		    txtContrasenia.setText("Contraseña");
-		    txtContrasenia.setEchoChar((char) 0);
-	    }
+		if (String.valueOf(txtContrasenia.getPassword()).equals("")) {
+			txtContrasenia.setText("Contraseña");
+			txtContrasenia.setEchoChar((char) 0);
+		}
     }//GEN-LAST:event_txtContraseniaFocusLost
 
 	// Metodos encargados de placeholders
@@ -353,11 +349,10 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 	}// GEN-LAST:event_btnSalirMouseClicked
 
 	private void btnRegistroMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnRegistroMouseClicked
+		VistaRegistroUsuario vista = new VistaRegistroUsuario(this);
+		vista.setVisible(true);
+		this.dispose();
 	}// GEN-LAST:event_btnRegistroMouseClicked
-
-	/**
-	 * @param args the command line arguments
-	 */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
