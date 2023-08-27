@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ControladorGestionUsuario {
 
-        public void actualizarTabla(String nombre, String apellidos, String cedula) {
+	public void actualizarTabla(String nombre, String apellidos, String cedula) {
 		if (Utils.estaVacio(nombre, "Nombre")
 				|| Utils.estaVacio(apellidos, "Apellidos")) {
 			throw new CamposVaciosException();
@@ -25,8 +25,8 @@ public class ControladorGestionUsuario {
 			System.err.print(ex);
 		}
 	}
-        
-        public void eliminarTabla(String cedula) {
+
+	public void eliminarTabla(String cedula) {
 		try {
 			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM usuario WHERE cedula = ?");
 			ps.setString(1, cedula);

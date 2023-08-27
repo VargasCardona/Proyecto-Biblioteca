@@ -8,12 +8,16 @@ public class Usuario {
 	private String usuario;
 	private String contrasenia;
 
-	public Usuario(String nombre, String apellidos, String cedula, String rolAsignado, String usuario, String contrasenia) {
+	public Usuario(String nombre, String apellidos, String cedula, String usuario, String contrasenia) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.cedula = cedula;
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getNombre() {
@@ -46,6 +50,10 @@ public class Usuario {
 
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
 }

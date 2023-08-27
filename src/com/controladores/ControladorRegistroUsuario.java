@@ -8,10 +8,9 @@ import com.excepciones.EntradasNumericasInvalidasException;
 import com.utils.ConexionUtils;
 import com.utils.Utils;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ControladorRegistroUsuario {
+public class ControladorRegistroUsuario extends ControladorBase{
 
 	public void registrarUsuario(String nombre, String apellidos, String cedula, String usuario, String contrasenia, String validacionContrasenia) throws SQLException {
 		if (Utils.estaVacio(nombre, "Nombre")
@@ -53,25 +52,4 @@ public class ControladorRegistroUsuario {
 			System.err.print(ex);
 		}
 	}
-
-	public ResultSet consultarUsuario(String cedula, boolean esConsultaCedula) {
-		try {
-
-			PreparedStatement ps = null;
-
-			if (esConsultaCedula) {
-				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario WHERE cedula = ?");
-			} else {
-				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario WHERE usuario = ?");
-			}
-
-			ps.setString(1, cedula);
-
-			return ps.executeQuery();
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
-		return null;
-	}
-
 }

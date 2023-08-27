@@ -21,9 +21,9 @@ public class VistaRegistroUsuario extends javax.swing.JFrame implements KeyListe
 		txtNombre.addKeyListener(this);
 		txtContraseniaConfirmacion.addKeyListener(this);
 
-//		if (vistaPrincipal instanceof VistaPrincipalAdministrador) {
-//			btnLoginPersonal.setVisible(false);
-//		}
+		if (vistaPrincipal instanceof VistaPrincipalUsuario) {
+			btnLoginPersonal.setVisible(false);
+		}
 
 	}
 
@@ -504,12 +504,17 @@ public class VistaRegistroUsuario extends javax.swing.JFrame implements KeyListe
 
 				VistaNotificacion vista = new VistaNotificacion("Usuario Registrado");
 				vista.setVisible(true);
+				
+				if (vistaPrincipal instanceof VistaPrincipalUsuario){
+					((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios("");
+				}
+				
 
 			} catch (Exception e) {
 				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 				vista.setVisible(true);
 
-			} 
+			}
         }//GEN-LAST:event_btnRegistrarMouseClicked
 
         private void txtContraseniaConfirmacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaConfirmacionFocusLost

@@ -1,5 +1,6 @@
 package com.vistas;
 
+import com.controladores.ControladorAcceso;
 import com.modelos.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -9,9 +10,11 @@ import java.awt.event.KeyListener;
 public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
 	int xMouse, yMouse;
+	ControladorAcceso controlador;
 
 	public VistaAcceso() {
 		initComponents();
+		controlador = new ControladorAcceso();
 		this.setLocationRelativeTo(this);
 		Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
@@ -236,41 +239,18 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-//        try {
-//            Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
-//
-//            switch (usuario.getRol()) {
-//                case Usuario.PACIENTE:
-//                VistaPrincipalPaciente vistaPaciente = new VistaPrincipalPaciente((Paciente) usuario);
-//                vistaPaciente.setVisible(true);
-//                this.dispose();
-//                break;
-//
-//                case Usuario.MEDICO:
-//                VistaPrincipalMedico vistaMedico = new VistaPrincipalMedico((Medico) usuario);
-//                vistaMedico.setVisible(true);
-//                this.dispose();
-//                break;
-//
-//                case Usuario.ENFERMERA:
-//                VistaNotificacion vistaEnfermera = new VistaNotificacion("Rol no implementado");
-//                vistaEnfermera.setVisible(true);
-//                break;
-//
-//                case Usuario.ADMINISTRADOR:
-//                VistaPrincipalAdministrador vistaAdministrador = new VistaPrincipalAdministrador((Administrador) usuario);
-//                vistaAdministrador.setVisible(true);
-//                this.dispose();
-//                break;
-//                default:
-//                VistaNotificacion vistaDefault = new VistaNotificacion("Rol no implementado");
-//                vistaDefault.setVisible(true);
-//            }
-//
-//        } catch (ContraseniaIncorrectaException | UsuarioNoEncontradoException | CamposVaciosException e) {
-//            VistaNotificacion vista = new VistaNotificacion(e.getMessage());
-//            vista.setVisible(true);
-//        }
+		try {
+			Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
+
+			VistaPrincipalUsuario vistaPaciente = new VistaPrincipalUsuario(usuario);
+			vistaPaciente.setVisible(true);
+			this.dispose();
+
+		} catch (Exception e) {
+			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+			System.err.println(e);
+			vista.setVisible(true);
+		}
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
