@@ -1,6 +1,7 @@
 package com.controladores;
 
 import com.excepciones.CamposVaciosException;
+import com.excepciones.EliminacionPropiaException;
 import com.utils.ConexionUtils;
 import com.utils.Utils;
 import java.sql.PreparedStatement;
@@ -26,9 +27,13 @@ public class ControladorGestionUsuario {
 		}
 	}
 
-	public void eliminarTabla(String cedula) {
-		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM usuario WHERE cedula = ?");
+	public void eliminarTabla(String cedula, String cedulaUsuarioActivo) {
+		if (cedula.equals(cedulaUsuarioActivo)) {
+                        throw new EliminacionPropiaException();
+                }
+                
+                try {
+                    	PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM usuario WHERE cedula = ?");
 			ps.setString(1, cedula);
 
 			ps.execute();

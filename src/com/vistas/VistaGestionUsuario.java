@@ -11,13 +11,15 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
 	int xMouse, yMouse;
 	ControladorGestionUsuario controlador;
 	Usuario usuarioSeleccionado;
+        String cedulaUsuarioActivo;
 	VistaPrincipalUsuario vistaPrincipal;
 
-	public VistaGestionUsuario(VistaPrincipalUsuario vista, Usuario usuario) {
+	public VistaGestionUsuario(VistaPrincipalUsuario vista, Usuario usuario, String usuarioActivo) {
 		initComponents();
 		this.setLocationRelativeTo(null);
 		this.controlador = new ControladorGestionUsuario();
 		this.usuarioSeleccionado = usuario;
+                this.cedulaUsuarioActivo = usuarioActivo;
 		this.vistaPrincipal = vista;
 
 		lblCedula.setText(String.valueOf(usuarioSeleccionado.getCedula()));
@@ -352,7 +354,13 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
 
         private void btnEliminarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarPacienteMouseClicked
 
-			controlador.eliminarTabla(String.valueOf(usuarioSeleccionado.getCedula()));
+                        try {
+                            controlador.eliminarTabla(String.valueOf(usuarioSeleccionado.getCedula()), cedulaUsuarioActivo);
+                        } catch (Exception e) {
+                                VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+				vista.setVisible(true);
+                                return;
+                        }
 
 			this.dispose();
 			vistaPrincipal.llenarTablaUsuarios("");

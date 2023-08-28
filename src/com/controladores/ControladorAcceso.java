@@ -28,12 +28,16 @@ public class ControladorAcceso extends ControladorBase {
 			usuarioEncontrado.setContrasenia(rs.getString(5));
 		}
 
-		if (usuarioEncontrado.getUsuario().equals(usuario)) {
+                if (usuarioEncontrado.getUsuario() == null) {
+                        throw new UsuarioNoEncontradoException();
+                }
+                
+//		if (usuarioEncontrado.getUsuario().equals(usuario)) {
 			if (usuarioEncontrado.getContrasenia().equals(contrasenia)) {
 				return usuarioEncontrado;
 			}
 			throw new ContraseniaIncorrectaException();
-		}
-		throw new UsuarioNoEncontradoException();
+//		}
+		
 	}
 }

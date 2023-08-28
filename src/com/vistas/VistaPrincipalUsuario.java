@@ -546,7 +546,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			Logger.getLogger(VistaPrincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		VistaGestionUsuario ventana = new VistaGestionUsuario(this, usuarioEncontrado);
+		VistaGestionUsuario ventana = new VistaGestionUsuario(this, usuarioEncontrado, usuarioActivo.getCedula());
 		ventana.setVisible(true);
     }//GEN-LAST:event_tblUsuariosMouseClicked
 
