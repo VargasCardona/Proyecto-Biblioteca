@@ -248,7 +248,6 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
 
 		} catch (Exception e) {
 			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
-			System.err.println(e);
 			vista.setVisible(true);
 		}
     }//GEN-LAST:event_btnLoginMouseClicked

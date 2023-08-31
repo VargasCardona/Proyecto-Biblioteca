@@ -2,7 +2,6 @@ package com.controladores;
 
 import com.excepciones.CamposVaciosException;
 import com.excepciones.CuentaExistenteException;
-import com.modelos.Usuario;
 import com.utils.ConexionUtils;
 import com.utils.Utils;
 import java.sql.PreparedStatement;
@@ -16,13 +15,13 @@ public class ControladorGestionPerfil extends ControladorBase {
 				|| Utils.estaVacio(contrasenia, "Contraseña")) {
 			throw new CamposVaciosException();
 		}
-
-                ResultSet rs = consultarUsuario(usuarioNuevo, false);
 		
+		ResultSet rs = consultarUsuario(usuarioNuevo, false);
+
 		if (rs.next()) {
 			throw new CuentaExistenteException();
 		}
-                
+
 		try {
 			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuario SET usuario = ?, contrasenia = ? WHERE usuario = ?");
 			ps.setString(1, usuarioNuevo);

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class ControladorBase {
 
-	public ResultSet consultarUsuario(String cedula, boolean esConsultaCedula) {
+	public ResultSet consultarUsuario(String argumento, boolean esConsultaCedula) {
 		try {
 
 			PreparedStatement ps = null;
@@ -18,7 +18,7 @@ public class ControladorBase {
 				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario WHERE usuario = ?");
 			}
 
-			ps.setString(1, cedula);
+			ps.setString(1, argumento);
 
 			return ps.executeQuery();
 		} catch (SQLException ex) {
