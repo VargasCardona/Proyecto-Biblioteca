@@ -502,13 +502,15 @@ public class VistaRegistroUsuario extends javax.swing.JFrame implements KeyListe
 
 				this.dispose();
 
+				if (vistaPrincipal instanceof VistaPrincipalUsuario) {
+					((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios("");
+				} else {
+					VistaAcceso vistaAcceso = new VistaAcceso();
+					vistaAcceso.setVisible(true);
+				}
+
 				VistaNotificacion vista = new VistaNotificacion("Usuario Registrado");
 				vista.setVisible(true);
-				
-				if (vistaPrincipal instanceof VistaPrincipalUsuario){
-					((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios("");
-				}
-				
 
 			} catch (Exception e) {
 				VistaNotificacion vista = new VistaNotificacion(e.getMessage());

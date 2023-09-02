@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaPrincipalUsuario.java</file>
-            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaGestionUsuario.java</file>
-            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaNotificacion.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/modelos/Libro.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/modelos/Usuario.java</file>
         </group>
     </open-files>
 </project-private>
