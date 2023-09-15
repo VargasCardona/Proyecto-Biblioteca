@@ -23,7 +23,7 @@ public class ControladorGestionPerfil extends ControladorBase {
 		}
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuario SET usuario = ?, contrasenia = ? WHERE usuario = ?");
+			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuarios SET usuario = ?, contrasenia = ? WHERE usuario = ?");
 			ps.setString(1, usuarioNuevo);
 			ps.setString(2, contrasenia);
 			ps.setString(3, usuario);

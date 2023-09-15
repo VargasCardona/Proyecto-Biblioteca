@@ -9,7 +9,7 @@ public class ControladorPrincipalUsuario extends ControladorBase{
 
 	public ResultSet listarTabla() {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario");
+			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios");
 
 			return ps.executeQuery();
 		} catch (SQLException ex) {
@@ -20,7 +20,7 @@ public class ControladorPrincipalUsuario extends ControladorBase{
 
 	public ResultSet buscarCoincidencias(String where) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario WHERE cedula LIKE CONCAT('%',?,'%')");
+			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE cedula LIKE CONCAT('%',?,'%')");
 			ps.setString(1, where);
 
 			return ps.executeQuery();

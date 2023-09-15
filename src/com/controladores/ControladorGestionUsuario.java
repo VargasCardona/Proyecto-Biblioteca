@@ -16,7 +16,7 @@ public class ControladorGestionUsuario {
 		}
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuario SET nombre = ?, apellidos = ? WHERE cedula = ?");
+			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuarios SET nombre = ?, apellidos = ? WHERE cedula = ?");
 			ps.setString(1, nombre);
 			ps.setString(2, apellidos);
 			ps.setString(3, cedula);
@@ -33,7 +33,7 @@ public class ControladorGestionUsuario {
                 }
                 
                 try {
-                    	PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM usuario WHERE cedula = ?");
+                    	PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM usuarios WHERE cedula = ?");
 			ps.setString(1, cedula);
 
 			ps.execute();

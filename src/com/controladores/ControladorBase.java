@@ -13,9 +13,9 @@ public class ControladorBase {
 			PreparedStatement ps = null;
 
 			if (esConsultaCedula) {
-				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario WHERE cedula = ?");
+				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE cedula = ?");
 			} else {
-				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuario WHERE usuario = ?");
+				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE usuario = ?");
 			}
 
 			ps.setString(1, argumento);

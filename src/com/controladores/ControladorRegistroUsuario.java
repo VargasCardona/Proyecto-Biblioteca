@@ -39,7 +39,7 @@ public class ControladorRegistroUsuario extends ControladorBase{
 		}
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("INSERT INTO usuario (cedula, nombre, apellidos	, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
+			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("INSERT INTO usuarios (cedula, nombre, apellidos	, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
 			ps.setString(1, cedula);
 			ps.setString(2, nombre);
 			ps.setString(3, apellidos);
