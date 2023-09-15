@@ -4,7 +4,7 @@ import com.excepciones.CamposVaciosException;
 import com.excepciones.ContraseniaIncorrectaException;
 import com.excepciones.UsuarioNoEncontradoException;
 import com.modelos.Usuario;
-import com.utils.Utils;
+import com.utils.GeneralUtils;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
@@ -12,8 +12,8 @@ public class ControladorAcceso extends ControladorBase {
 
 	public Usuario validarLogin(String usuario, String contrasenia) throws SQLException {
 
-		if (Utils.estaVacio(usuario, "Usuario")
-				|| Utils.estaVacio(contrasenia, "Contraseña")) {
+		if (GeneralUtils.estaVacio(usuario, "Usuario")
+				|| GeneralUtils.estaVacio(contrasenia, "Contraseña")) {
 			throw new CamposVaciosException();
 		}
 

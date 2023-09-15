@@ -59,6 +59,17 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblRegistrar1 = new javax.swing.JLabel();
         scrlUsuarios = new javax.swing.JScrollPane();
         tblUsuarios = new com.vistas.Table();
+        pnlLibros = new javax.swing.JPanel();
+        pnlAdministradoresRound1 = new com.vistas.PanelRound();
+        scrlMedicos1 = new javax.swing.JScrollPane();
+        tblLibros = new com.vistas.Table();
+        panelRound2 = new com.vistas.PanelRound();
+        txtCedulaFiltroLibro = new javax.swing.JTextField();
+        label1 = new javax.swing.JLabel();
+        btnRegistrarLibro = new com.vistas.PanelRound();
+        lblRegistrar2 = new javax.swing.JLabel();
+        panelRound7 = new com.vistas.PanelRound();
+        cmbCargo = new javax.swing.JComboBox<>();
         lblLogo = new javax.swing.JLabel();
         lblResumen = new javax.swing.JLabel();
         tabResumen = new javax.swing.JLabel();
@@ -332,6 +343,156 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 
         bg.add(pnlUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
 
+        pnlLibros.setBackground(new java.awt.Color(35, 36, 47));
+        pnlLibros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlAdministradoresRound1.setBackground(new java.awt.Color(24, 25, 32));
+        pnlAdministradoresRound1.setRoundBottomLeft(10);
+        pnlAdministradoresRound1.setRoundBottomRight(10);
+        pnlAdministradoresRound1.setRoundTopLeft(10);
+        pnlAdministradoresRound1.setRoundTopRight(10);
+        pnlAdministradoresRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblLibros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellidos", "Usuario", "Cargo"
+            }
+        ));
+        tblLibros.setFocusable(false);
+        tblLibros.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        tblLibros.getTableHeader().setResizingAllowed(false);
+        tblLibros.getTableHeader().setReorderingAllowed(false);
+        tblLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLibrosMouseClicked(evt);
+            }
+        });
+        scrlMedicos1.setViewportView(tblLibros);
+
+        pnlAdministradoresRound1.add(scrlMedicos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 680, 420));
+
+        panelRound2.setBackground(new java.awt.Color(37, 42, 52));
+        panelRound2.setForeground(new java.awt.Color(57, 59, 70));
+        panelRound2.setRoundBottomLeft(20);
+        panelRound2.setRoundBottomRight(20);
+        panelRound2.setRoundTopLeft(20);
+        panelRound2.setRoundTopRight(20);
+        panelRound2.setLayout(null);
+
+        txtCedulaFiltroLibro.setBackground(new java.awt.Color(37, 42, 52));
+        txtCedulaFiltroLibro.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtCedulaFiltroLibro.setForeground(new java.awt.Color(255, 255, 255));
+        txtCedulaFiltroLibro.setText("Filtrar por ISBN");
+        txtCedulaFiltroLibro.setBorder(null);
+        txtCedulaFiltroLibro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCedulaFiltroLibroFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFiltroLibroFocusLost(evt);
+            }
+        });
+        txtCedulaFiltroLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaFiltroLibroKeyReleased(evt);
+            }
+        });
+        panelRound2.add(txtCedulaFiltroLibro);
+        txtCedulaFiltroLibro.setBounds(10, 10, 290, 20);
+
+        pnlAdministradoresRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 310, 40));
+
+        label1.setBackground(new java.awt.Color(255, 255, 255));
+        label1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label1.setText("Libros Registrados");
+        pnlAdministradoresRound1.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
+
+        btnRegistrarLibro.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrarLibro.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarLibro.setRoundBottomLeft(20);
+        btnRegistrarLibro.setRoundBottomRight(20);
+        btnRegistrarLibro.setRoundTopLeft(20);
+        btnRegistrarLibro.setRoundTopRight(20);
+        btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseExited(evt);
+            }
+        });
+        btnRegistrarLibro.setLayout(null);
+
+        lblRegistrar2.setBackground(new java.awt.Color(24, 25, 32));
+        lblRegistrar2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        lblRegistrar2.setForeground(new java.awt.Color(24, 25, 32));
+        lblRegistrar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRegistrar2.setText("Registrar Libro");
+        btnRegistrarLibro.add(lblRegistrar2);
+        lblRegistrar2.setBounds(0, 10, 210, 20);
+
+        pnlAdministradoresRound1.add(btnRegistrarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, 210, 40));
+        Cursor cursorHand52 = new Cursor(Cursor.HAND_CURSOR);
+        btnRegistrarLibro.setCursor(cursorHand52);
+        btnRegistrarLibro.setVisible(true);
+
+        panelRound7.setBackground(new java.awt.Color(37, 42, 52));
+        panelRound7.setForeground(new java.awt.Color(57, 59, 70));
+        panelRound7.setRoundBottomLeft(20);
+        panelRound7.setRoundBottomRight(20);
+        panelRound7.setRoundTopLeft(20);
+        panelRound7.setRoundTopRight(20);
+        panelRound7.setLayout(null);
+
+        cmbCargo.setBackground(new java.awt.Color(37, 42, 52));
+        cmbCargo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbCargo.setForeground(new java.awt.Color(255, 255, 255));
+        cmbCargo.setMaximumRowCount(5);
+        cmbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar por categoria", "Médico general", "Pediatra", "Ortopedista", "Otorrinolaringólogo", "Cardiólogo", "Urólogo" }));
+        cmbCargo.setToolTipText("");
+        cmbCargo.setBorder(null);
+        cmbCargo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbCargo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCargoItemStateChanged(evt);
+            }
+        });
+        panelRound7.add(cmbCargo);
+        cmbCargo.setBounds(10, 10, 340, 20);
+
+        pnlAdministradoresRound1.add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 360, 40));
+
+        pnlLibros.add(pnlAdministradoresRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 580));
+
+        bg.add(pnlLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
+
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
         lblLogo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(255, 255, 255));
@@ -594,6 +755,52 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			btnGestionCuenta.setForeground(new Color(255, 255, 255));
         }//GEN-LAST:event_btnGestionCuentaMouseExited
 
+    private void tblLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibrosMouseClicked
+        String cedula = (String) tblLibros.getValueAt(tblLibros.getSelectedRow(), 0);
+        Administrador administradorSeleccionado = controlador.buscarAdministrador(cedula);
+        VistaGestionAdministrador ventana = new VistaGestionAdministrador(this, administradorSeleccionado);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_tblLibrosMouseClicked
+
+    private void txtCedulaFiltroLibroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFiltroLibroFocusGained
+        if (txtCedulaFiltroLibro.getText().equals("Filtrar por cédula")) {
+            txtCedulaFiltroLibro.setText("");
+        }
+    }//GEN-LAST:event_txtCedulaFiltroLibroFocusGained
+
+    private void txtCedulaFiltroLibroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFiltroLibroFocusLost
+        if (txtCedulaFiltroLibro.getText().equals("")) {
+            txtCedulaFiltroLibro.setText("Filtrar por cédula");
+        }
+    }//GEN-LAST:event_txtCedulaFiltroLibroFocusLost
+
+    private void txtCedulaFiltroLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaFiltroLibroKeyReleased
+        if (!txtCedulaFiltroLibro.getText().equals("Filtrar por cédula")) {
+            llenarTablaAdminisitradores(txtCedulaFiltroLibro.getText());
+        }
+    }//GEN-LAST:event_txtCedulaFiltroLibroKeyReleased
+
+    private void btnRegistrarLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseClicked
+        VistaRegistroAdministrador vista = new VistaRegistroAdministrador(this);
+        vista.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarLibroMouseClicked
+
+    private void btnRegistrarLibroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarLibroMouseEntered
+
+    private void btnRegistrarLibroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarLibroMouseExited
+
+    private void cmbCargoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCargoItemStateChanged
+        if (!cmbCargo.getSelectedItem().equals("Filtrar por área")) {
+            llenarTablaMedicos((String) cmbCargo.getSelectedItem());
+        } else {
+            llenarTablaMedicos("Filtrar por área");
+        }
+    }//GEN-LAST:event_cmbCargoItemStateChanged
+
 	public void cambiarPanel() {
 		pnlResumen.setVisible(false);
 		pnlUsuarios.setVisible(false);
@@ -635,8 +842,10 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JLabel btnCerrarSesion;
     private javax.swing.JLabel btnGestionCuenta;
+    private com.vistas.PanelRound btnRegistrarLibro;
     private com.vistas.PanelRound btnRegistrarUsuario;
     private com.vistas.PanelRound btnSalir;
+    private javax.swing.JComboBox<String> cmbCargo;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
@@ -646,24 +855,33 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel label;
+    private javax.swing.JLabel label1;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblGestionUsuarios;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRegistrar1;
+    private javax.swing.JLabel lblRegistrar2;
     private javax.swing.JLabel lblResumen;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioLogeado;
     private com.vistas.PanelRound panelRound18;
+    private com.vistas.PanelRound panelRound2;
+    private com.vistas.PanelRound panelRound7;
     private com.vistas.PanelRound pnlAdministradoresRound;
+    private com.vistas.PanelRound pnlAdministradoresRound1;
     private com.vistas.PanelRound pnlBusquedaUsuario;
+    private javax.swing.JPanel pnlLibros;
     private javax.swing.JPanel pnlResumen;
     private javax.swing.JPanel pnlUsuarios;
+    private javax.swing.JScrollPane scrlMedicos1;
     private javax.swing.JScrollPane scrlUsuarios;
     private javax.swing.JLabel tabResumen;
     private javax.swing.JLabel tabUsuarios;
+    private com.vistas.Table tblLibros;
     private com.vistas.Table tblUsuarios;
+    private javax.swing.JTextField txtCedulaFiltroLibro;
     private javax.swing.JTextField txtCedulaFiltroUsuarios;
     // End of variables declaration//GEN-END:variables
 

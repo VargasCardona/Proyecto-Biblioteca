@@ -6,23 +6,23 @@ import com.excepciones.ContraseniasNoCoincidenException;
 import com.excepciones.CuentaExistenteException;
 import com.excepciones.EntradasNumericasInvalidasException;
 import com.utils.ConexionUtils;
-import com.utils.Utils;
+import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ControladorRegistroUsuario extends ControladorBase{
 
 	public void registrarUsuario(String nombre, String apellidos, String cedula, String usuario, String contrasenia, String validacionContrasenia) throws SQLException {
-		if (Utils.estaVacio(nombre, "Nombre")
-				|| Utils.estaVacio(apellidos, "Apellidos")
-				|| Utils.estaVacio(cedula, "Cédula")
-				|| Utils.estaVacio(usuario, "Usuario")
-				|| Utils.estaVacio(contrasenia, "Contraseña")
-				|| Utils.estaVacio(validacionContrasenia, "Repita la Contraseña")) {
+		if (GeneralUtils.estaVacio(nombre, "Nombre")
+				|| GeneralUtils.estaVacio(apellidos, "Apellidos")
+				|| GeneralUtils.estaVacio(cedula, "Cédula")
+				|| GeneralUtils.estaVacio(usuario, "Usuario")
+				|| GeneralUtils.estaVacio(contrasenia, "Contraseña")
+				|| GeneralUtils.estaVacio(validacionContrasenia, "Repita la Contraseña")) {
 			throw new CamposVaciosException();
 		}
 
-		if (Utils.validarDouble(cedula)) {
+		if (GeneralUtils.validarDouble(cedula)) {
 			throw new EntradasNumericasInvalidasException();
 		}
 

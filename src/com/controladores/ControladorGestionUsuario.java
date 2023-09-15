@@ -3,15 +3,15 @@ package com.controladores;
 import com.excepciones.CamposVaciosException;
 import com.excepciones.EliminacionPropiaException;
 import com.utils.ConexionUtils;
-import com.utils.Utils;
+import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ControladorGestionUsuario {
 
 	public void actualizarTabla(String nombre, String apellidos, String cedula) {
-		if (Utils.estaVacio(nombre, "Nombre")
-				|| Utils.estaVacio(apellidos, "Apellidos")) {
+		if (GeneralUtils.estaVacio(nombre, "Nombre")
+				|| GeneralUtils.estaVacio(apellidos, "Apellidos")) {
 			throw new CamposVaciosException();
 		}
 
