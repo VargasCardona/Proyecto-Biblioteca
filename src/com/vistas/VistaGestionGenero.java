@@ -286,6 +286,7 @@ public class VistaGestionGenero extends javax.swing.JFrame {
 				this.dispose();
 
 				vistaPrincipal.llenarTablaGeneros();
+                                vistaPrincipal.llenarCmbGeneros();
 
 				VistaNotificacion vista = new VistaNotificacion("Genero editado");
 				vista.setVisible(true);

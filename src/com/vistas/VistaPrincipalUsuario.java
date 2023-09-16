@@ -2,10 +2,12 @@ package com.vistas;
 
 import com.controladores.ControladorPrincipalUsuario;
 import com.modelos.Genero;
+import com.modelos.Libro;
 import com.modelos.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaPrincipalUsuario extends javax.swing.JFrame {
@@ -61,10 +63,10 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         scrlLibros = new javax.swing.JScrollPane();
         tblLibros = new com.vistas.Table();
         panelRound2 = new com.vistas.PanelRound();
-        txtCedulaFiltroLibro = new javax.swing.JTextField();
+        txtIsbnFiltroLibro = new javax.swing.JTextField();
         label1 = new javax.swing.JLabel();
         panelRound7 = new com.vistas.PanelRound();
-        cmbCargo = new javax.swing.JComboBox<>();
+        cmbGeneros = new javax.swing.JComboBox<>();
         btnRegistrarLibro = new com.vistas.PanelRound();
         lblRegistrar2 = new javax.swing.JLabel();
         pnlCategoriasRegistro = new com.vistas.PanelRound();
@@ -406,26 +408,31 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         panelRound2.setRoundTopRight(20);
         panelRound2.setLayout(null);
 
-        txtCedulaFiltroLibro.setBackground(new java.awt.Color(37, 42, 52));
-        txtCedulaFiltroLibro.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        txtCedulaFiltroLibro.setForeground(new java.awt.Color(255, 255, 255));
-        txtCedulaFiltroLibro.setText("Filtrar por ISBN");
-        txtCedulaFiltroLibro.setBorder(null);
-        txtCedulaFiltroLibro.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIsbnFiltroLibro.setBackground(new java.awt.Color(37, 42, 52));
+        txtIsbnFiltroLibro.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtIsbnFiltroLibro.setForeground(new java.awt.Color(255, 255, 255));
+        txtIsbnFiltroLibro.setText("Filtrar por ISBN");
+        txtIsbnFiltroLibro.setBorder(null);
+        txtIsbnFiltroLibro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCedulaFiltroLibroFocusGained(evt);
+                txtIsbnFiltroLibroFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFiltroLibroFocusLost(evt);
+                txtIsbnFiltroLibroFocusLost(evt);
             }
         });
-        txtCedulaFiltroLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIsbnFiltroLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIsbnFiltroLibroActionPerformed(evt);
+            }
+        });
+        txtIsbnFiltroLibro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCedulaFiltroLibroKeyReleased(evt);
+                txtIsbnFiltroLibroKeyReleased(evt);
             }
         });
-        panelRound2.add(txtCedulaFiltroLibro);
-        txtCedulaFiltroLibro.setBounds(10, 10, 290, 20);
+        panelRound2.add(txtIsbnFiltroLibro);
+        txtIsbnFiltroLibro.setBounds(10, 10, 290, 20);
 
         pnlLibrosRegistro.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 310, 40));
 
@@ -444,21 +451,20 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         panelRound7.setRoundTopRight(20);
         panelRound7.setLayout(null);
 
-        cmbCargo.setBackground(new java.awt.Color(37, 42, 52));
-        cmbCargo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbCargo.setForeground(new java.awt.Color(255, 255, 255));
-        cmbCargo.setMaximumRowCount(5);
-        cmbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar por categoria", "Médico general", "Pediatra", "Ortopedista", "Otorrinolaringólogo", "Cardiólogo", "Urólogo" }));
-        cmbCargo.setToolTipText("");
-        cmbCargo.setBorder(null);
-        cmbCargo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cmbCargo.addItemListener(new java.awt.event.ItemListener() {
+        cmbGeneros.setBackground(new java.awt.Color(37, 42, 52));
+        cmbGeneros.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbGeneros.setForeground(new java.awt.Color(255, 255, 255));
+        cmbGeneros.setMaximumRowCount(5);
+        cmbGeneros.setToolTipText("");
+        cmbGeneros.setBorder(null);
+        cmbGeneros.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbGeneros.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbCargoItemStateChanged(evt);
+                cmbGenerosItemStateChanged(evt);
             }
         });
-        panelRound7.add(cmbCargo);
-        cmbCargo.setBounds(10, 10, 340, 20);
+        panelRound7.add(cmbGeneros);
+        cmbGeneros.setBounds(10, 10, 340, 20);
 
         pnlLibrosRegistro.add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 360, 40));
 
@@ -867,23 +873,21 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 //        ventana.setVisible(true);
     }//GEN-LAST:event_tblLibrosMouseClicked
 
-    private void txtCedulaFiltroLibroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFiltroLibroFocusGained
-		if (txtCedulaFiltroLibro.getText().equals("Filtrar por cédula")) {
-			txtCedulaFiltroLibro.setText("");
+    private void txtIsbnFiltroLibroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroFocusGained
+		if (txtIsbnFiltroLibro.getText().equals("Filtrar por ISBN")) {
+			txtIsbnFiltroLibro.setText("");
 		}
-    }//GEN-LAST:event_txtCedulaFiltroLibroFocusGained
+    }//GEN-LAST:event_txtIsbnFiltroLibroFocusGained
 
-    private void txtCedulaFiltroLibroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFiltroLibroFocusLost
-		if (txtCedulaFiltroLibro.getText().equals("")) {
-			txtCedulaFiltroLibro.setText("Filtrar por cédula");
+    private void txtIsbnFiltroLibroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroFocusLost
+		if (txtIsbnFiltroLibro.getText().equals("")) {
+			txtIsbnFiltroLibro.setText("Filtrar por ISBN");
 		}
-    }//GEN-LAST:event_txtCedulaFiltroLibroFocusLost
+    }//GEN-LAST:event_txtIsbnFiltroLibroFocusLost
 
-    private void txtCedulaFiltroLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaFiltroLibroKeyReleased
-//        if (!txtCedulaFiltroLibro.getText().equals("Filtrar por cédula")) {
-//            llenarTablaAdminisitradores(txtCedulaFiltroLibro.getText());
-//        }
-    }//GEN-LAST:event_txtCedulaFiltroLibroKeyReleased
+    private void txtIsbnFiltroLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroKeyReleased
+                filtrarTablaLibros();
+    }//GEN-LAST:event_txtIsbnFiltroLibroKeyReleased
 
     private void btnRegistrarLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseClicked
 
@@ -897,14 +901,15 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		btnRegistrarLibro.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnRegistrarLibroMouseExited
 
-    private void cmbCargoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCargoItemStateChanged
-
-    }//GEN-LAST:event_cmbCargoItemStateChanged
+    private void cmbGenerosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbGenerosItemStateChanged
+                filtrarTablaLibros();
+    }//GEN-LAST:event_cmbGenerosItemStateChanged
 
     private void tabLibrosRegistradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLibrosRegistradosMouseClicked
 		cambiarPanel();
 		pnlLibros.setVisible(true);
-		
+		llenarTablaLibros(null, null);
+                llenarCmbGeneros();
 		llenarTablaGeneros();
     }//GEN-LAST:event_tabLibrosRegistradosMouseClicked
 
@@ -937,6 +942,10 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         btnRegistrarGenero.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnRegistrarGeneroMouseExited
 
+    private void txtIsbnFiltroLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIsbnFiltroLibroActionPerformed
+
 	public void cambiarPanel() {
 		pnlResumen.setVisible(false);
 		pnlUsuarios.setVisible(false);
@@ -946,7 +955,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 	public void llenarTablaUsuarios() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		ArrayList<Usuario> listaUsuarios = controlador.obtenerListaUsuarios();
-		modelo.setColumnIdentifiers(new Object[]{"Cedúla", "Nombre", "Apellidos", "Usuarios"});
+		modelo.setColumnIdentifiers(new Object[]{"Cédula", "Nombre", "Apellidos", "Usuarios"});
 		tblUsuarios.setModel(modelo);
 
 		for (Usuario usuarioAlmacenado : listaUsuarios) {
@@ -959,6 +968,24 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		}
 	}
 	
+	public void llenarTablaLibros(String isbn, String idGenero) {
+		DefaultTableModel modelo = new DefaultTableModel();
+		ArrayList<Libro> listaLibros = controlador.obtenerListaLibros(isbn, idGenero);
+		modelo.setColumnIdentifiers(new Object[]{"ISBN", "Titulo", "Autor", "Género", "Año de publicacion", "Unidades disponibles"});
+		tblLibros.setModel(modelo);
+
+		for (Libro generoAlmacenado : listaLibros) {
+			modelo.addRow(new Object[]{
+				generoAlmacenado.getISBN(),
+				generoAlmacenado.getTitulo(),
+				generoAlmacenado.getAutor(),
+				generoAlmacenado.getGenero(),
+				generoAlmacenado.getAnioPublicacion(),
+				generoAlmacenado.getUnidadesDisponibles(),
+			});
+		}
+	}
+        
 	public void llenarTablaGeneros() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		ArrayList<Genero> listaGeneros = controlador.obtenerListaGeneros();
@@ -972,7 +999,32 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			});
 		}
 	}
+        
+        public void llenarCmbGeneros() {
+                DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+		cmbGeneros.setModel(model);
+                
+                ArrayList<Genero> generos = controlador.obtenerListaGeneros();
+		model.addElement("Seleccione un género"); // Agrega la opción predeterminada
 
+                for (Genero genero : generos) {
+                        model.addElement(genero.getId() + " - " + genero.getNombre());
+                }
+        }
+        
+        private void filtrarTablaLibros() {
+            int selectedIndex = cmbGeneros.getSelectedIndex();
+            String isbn = txtIsbnFiltroLibro.getText();
+            if (isbn.equals("Filtrar por ISBN") && selectedIndex == 0) {
+                llenarTablaLibros(null, null);
+            } else if (!isbn.equals("Filtrar por ISBN")) {
+                llenarTablaLibros(isbn, null);
+            } else if (selectedIndex != 0) {
+                llenarTablaLibros(null, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
+            } else {
+                llenarTablaLibros(isbn, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
+            }
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -982,7 +1034,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.PanelRound btnRegistrarLibro;
     private com.vistas.PanelRound btnRegistrarUsuario;
     private com.vistas.PanelRound btnSalir;
-    private javax.swing.JComboBox<String> cmbCargo;
+    private javax.swing.JComboBox<String> cmbGeneros;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
@@ -1025,8 +1077,8 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.Table tblGeneros;
     private com.vistas.Table tblLibros;
     private com.vistas.Table tblUsuarios;
-    private javax.swing.JTextField txtCedulaFiltroLibro;
     private javax.swing.JTextField txtCedulaFiltroUsuarios;
+    private javax.swing.JTextField txtIsbnFiltroLibro;
     // End of variables declaration//GEN-END:variables
 
 }

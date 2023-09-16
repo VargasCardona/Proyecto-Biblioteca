@@ -234,7 +234,8 @@ public class VistaRegistroGenero extends javax.swing.JFrame implements KeyListen
 				this.dispose();
 
 				vistaPrincipal.llenarTablaGeneros();
-	
+                                vistaPrincipal.llenarCmbGeneros();
+                                        
 				VistaNotificacion vista = new VistaNotificacion("Genero Registrado");
 				vista.setVisible(true);
 
