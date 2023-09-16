@@ -1,32 +1,39 @@
 package com.controladores;
 
-import com.utils.ConexionUtils;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.daos.DaoGenero;
+import com.daos.DaoUsuario;
+import com.modelos.Genero;
+import com.modelos.Usuario;
+import java.util.ArrayList;
 
 public class ControladorPrincipalUsuario extends ControladorBase{
 
-	public ResultSet listarTabla() {
-		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios");
+	private DaoUsuario daoUsuario;
+	private DaoGenero daoGenero;
 
-			return ps.executeQuery();
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
-		return null;
+	public ControladorPrincipalUsuario() {
+		this.daoUsuario = new DaoUsuario();
+		this.daoGenero = new DaoGenero();
+	}
+	
+	public ArrayList<Usuario> obtenerListaUsuarios() {
+		return daoUsuario.obtenerListaUsuarios();
 	}
 
-	public ResultSet buscarCoincidencias(String where) {
-		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE cedula LIKE CONCAT('%',?,'%')");
-			ps.setString(1, where);
-
-			return ps.executeQuery();
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
-		return null;
+	public ArrayList<Usuario> buscarCoincidencias(String where) {
+		return daoUsuario.buscarCoincidencias(where);
 	}
+	
+	public Usuario consultarUsuario(String argumento, boolean esConsultaCedula){
+		return daoUsuario.consultarUsuario(argumento, esConsultaCedula);
+	}
+	
+	public ArrayList<Genero> obtenerListaGeneros() {
+		return daoGenero.obtenerListaGeneros();
+	}
+	
+	public Genero consultarGenero(String idGenero){
+		return daoGenero.consultarGenero(idGenero);
+	}
+	
 }

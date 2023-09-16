@@ -2,6 +2,23 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaPrincipalUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/daos/DaoUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/modelos/Libro.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorBase.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaGestionPerfil.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/modelos/Prestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorRegistroUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaRegistroUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorGestionUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/modelos/Usuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorGestionPerfil.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorPrincipalUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorAcceso.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaGestionUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaNotificacion.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaAcceso.java</file>
+        </group>
     </open-files>
 </project-private>

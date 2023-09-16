@@ -1,0 +1,25 @@
+package com.modelos;
+
+public class Genero {
+	
+	private String id;
+	private String nombre;
+
+	public Genero(String id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+}

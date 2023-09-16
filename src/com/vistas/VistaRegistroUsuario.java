@@ -503,7 +503,7 @@ public class VistaRegistroUsuario extends javax.swing.JFrame implements KeyListe
 				this.dispose();
 
 				if (vistaPrincipal instanceof VistaPrincipalUsuario) {
-					((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios("");
+					((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios();
 				} else {
 					VistaAcceso vistaAcceso = new VistaAcceso();
 					vistaAcceso.setVisible(true);

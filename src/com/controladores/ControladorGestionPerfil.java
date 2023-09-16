@@ -1,36 +1,32 @@
 package com.controladores;
 
+import com.daos.DaoUsuario;
 import com.excepciones.CamposVaciosException;
 import com.excepciones.CuentaExistenteException;
-import com.utils.ConexionUtils;
 import com.utils.GeneralUtils;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.modelos.Usuario;
 import java.sql.SQLException;
 
 public class ControladorGestionPerfil extends ControladorBase {
 
-	public void actualizarTabla(String usuario, String usuarioNuevo, String contrasenia) throws SQLException {
+	private DaoUsuario daoUsuario;
+
+	public ControladorGestionPerfil() {
+		this.daoUsuario = new DaoUsuario();
+	}
+
+	public void actualizarCredenciales(String usuario, String usuarioNuevo, String contrasenia) throws SQLException {
 		if (GeneralUtils.estaVacio(usuario, "Nombre")
 				|| GeneralUtils.estaVacio(contrasenia, "Contraseña")) {
 			throw new CamposVaciosException();
 		}
-		
-		ResultSet rs = consultarUsuario(usuarioNuevo, false);
 
-		if (rs.next()) {
+		Usuario usuarioObtenido = daoUsuario.consultarUsuario(usuarioNuevo, false);
+
+		if (usuarioObtenido != null) {
 			throw new CuentaExistenteException();
 		}
 
-		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuarios SET usuario = ?, contrasenia = ? WHERE usuario = ?");
-			ps.setString(1, usuarioNuevo);
-			ps.setString(2, contrasenia);
-			ps.setString(3, usuario);
-
-			ps.execute();
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
+		daoUsuario.actualizarCredenciales(usuarioNuevo, contrasenia, usuario);
 	}
 }

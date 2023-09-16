@@ -1,27 +1,27 @@
 package com.vistas;
 
-import com.controladores.ControladorGestionPerfil;
-import com.modelos.Usuario;
+import com.controladores.ControladorGestionGenero;
+import com.excepciones.CamposVaciosException;
+import com.modelos.Genero;
 import java.awt.Color;
 import java.awt.Cursor;
-import javax.swing.JFrame;
 
-public class VistaGestionPerfil extends javax.swing.JFrame {
+public class VistaGestionGenero extends javax.swing.JFrame {
 
 	int xMouse, yMouse;
-	ControladorGestionPerfil controlador;
-	Usuario usuarioActivo;
-	JFrame vistaPrincipal;
+	ControladorGestionGenero controlador;
+	Genero generoSeleccionado;
+	VistaPrincipalUsuario vistaPrincipal;
 
-	public VistaGestionPerfil(JFrame vistaPrincipal, Usuario usuarioActivo) {
+	public VistaGestionGenero(VistaPrincipalUsuario vista, Genero genero) {
 		initComponents();
 		this.setLocationRelativeTo(null);
-		this.controlador = new ControladorGestionPerfil();
-		this.usuarioActivo = usuarioActivo;
-		this.vistaPrincipal = vistaPrincipal;
+		this.controlador = new ControladorGestionGenero();
+		this.generoSeleccionado = genero;
+		this.vistaPrincipal = vista;
 
-		txtUsuario.setText(usuarioActivo.getUsuario());
-		txtContrasenia.setText(usuarioActivo.getContrasenia());
+		lblId.setText(generoSeleccionado.getId());
+		txtNombre.setText(generoSeleccionado.getNombre());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -30,16 +30,16 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         panelRound6 = new com.vistas.PanelRound();
-        txtUsuario = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         btnGuardarCambios = new com.vistas.PanelRound();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         btnSalir = new com.vistas.PanelRound();
-        panelRound9 = new com.vistas.PanelRound();
-        txtContrasenia = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        btnEliminarGenero = new com.vistas.PanelRound();
         jLabel5 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -56,25 +56,30 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
         panelRound6.setRoundTopRight(20);
         panelRound6.setLayout(null);
 
-        txtUsuario.setBackground(new java.awt.Color(37, 42, 52));
-        txtUsuario.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setText("Usuario");
-        txtUsuario.setBorder(null);
-        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombre.setBackground(new java.awt.Color(37, 42, 52));
+        txtNombre.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setText("Nombre");
+        txtNombre.setBorder(null);
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsuarioFocusLost(evt);
+                txtNombreFocusLost(evt);
             }
         });
-        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtUsuarioMousePressed(evt);
+                txtNombreMousePressed(evt);
             }
         });
-        panelRound6.add(txtUsuario);
-        txtUsuario.setBounds(10, 10, 280, 20);
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        panelRound6.add(txtNombre);
+        txtNombre.setBounds(10, 10, 280, 20);
 
-        bg.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 310, 40));
+        bg.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, 40));
         Cursor cursorText4= new Cursor(Cursor.TEXT_CURSOR);
         panelRound6.setCursor(cursorText4);
         panelRound6.setVisible(true);
@@ -106,17 +111,17 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
         btnGuardarCambios.add(jLabel4);
         jLabel4.setBounds(70, 10, 160, 20);
 
-        bg.add(btnGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 310, 40));
+        bg.add(btnGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 310, 40));
         Cursor cursorHand1 = new Cursor(Cursor.HAND_CURSOR);
         btnGuardarCambios.setCursor(cursorHand1);
         btnGuardarCambios.setVisible(true);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Contraseña");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 310, 30));
+        jLabel3.setText("Gestionar Genero");
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, 40));
 
         header.setBackground(new java.awt.Color(24, 25, 32));
         header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -176,52 +181,51 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
 
         bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 30));
 
-        panelRound9.setBackground(new java.awt.Color(37, 42, 52));
-        panelRound9.setForeground(new java.awt.Color(57, 59, 70));
-        panelRound9.setRoundBottomLeft(20);
-        panelRound9.setRoundBottomRight(20);
-        panelRound9.setRoundTopLeft(20);
-        panelRound9.setRoundTopRight(20);
-        panelRound9.setLayout(null);
-
-        txtContrasenia.setBackground(new java.awt.Color(37, 42, 52));
-        txtContrasenia.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        txtContrasenia.setForeground(new java.awt.Color(255, 255, 255));
-        txtContrasenia.setText("Contraseña");
-        txtContrasenia.setBorder(null);
-        txtContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtContraseniaFocusLost(evt);
+        btnEliminarGenero.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminarGenero.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarGenero.setRoundBottomLeft(20);
+        btnEliminarGenero.setRoundBottomRight(20);
+        btnEliminarGenero.setRoundTopLeft(20);
+        btnEliminarGenero.setRoundTopRight(20);
+        btnEliminarGenero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarGeneroMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarGeneroMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarGeneroMouseExited(evt);
             }
         });
-        txtContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtContraseniaMousePressed(evt);
-            }
-        });
-        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseniaActionPerformed(evt);
-            }
-        });
-        panelRound9.add(txtContrasenia);
-        txtContrasenia.setBounds(10, 10, 280, 20);
+        btnEliminarGenero.setLayout(null);
 
-        bg.add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 310, 40));
+        jLabel5.setBackground(new java.awt.Color(24, 25, 32));
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(24, 25, 32));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Eliminar Genero");
+        btnEliminarGenero.add(jLabel5);
+        jLabel5.setBounds(70, 10, 160, 20);
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Gestionar Cuenta");
-        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, 40));
+        bg.add(btnEliminarGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 310, 40));
+        Cursor cursorHand2 = new Cursor(Cursor.HAND_CURSOR);
+        btnEliminarGenero.setCursor(cursorHand2);
+        btnEliminarGenero.setVisible(true);
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Usuario");
-        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 310, 30));
+        lblId.setBackground(new java.awt.Color(255, 255, 255));
+        lblId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
+        lblId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblId.setText("{ID}");
+        bg.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, 30));
+
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Genero con ID:");
+        bg.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,7 +235,7 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -240,101 +244,113 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
 	// Metodos encargados de arrastrar la ventana
 
         private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
-		xMouse = evt.getX();
-		yMouse = evt.getY();
+			xMouse = evt.getX();
+			yMouse = evt.getY();
         }//GEN-LAST:event_headerMousePressed
 
         private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
-		int x = evt.getXOnScreen();
-		int y = evt.getYOnScreen();
-		this.setLocation(x - xMouse, y - yMouse);
+			int x = evt.getXOnScreen();
+			int y = evt.getYOnScreen();
+			this.setLocation(x - xMouse, y - yMouse);
         }//GEN-LAST:event_headerMouseDragged
 
         private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-		btnSalir.setBackground(new Color(255, 255, 255));
+			btnSalir.setBackground(new Color(255, 255, 255));
         }//GEN-LAST:event_btnSalirMouseExited
 
         private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
-		btnSalir.setBackground(new Color(204, 204, 204));
+			btnSalir.setBackground(new Color(204, 204, 204));
         }//GEN-LAST:event_btnSalirMouseEntered
 
 	//Metodos encargados de los Botones
 
         private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-		this.dispose();
+			this.dispose();
         }//GEN-LAST:event_btnSalirMouseClicked
 
         private void btnGuardarCambiosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseExited
-		btnGuardarCambios.setBackground(new Color(255, 255, 255));
+			btnGuardarCambios.setBackground(new Color(255, 255, 255));
         }//GEN-LAST:event_btnGuardarCambiosMouseExited
 
 	// Metodos encargados de cambios de color en Botones
 
         private void btnGuardarCambiosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseEntered
-		btnGuardarCambios.setBackground(new Color(204, 204, 204));
+			btnGuardarCambios.setBackground(new Color(204, 204, 204));
         }//GEN-LAST:event_btnGuardarCambiosMouseEntered
 
         private void btnGuardarCambiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseClicked
 
-		try {
-			controlador.actualizarCredenciales(
-					usuarioActivo.getUsuario(),
-					txtUsuario.getText(),
-					txtContrasenia.getText());
+			try {
+				controlador.actualizarGenero(txtNombre.getText(), generoSeleccionado.getId());
 
-			this.dispose();
-			vistaPrincipal.dispose();
+				this.dispose();
 
-			VistaAcceso vistaAcceso = new VistaAcceso();
-			vistaAcceso.setVisible(true);
+				vistaPrincipal.llenarTablaGeneros();
 
-			VistaNotificacion vistaNotificacion = new VistaNotificacion("Cuenta editada");
-			vistaNotificacion.setVisible(true);
+				VistaNotificacion vista = new VistaNotificacion("Genero editado");
+				vista.setVisible(true);
 
-		} catch (Exception e) {
+			} catch (CamposVaciosException e) {
 
-			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
-			vista.setVisible(true);
+				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+				vista.setVisible(true);
 
-		}
+			}
         }//GEN-LAST:event_btnGuardarCambiosMouseClicked
 
-        private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
-		if (txtUsuario.getText().equals("Nombres")) {
-			txtUsuario.setText("");
-		}
-        }//GEN-LAST:event_txtUsuarioMousePressed
+        private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
+			if (txtNombre.getText().equals("Nombres")) {
+				txtNombre.setText("");
+			}
+        }//GEN-LAST:event_txtNombreMousePressed
 
-        private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
-		if (txtUsuario.getText().equals("")) {
-			txtUsuario.setText("Nombres");
-		}
-        }//GEN-LAST:event_txtUsuarioFocusLost
+        private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+			if (txtNombre.getText().equals("")) {
+				txtNombre.setText("Nombres");
+			}
+        }//GEN-LAST:event_txtNombreFocusLost
 
-        private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
-		// TODO add your handling code here:
-        }//GEN-LAST:event_txtContraseniaFocusLost
+        private void btnEliminarGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarGeneroMouseClicked
 
-        private void txtContraseniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaMousePressed
-		// TODO add your handling code here:
-        }//GEN-LAST:event_txtContraseniaMousePressed
+			try {
+				controlador.eliminarGenero(generoSeleccionado.getId());
+			} catch (Exception e) {
+				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+				vista.setVisible(true);
+				return;
+			}
 
-        private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
-		// TODO add your handling code here:
-        }//GEN-LAST:event_txtContraseniaActionPerformed
+			this.dispose();
+			vistaPrincipal.llenarTablaGeneros();
+
+			VistaNotificacion vista = new VistaNotificacion("Genero eliminado del sistema");
+			vista.setVisible(true);
+        }//GEN-LAST:event_btnEliminarGeneroMouseClicked
+
+        private void btnEliminarGeneroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarGeneroMouseEntered
+			btnEliminarGenero.setBackground(new Color(204, 204, 204));
+        }//GEN-LAST:event_btnEliminarGeneroMouseEntered
+
+        private void btnEliminarGeneroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarGeneroMouseExited
+			btnEliminarGenero.setBackground(new Color(255, 255, 255));
+        }//GEN-LAST:event_btnEliminarGeneroMouseExited
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private com.vistas.PanelRound btnEliminarGenero;
     private com.vistas.PanelRound btnGuardarCambios;
     private com.vistas.PanelRound btnSalir;
     private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblId;
     private com.vistas.PanelRound panelRound6;
-    private com.vistas.PanelRound panelRound9;
-    private javax.swing.JTextField txtContrasenia;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

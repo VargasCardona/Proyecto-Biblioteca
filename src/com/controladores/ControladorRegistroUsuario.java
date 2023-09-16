@@ -1,18 +1,26 @@
 package com.controladores;
 
+import com.daos.DaoUsuario;
 import com.excepciones.CamposVaciosException;
 import com.excepciones.CedulaEnUsoException;
 import com.excepciones.ContraseniasNoCoincidenException;
 import com.excepciones.CuentaExistenteException;
 import com.excepciones.EntradasNumericasInvalidasException;
+import com.modelos.Usuario;
 import com.utils.ConexionUtils;
 import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ControladorRegistroUsuario extends ControladorBase{
+	
+	DaoUsuario daoUsuario;
+	
+	public ControladorRegistroUsuario() {
+		this.daoUsuario = new DaoUsuario();
+	}
 
-	public void registrarUsuario(String nombre, String apellidos, String cedula, String usuario, String contrasenia, String validacionContrasenia) throws SQLException {
+	public void registrarUsuario(String nombre, String apellidos, String cedula, String usuario, String contrasenia, String validacionContrasenia){
 		if (GeneralUtils.estaVacio(nombre, "Nombre")
 				|| GeneralUtils.estaVacio(apellidos, "Apellidos")
 				|| GeneralUtils.estaVacio(cedula, "Cédula")
@@ -30,26 +38,14 @@ public class ControladorRegistroUsuario extends ControladorBase{
 			throw new ContraseniasNoCoincidenException();
 		}
 
-		if (consultarUsuario(cedula, true).isBeforeFirst()) {
+		if (daoUsuario.consultarUsuario(cedula, true) != null) {
 			throw new CedulaEnUsoException();
 		}
 
-		if (consultarUsuario(usuario, false).isBeforeFirst()) {
+		if (daoUsuario.consultarUsuario(usuario, false) != null) {
 			throw new CuentaExistenteException();
 		}
-
-		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("INSERT INTO usuarios (cedula, nombre, apellidos	, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
-			ps.setString(1, cedula);
-			ps.setString(2, nombre);
-			ps.setString(3, apellidos);
-			ps.setString(4, usuario);
-			ps.setString(5, contrasenia);
-
-			ps.execute();
-
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
+		
+		daoUsuario.insertarUsuario(new Usuario(nombre, apellidos, cedula, usuario, contrasenia));
 	}
 }

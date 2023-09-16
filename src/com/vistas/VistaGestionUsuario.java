@@ -320,13 +320,13 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
         private void btnGuardarCambiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseClicked
 
 			try {
-				controlador.actualizarTabla(txtNombre.getText(),
+				controlador.actualizarUsuario(txtNombre.getText(),
 						txtApellidos.getText(),
 						usuarioSeleccionado.getCedula());
 
 				this.dispose();
 
-				vistaPrincipal.llenarTablaUsuarios("");
+				vistaPrincipal.llenarTablaUsuarios();
 
 				VistaNotificacion vista = new VistaNotificacion("Usuario editado");
 				vista.setVisible(true);
@@ -354,7 +354,7 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
         private void btnEliminarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarPacienteMouseClicked
 
 			try {
-				controlador.eliminarTabla(String.valueOf(usuarioSeleccionado.getCedula()), vistaPrincipal.usuarioActivo.getCedula());
+				controlador.eliminarUsuario(String.valueOf(usuarioSeleccionado.getCedula()), vistaPrincipal.usuarioActivo.getCedula());
 			} catch (Exception e) {
 				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 				vista.setVisible(true);
@@ -362,7 +362,7 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
 			}
 
 			this.dispose();
-			vistaPrincipal.llenarTablaUsuarios("");
+			vistaPrincipal.llenarTablaUsuarios();
 
 			VistaNotificacion vista = new VistaNotificacion("Usuario eliminado del sistema");
 			vista.setVisible(true);
