@@ -12,12 +12,12 @@ public class ControladorPrincipalUsuario extends ControladorBase{
 
 	private DaoUsuario daoUsuario;
 	private DaoGenero daoGenero;
-        private DaoLibro daoLibro;
+    private DaoLibro daoLibro;
 
 	public ControladorPrincipalUsuario() {
 		this.daoUsuario = new DaoUsuario();
 		this.daoGenero = new DaoGenero();
-                this.daoLibro = new DaoLibro();
+        this.daoLibro = new DaoLibro();
 	}
 	
 	public ArrayList<Usuario> obtenerListaUsuarios() {
@@ -41,7 +41,7 @@ public class ControladorPrincipalUsuario extends ControladorBase{
 	}
         
 	public ArrayList<Libro> obtenerListaLibros(String isbn, String idGenero) {
-                return daoLibro.obtenerListaLibrosFiltro(isbn, idGenero); 
+        return daoLibro.obtenerListaLibrosFiltro(isbn, idGenero); 
 	}
 	
 	public Libro consultarLibro(String idLibro){

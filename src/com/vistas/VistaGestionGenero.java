@@ -120,7 +120,7 @@ public class VistaGestionGenero extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Gestionar Genero");
+        jLabel3.setText("Gestionar Género");
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, 40));
 
         header.setBackground(new java.awt.Color(24, 25, 32));
@@ -204,7 +204,7 @@ public class VistaGestionGenero extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(24, 25, 32));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Eliminar Genero");
+        jLabel5.setText("Eliminar Género");
         btnEliminarGenero.add(jLabel5);
         jLabel5.setBounds(70, 10, 160, 20);
 
@@ -224,7 +224,7 @@ public class VistaGestionGenero extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Genero con ID:");
+        jLabel20.setText("Género con ID:");
         bg.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,9 +286,10 @@ public class VistaGestionGenero extends javax.swing.JFrame {
 				this.dispose();
 
 				vistaPrincipal.llenarTablaGeneros();
-                                vistaPrincipal.llenarCmbGeneros();
+				vistaPrincipal.llenarTablaLibros(null, null);
+				vistaPrincipal.llenarCmbGeneros();
 
-				VistaNotificacion vista = new VistaNotificacion("Genero editado");
+				VistaNotificacion vista = new VistaNotificacion("Género editado");
 				vista.setVisible(true);
 
 			} catch (CamposVaciosException e) {
@@ -324,7 +325,7 @@ public class VistaGestionGenero extends javax.swing.JFrame {
 			this.dispose();
 			vistaPrincipal.llenarTablaGeneros();
 
-			VistaNotificacion vista = new VistaNotificacion("Genero eliminado del sistema");
+			VistaNotificacion vista = new VistaNotificacion("Género eliminado del sistema");
 			vista.setVisible(true);
         }//GEN-LAST:event_btnEliminarGeneroMouseClicked
 
@@ -337,7 +338,7 @@ public class VistaGestionGenero extends javax.swing.JFrame {
         }//GEN-LAST:event_btnEliminarGeneroMouseExited
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

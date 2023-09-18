@@ -2,7 +2,6 @@ package com.controladores;
 
 import com.daos.DaoGenero;
 import com.excepciones.CamposVaciosException;
-import com.excepciones.EliminacionPropiaException;
 import com.utils.GeneralUtils;
 
 public class ControladorGestionGenero {

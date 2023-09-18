@@ -108,7 +108,7 @@ public class VistaRegistroGenero extends javax.swing.JFrame implements KeyListen
         jLabel3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Registro de Genero");
+        jLabel3.setText("Registro de Género");
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, 40));
 
         header.setBackground(new java.awt.Color(24, 25, 32));
@@ -236,7 +236,7 @@ public class VistaRegistroGenero extends javax.swing.JFrame implements KeyListen
 				vistaPrincipal.llenarTablaGeneros();
                                 vistaPrincipal.llenarCmbGeneros();
                                         
-				VistaNotificacion vista = new VistaNotificacion("Genero Registrado");
+				VistaNotificacion vista = new VistaNotificacion("Género Registrado");
 				vista.setVisible(true);
 
 			} catch (Exception e) {

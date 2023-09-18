@@ -1,6 +1,8 @@
 package com.controladores;
 
 import com.daos.DaoGenero;
+import com.excepciones.CamposVaciosException;
+import com.utils.GeneralUtils;
 
 public class ControladorRegistroGenero extends ControladorBase{
 
@@ -11,6 +13,10 @@ public class ControladorRegistroGenero extends ControladorBase{
 	}
 	
 	public void registrarGenero(String nombre){
+		if (GeneralUtils.estaVacio(nombre, "Nombre")) {
+			throw new CamposVaciosException();
+		}
+		
 		daoGenero.insertarGenero(nombre);
 	}
 }

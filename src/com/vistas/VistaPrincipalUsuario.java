@@ -533,7 +533,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "ID Genero", "Nombre"
+                "ID Género", "Nombre"
             }
         ));
         tblGeneros.setFocusable(false);
@@ -553,7 +553,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         label2.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         label2.setForeground(new java.awt.Color(255, 255, 255));
         label2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label2.setText("Generos Existentes");
+        label2.setText("Géneros Existentes");
         pnlCategoriasRegistro.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
 
         btnRegistrarGenero.setBackground(new java.awt.Color(255, 255, 255));
@@ -579,7 +579,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblRegistrar3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblRegistrar3.setForeground(new java.awt.Color(24, 25, 32));
         lblRegistrar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRegistrar3.setText("Registrar Genero");
+        lblRegistrar3.setText("Registrar Género");
         btnRegistrarGenero.add(lblRegistrar3);
         lblRegistrar3.setBounds(0, 10, 210, 20);
 
@@ -867,10 +867,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         }//GEN-LAST:event_btnGestionCuentaMouseExited
 
     private void tblLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibrosMouseClicked
-//        String cedula = (String) tblLibros.getValueAt(tblLibros.getSelectedRow(), 0);
-//        Administrador administradorSeleccionado = controlador.buscarAdministrador(cedula);
-//        VistaGestionAdministrador ventana = new VistaGestionAdministrador(this, administradorSeleccionado);
-//        ventana.setVisible(true);
+		String isbn = (String) tblLibros.getValueAt(tblLibros.getSelectedRow(), 0);
+		Libro libroSeleccionado = controlador.consultarLibro(isbn);
+
+		VistaGestionLibro ventana = new VistaGestionLibro(this, libroSeleccionado);
+		ventana.setVisible(true);
     }//GEN-LAST:event_tblLibrosMouseClicked
 
     private void txtIsbnFiltroLibroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroFocusGained
@@ -886,11 +887,12 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIsbnFiltroLibroFocusLost
 
     private void txtIsbnFiltroLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroKeyReleased
-                filtrarTablaLibros();
+		filtrarTablaLibros();
     }//GEN-LAST:event_txtIsbnFiltroLibroKeyReleased
 
     private void btnRegistrarLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseClicked
-
+		VistaRegistroLibro vista = new VistaRegistroLibro(this);
+		vista.setVisible(true);
     }//GEN-LAST:event_btnRegistrarLibroMouseClicked
 
     private void btnRegistrarLibroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseEntered
@@ -902,14 +904,14 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarLibroMouseExited
 
     private void cmbGenerosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbGenerosItemStateChanged
-                filtrarTablaLibros();
+		filtrarTablaLibros();
     }//GEN-LAST:event_cmbGenerosItemStateChanged
 
     private void tabLibrosRegistradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLibrosRegistradosMouseClicked
 		cambiarPanel();
 		pnlLibros.setVisible(true);
 		llenarTablaLibros(null, null);
-                llenarCmbGeneros();
+		llenarCmbGeneros();
 		llenarTablaGeneros();
     }//GEN-LAST:event_tabLibrosRegistradosMouseClicked
 
@@ -922,7 +924,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLibrosRegistradosMouseExited
 
     private void tblGenerosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGenerosMouseClicked
-        String id = (String) tblGeneros.getValueAt(tblGeneros.getSelectedRow(), 0);
+		String id = (String) tblGeneros.getValueAt(tblGeneros.getSelectedRow(), 0);
 		Genero generoSeleccionado = controlador.consultarGenero(id);
 
 		VistaGestionGenero ventana = new VistaGestionGenero(this, generoSeleccionado);
@@ -930,20 +932,20 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tblGenerosMouseClicked
 
     private void btnRegistrarGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarGeneroMouseClicked
-        VistaRegistroGenero vista = new VistaRegistroGenero(this);
+		VistaRegistroGenero vista = new VistaRegistroGenero(this);
 		vista.setVisible(true);
     }//GEN-LAST:event_btnRegistrarGeneroMouseClicked
 
     private void btnRegistrarGeneroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarGeneroMouseEntered
-        btnRegistrarGenero.setBackground(new Color(204, 204, 204));
+		btnRegistrarGenero.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_btnRegistrarGeneroMouseEntered
 
     private void btnRegistrarGeneroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarGeneroMouseExited
-        btnRegistrarGenero.setBackground(new Color(255, 255, 255));
+		btnRegistrarGenero.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnRegistrarGeneroMouseExited
 
     private void txtIsbnFiltroLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIsbnFiltroLibroActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_txtIsbnFiltroLibroActionPerformed
 
 	public void cambiarPanel() {
@@ -967,7 +969,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			});
 		}
 	}
-	
+
 	public void llenarTablaLibros(String isbn, String idGenero) {
 		DefaultTableModel modelo = new DefaultTableModel();
 		ArrayList<Libro> listaLibros = controlador.obtenerListaLibros(isbn, idGenero);
@@ -981,15 +983,14 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 				generoAlmacenado.getAutor(),
 				generoAlmacenado.getGenero(),
 				generoAlmacenado.getAnioPublicacion(),
-				generoAlmacenado.getUnidadesDisponibles(),
-			});
+				generoAlmacenado.getUnidadesDisponibles(),});
 		}
 	}
-        
+
 	public void llenarTablaGeneros() {
 		DefaultTableModel modelo = new DefaultTableModel();
 		ArrayList<Genero> listaGeneros = controlador.obtenerListaGeneros();
-		modelo.setColumnIdentifiers(new Object[]{"ID Genero", "Nombre"});
+		modelo.setColumnIdentifiers(new Object[]{"ID Género", "Nombre"});
 		tblGeneros.setModel(modelo);
 
 		for (Genero generoAlmacenado : listaGeneros) {
@@ -999,32 +1000,32 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			});
 		}
 	}
-        
-        public void llenarCmbGeneros() {
-                DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
+	public void llenarCmbGeneros() {
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 		cmbGeneros.setModel(model);
-                
-                ArrayList<Genero> generos = controlador.obtenerListaGeneros();
+
+		ArrayList<Genero> generos = controlador.obtenerListaGeneros();
 		model.addElement("Seleccione un género"); // Agrega la opción predeterminada
 
-                for (Genero genero : generos) {
-                        model.addElement(genero.getId() + " - " + genero.getNombre());
-                }
-        }
-        
-        private void filtrarTablaLibros() {
-            int selectedIndex = cmbGeneros.getSelectedIndex();
-            String isbn = txtIsbnFiltroLibro.getText();
-            if (isbn.equals("Filtrar por ISBN") && selectedIndex == 0) {
-                llenarTablaLibros(null, null);
-            } else if (!isbn.equals("Filtrar por ISBN")) {
-                llenarTablaLibros(isbn, null);
-            } else if (selectedIndex != 0) {
-                llenarTablaLibros(null, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
-            } else {
-                llenarTablaLibros(isbn, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
-            }
-        }
+		for (Genero genero : generos) {
+			model.addElement(genero.getId() + " - " + genero.getNombre());
+		}
+	}
+
+	private void filtrarTablaLibros() {
+		int selectedIndex = cmbGeneros.getSelectedIndex();
+		String isbn = txtIsbnFiltroLibro.getText();
+		if (isbn.equals("Filtrar por ISBN") && selectedIndex == 0) {
+			llenarTablaLibros(null, null);
+		} else if (!isbn.equals("Filtrar por ISBN")) {
+			llenarTablaLibros(isbn, null);
+		} else if (selectedIndex != 0) {
+			llenarTablaLibros(null, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
+		} else {
+			llenarTablaLibros(isbn, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
+		}
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;

@@ -5,6 +5,24 @@ import static java.lang.String.valueOf;
 public class GeneralUtils {
 	
 	/**
+	 * Verifica si el String ingresado no es un entero.
+	 *
+	 * @param entrada String a procesar
+	 * @return boolean indicando si el String ingresado no es un entero
+	 * longs
+	 * @throws NumberFormatException {@inheritDoc}
+	 */
+	public static boolean validarEntero(String entrada) {
+		Integer aux;
+		try {
+			aux = Integer.parseInt(entrada);
+			return false;
+		} catch (NumberFormatException e) {
+			return true;
+		}
+	}
+	
+	/**
 	 * Verifica si el String ingresado no es un double.
 	 *
 	 * @param entrada String a procesar
