@@ -1,11 +1,13 @@
 package com.daos;
 
+import com.excepciones.GeneroEnUsoException;
 import com.modelos.Genero;
 import com.utils.ConexionUtils;
 import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 public class DaoGenero {
@@ -90,7 +92,9 @@ public class DaoGenero {
 			ps.setString(1, idGenero);
 
 			ps.execute();
-		} catch (SQLException ex) {
+		} catch (SQLIntegrityConstraintViolationException x) {
+			throw new GeneroEnUsoException();
+                } catch (SQLException ex) {
 			System.err.print(ex);
 		}
 	}
