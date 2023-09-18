@@ -1006,7 +1006,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		cmbGeneros.setModel(model);
 
 		ArrayList<Genero> generos = controlador.obtenerListaGeneros();
-		model.addElement("Seleccione un género"); // Agrega la opción predeterminada
+		model.addElement("Todos los géneros"); // Agrega la opción predeterminada
 
 		for (Genero genero : generos) {
 			model.addElement(genero.getId() + " - " + genero.getNombre());
@@ -1018,9 +1018,9 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		String isbn = txtIsbnFiltroLibro.getText();
 		if (isbn.equals("Filtrar por ISBN") && selectedIndex == 0) {
 			llenarTablaLibros(null, null);
-		} else if (!isbn.equals("Filtrar por ISBN")) {
+		} else if (!isbn.equals("Filtrar por ISBN") && selectedIndex == 0) {
 			llenarTablaLibros(isbn, null);
-		} else if (selectedIndex != 0) {
+		} else if (isbn.equals("Filtrar por ISBN") && selectedIndex != 0) {
 			llenarTablaLibros(null, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
 		} else {
 			llenarTablaLibros(isbn, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
