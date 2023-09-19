@@ -1,10 +1,12 @@
 package com.daos;
 
+import com.excepciones.ConexionNoInicializadaException;
 import com.modelos.Usuario;
 import com.utils.ConexionUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
 import java.util.ArrayList;
 
 public class DaoUsuario {
@@ -106,7 +108,9 @@ public class DaoUsuario {
 				return null;
 			}
 
-		} catch (SQLException ex) {
+		} catch (ConexionNoInicializadaException e) {
+                        throw new ConexionNoInicializadaException();
+                } catch (SQLException ex) {
 			System.err.print(ex);
 		}
 		return null;

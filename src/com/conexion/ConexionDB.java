@@ -1,8 +1,10 @@
 package com.conexion;
 
+import com.excepciones.ConexionNoInicializadaException;
 import org.mariadb.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +24,9 @@ public class ConexionDB {
 
 			con = (Connection) DriverManager.getConnection(this.URL, this.USUARIO, this.CONTRASENIA);
 
-		} catch (SQLException e) {
+		} catch (SQLNonTransientConnectionException ex) {
+                        throw new ConexionNoInicializadaException();
+                }catch (SQLException e) {
 			System.err.println(e);
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);

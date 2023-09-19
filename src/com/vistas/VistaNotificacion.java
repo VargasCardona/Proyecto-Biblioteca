@@ -39,7 +39,7 @@ public class VistaNotificacion extends javax.swing.JFrame implements KeyListener
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Alerta");
-        bg.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 30));
+        bg.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 340, 30));
 
         lblMensaje.setBackground(new java.awt.Color(255, 255, 255));
         lblMensaje.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -47,7 +47,7 @@ public class VistaNotificacion extends javax.swing.JFrame implements KeyListener
         lblMensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMensaje.setText("{Mensaje}");
         lblMensaje.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        bg.add(lblMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 260, 30));
+        bg.add(lblMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 340, 30));
 
         btnEntendido.setBackground(new java.awt.Color(255, 255, 255));
         btnEntendido.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,9 +74,9 @@ public class VistaNotificacion extends javax.swing.JFrame implements KeyListener
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Entiendo");
         btnEntendido.add(jLabel4);
-        jLabel4.setBounds(60, 10, 150, 20);
+        jLabel4.setBounds(0, 10, 260, 20);
 
-        bg.add(btnEntendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 260, 40));
+        bg.add(btnEntendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 260, 40));
         Cursor cursorHand = new Cursor(Cursor.HAND_CURSOR);
         btnEntendido.setCursor(cursorHand);
         btnEntendido.setVisible(true);
@@ -121,15 +121,15 @@ public class VistaNotificacion extends javax.swing.JFrame implements KeyListener
             .addGap(0, 12, Short.MAX_VALUE)
         );
 
-        header.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 8, -1, -1));
+        header.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
-        bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 20));
+        bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

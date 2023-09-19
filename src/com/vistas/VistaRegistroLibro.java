@@ -10,22 +10,22 @@ import javax.swing.DefaultComboBoxModel;
 
 public class VistaRegistroLibro extends javax.swing.JFrame {
 
-	int xMouse, yMouse;
-	ControladorRegistroLibro controladorLibros;
-	ControladorPrincipalUsuario controladorPrincipal;
-	VistaPrincipalUsuario vistaPrincipal;
+    int xMouse, yMouse;
+    ControladorRegistroLibro controladorLibros;
+    ControladorPrincipalUsuario controladorPrincipal;
+    VistaPrincipalUsuario vistaPrincipal;
 
-	public VistaRegistroLibro(VistaPrincipalUsuario vistaPrincipal) {
-		initComponents();
-		this.setLocationRelativeTo(null);
-		this.controladorLibros = new ControladorRegistroLibro();
-		this.controladorPrincipal= new ControladorPrincipalUsuario();
-		this.vistaPrincipal = vistaPrincipal;
-		
-		llenarCmbGeneros();
-	}
+    public VistaRegistroLibro(VistaPrincipalUsuario vistaPrincipal) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.controladorLibros = new ControladorRegistroLibro();
+        this.controladorPrincipal= new ControladorPrincipalUsuario();
+        this.vistaPrincipal = vistaPrincipal;
+        
+        llenarCmbGeneros();
+    }
 
-	@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -351,126 +351,126 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	// Metodos encargados de arrastrar la ventana
+    // Metodos encargados de arrastrar la ventana
 
         private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
-			xMouse = evt.getX();
-			yMouse = evt.getY();
+            xMouse = evt.getX();
+            yMouse = evt.getY();
         }//GEN-LAST:event_headerMousePressed
 
         private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
-			int x = evt.getXOnScreen();
-			int y = evt.getYOnScreen();
-			this.setLocation(x - xMouse, y - yMouse);
+            int x = evt.getXOnScreen();
+            int y = evt.getYOnScreen();
+            this.setLocation(x - xMouse, y - yMouse);
         }//GEN-LAST:event_headerMouseDragged
 
         private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-			btnSalir.setBackground(new Color(255, 255, 255));
+            btnSalir.setBackground(new Color(255, 255, 255));
         }//GEN-LAST:event_btnSalirMouseExited
 
         private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
-			btnSalir.setBackground(new Color(204, 204, 204));
+            btnSalir.setBackground(new Color(204, 204, 204));
         }//GEN-LAST:event_btnSalirMouseEntered
 
-	//Metodos encargados de los Botones
+    //Metodos encargados de los Botones
 
         private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-			this.dispose();
+            this.dispose();
         }//GEN-LAST:event_btnSalirMouseClicked
 
         private void btnGuardarCambiosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseExited
-			btnGuardarCambios.setBackground(new Color(255, 255, 255));
+            btnGuardarCambios.setBackground(new Color(255, 255, 255));
         }//GEN-LAST:event_btnGuardarCambiosMouseExited
 
-	// Metodos encargados de cambios de color en Botones
+    // Metodos encargados de cambios de color en Botones
 
         private void btnGuardarCambiosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseEntered
-			btnGuardarCambios.setBackground(new Color(204, 204, 204));
+            btnGuardarCambios.setBackground(new Color(204, 204, 204));
         }//GEN-LAST:event_btnGuardarCambiosMouseEntered
 
         private void btnGuardarCambiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiosMouseClicked
 
-			try {
-				controladorLibros.registrarLibro(
-						txtTitulo.getText(),
-						txtAutor.getText(),
-						cmbGeneros.getSelectedItem().toString().split(" ")[0],
-						txtPublicacion.getText(),
-						txtUnidades.getText());
+            try {
+                controladorLibros.registrarLibro(
+                        txtTitulo.getText(),
+                        txtAutor.getText(),
+                        cmbGeneros.getSelectedItem().toString().split(" ")[0],
+                        txtPublicacion.getText(),
+                        txtUnidades.getText());
 
-				this.dispose();
-				vistaPrincipal.llenarTablaLibros(null, null);
+                this.dispose();
+                vistaPrincipal.llenarTablaLibros(null, null);
 
-				VistaNotificacion vistaNotificacion = new VistaNotificacion("Libro Registrado");
-				vistaNotificacion.setVisible(true);
+                VistaNotificacion vistaNotificacion = new VistaNotificacion("Libro Registrado");
+                vistaNotificacion.setVisible(true);
 
-			} catch (Exception e) {
+            } catch (Exception e) {
 
-				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
-				vista.setVisible(true);
+                VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+                vista.setVisible(true);
 
-			}
+            }
         }//GEN-LAST:event_btnGuardarCambiosMouseClicked
 
         private void txtTituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTituloMousePressed
-			if (txtTitulo.getText().equals("Título")) {
-				txtTitulo.setText("");
-			}
+            if (txtTitulo.getText().equals("Título")) {
+                txtTitulo.setText("");
+            }
         }//GEN-LAST:event_txtTituloMousePressed
 
         private void txtTituloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTituloFocusLost
-			if (txtTitulo.getText().equals("")) {
-				txtTitulo.setText("Título");
-			}
+            if (txtTitulo.getText().equals("")) {
+                txtTitulo.setText("Título");
+            }
         }//GEN-LAST:event_txtTituloFocusLost
 
     private void txtAutorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAutorFocusLost
-		if (txtAutor.getText().equals("")) {
-			txtAutor.setText("Autor");
-		}
+        if (txtAutor.getText().equals("")) {
+            txtAutor.setText("Autor");
+        }
     }//GEN-LAST:event_txtAutorFocusLost
 
     private void txtAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAutorMousePressed
-		if (txtAutor.getText().equals("Autor")) {
-			txtAutor.setText("");
-		}
+        if (txtAutor.getText().equals("Autor")) {
+            txtAutor.setText("");
+        }
     }//GEN-LAST:event_txtAutorMousePressed
 
     private void txtPublicacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPublicacionFocusLost
-		if (txtPublicacion.getText().equals("")) {
-			txtPublicacion.setText("Año de Publicación");
-		}
+        if (txtPublicacion.getText().equals("")) {
+            txtPublicacion.setText("Año de Publicación");
+        }
     }//GEN-LAST:event_txtPublicacionFocusLost
 
     private void txtPublicacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPublicacionMousePressed
-		if (txtPublicacion.getText().equals("Año de Publicación")) {
-			txtPublicacion.setText("");
-		}
+        if (txtPublicacion.getText().equals("Año de Publicación")) {
+            txtPublicacion.setText("");
+        }
     }//GEN-LAST:event_txtPublicacionMousePressed
 
     private void txtUnidadesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUnidadesFocusLost
-		if (txtUnidades.getText().equals("")) {
-			txtUnidades.setText("Unidades");
-		}
+        if (txtUnidades.getText().equals("")) {
+            txtUnidades.setText("Unidades");
+        }
     }//GEN-LAST:event_txtUnidadesFocusLost
 
     private void txtUnidadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnidadesMousePressed
-		if (txtUnidades.getText().equals("Unidades")) {
-			txtUnidades.setText("");
-		}
+        if (txtUnidades.getText().equals("Unidades")) {
+            txtUnidades.setText("");
+        }
     }//GEN-LAST:event_txtUnidadesMousePressed
 
-	public void llenarCmbGeneros() {
-		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-		cmbGeneros.setModel(model);
+    public void llenarCmbGeneros() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        cmbGeneros.setModel(model);
 
-		ArrayList<Genero> generos = controladorPrincipal.obtenerListaGeneros();
-		model.addElement("Seleccione un género"); // Agrega la opción predeterminada
+        ArrayList<Genero> generos = controladorPrincipal.obtenerListaGeneros();
+        model.addElement("Seleccione un género"); // Agrega la opción predeterminada
 
-		for (Genero genero : generos) {
-			model.addElement(genero.getId() + " - " + genero.getNombre());
-		}
-	}
+        for (Genero genero : generos) {
+            model.addElement(genero.getId() + " - " + genero.getNombre());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;

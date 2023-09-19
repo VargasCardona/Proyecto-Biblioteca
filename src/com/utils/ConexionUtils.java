@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.conexion.ConexionDB;
+import com.excepciones.ConexionNoInicializadaException;
 import org.mariadb.jdbc.Connection;
 
 public class ConexionUtils {
@@ -15,7 +16,9 @@ public class ConexionUtils {
 		try {
 			ConexionDB conexionD = new ConexionDB();
 			return conexionD.getConexion();
-		} catch (Exception ex) {
+		} catch (ConexionNoInicializadaException ex) {
+                        throw new ConexionNoInicializadaException();
+                } catch (Exception ex) {
 			System.err.println("Conexión fallida");
 		}
 		return null;
