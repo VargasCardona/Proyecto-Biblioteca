@@ -7,10 +7,7 @@ import com.excepciones.ContraseniasNoCoincidenException;
 import com.excepciones.CuentaExistenteException;
 import com.excepciones.EntradasNumericasInvalidasException;
 import com.modelos.Usuario;
-import com.utils.ConexionUtils;
 import com.utils.GeneralUtils;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class ControladorRegistroUsuario extends ControladorBase{
 	
@@ -30,7 +27,8 @@ public class ControladorRegistroUsuario extends ControladorBase{
 			throw new CamposVaciosException();
 		}
 
-		if (GeneralUtils.validarDouble(cedula)) {
+		if (GeneralUtils.validarEntero(cedula)
+                        || Integer.valueOf(cedula) < 0) {
 			throw new EntradasNumericasInvalidasException();
 		}
 

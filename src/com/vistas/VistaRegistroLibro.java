@@ -5,10 +5,12 @@ import com.controladores.ControladorRegistroLibro;
 import com.modelos.Genero;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
-public class VistaRegistroLibro extends javax.swing.JFrame {
+public class VistaRegistroLibro extends javax.swing.JFrame implements KeyListener{
 
     int xMouse, yMouse;
     ControladorRegistroLibro controladorLibros;
@@ -21,6 +23,8 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
         this.controladorLibros = new ControladorRegistroLibro();
         this.controladorPrincipal= new ControladorPrincipalUsuario();
         this.vistaPrincipal = vistaPrincipal;
+        txtTitulo.addKeyListener(this);
+        txtUnidades.addKeyListener(this);
         
         llenarCmbGeneros();
     }
@@ -174,7 +178,7 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 30));
@@ -207,6 +211,9 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
         txtAutor.setText("Autor");
         txtAutor.setBorder(null);
         txtAutor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAutorFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtAutorFocusLost(evt);
             }
@@ -275,6 +282,9 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
         txtPublicacion.setText("Año de Publicación");
         txtPublicacion.setBorder(null);
         txtPublicacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPublicacionFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPublicacionFocusLost(evt);
             }
@@ -313,6 +323,9 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
         txtUnidades.setText("Unidades");
         txtUnidades.setBorder(null);
         txtUnidades.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUnidadesFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUnidadesFocusLost(evt);
             }
@@ -431,9 +444,7 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAutorFocusLost
 
     private void txtAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAutorMousePressed
-        if (txtAutor.getText().equals("Autor")) {
-            txtAutor.setText("");
-        }
+        //
     }//GEN-LAST:event_txtAutorMousePressed
 
     private void txtPublicacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPublicacionFocusLost
@@ -443,9 +454,7 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPublicacionFocusLost
 
     private void txtPublicacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPublicacionMousePressed
-        if (txtPublicacion.getText().equals("Año de Publicación")) {
-            txtPublicacion.setText("");
-        }
+        //
     }//GEN-LAST:event_txtPublicacionMousePressed
 
     private void txtUnidadesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUnidadesFocusLost
@@ -455,10 +464,26 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUnidadesFocusLost
 
     private void txtUnidadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnidadesMousePressed
+        //
+    }//GEN-LAST:event_txtUnidadesMousePressed
+
+    private void txtAutorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAutorFocusGained
+        if (txtAutor.getText().equals("Autor")) {
+            txtAutor.setText("");
+        }
+    }//GEN-LAST:event_txtAutorFocusGained
+
+    private void txtPublicacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPublicacionFocusGained
+        if (txtPublicacion.getText().equals("Año de Publicación")) {
+            txtPublicacion.setText("");
+        }
+    }//GEN-LAST:event_txtPublicacionFocusGained
+
+    private void txtUnidadesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUnidadesFocusGained
         if (txtUnidades.getText().equals("Unidades")) {
             txtUnidades.setText("");
         }
-    }//GEN-LAST:event_txtUnidadesMousePressed
+    }//GEN-LAST:event_txtUnidadesFocusGained
 
     public void llenarCmbGeneros() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -495,4 +520,22 @@ public class VistaRegistroLibro extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextField txtUnidades;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_ENTER) {
+			btnGuardarCambiosMouseClicked(null);
+		}
+		txtTituloMousePressed(null);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+    
 }
