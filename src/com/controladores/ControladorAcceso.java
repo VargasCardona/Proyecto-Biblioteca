@@ -26,7 +26,7 @@ public class ControladorAcceso extends ControladorBase {
 
 		Usuario usuarioEncontrado = daoUsuario.consultarUsuario(usuario, false);
 
-		if (usuarioEncontrado.getUsuario() == null) {
+		if (usuarioEncontrado == null) {
 			throw new UsuarioNoEncontradoException();
 		}
 
