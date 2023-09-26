@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-09-2023 a las 15:34:36
+-- Tiempo de generación: 26-09-2023 a las 18:43:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,7 +37,9 @@ CREATE TABLE `generos` (
 --
 
 INSERT INTO `generos` (`id`, `nombre`) VALUES
-('test_id', 'Test Genero');
+('A454', 'Accion'),
+('M244', 'Mafia'),
+('S986', 'Suspenso');
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,26 @@ CREATE TABLE `libros` (
 --
 
 INSERT INTO `libros` (`isbn`, `titulo`, `autor`, `idGenero`, `anioPublicacion`, `unidadesDisponibles`) VALUES
-('test_isbn', 'Test Libro', 'Autor', 'test_id', '1945', 50);
+('F649', 'Following', 'Christopher Nolan', 'S986', '1998', 1),
+('G942', 'Good Fellas', 'Scorscese', 'M244', '1990', 500),
+('L992', 'Los intocables', 'Brian de Palma', 'M244', '1989', 20),
+('T265', 'The Godfather', 'Mario Puzo', 'M244', '1970', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `prestamos`
+--
+
+CREATE TABLE `prestamos` (
+  `id` varchar(20) NOT NULL,
+  `isbnLibro` varchar(20) NOT NULL,
+  `cedulaUsuario` varchar(20) NOT NULL,
+  `fechaPrestamo` varchar(70) NOT NULL,
+  `fechaVencimiento` varchar(70) NOT NULL,
+  `fechaRetorno` varchar(70) NOT NULL,
+  `estaActivo` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -80,7 +101,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `nombre`, `apellidos`, `usuario`, `contrasenia`) VALUES
-('1', 'root', 'root', 'root', 'root');
+('1', 'root', 'root', 'root', 'root'),
+('1090272917', 'Mateo', 'Loaiza', 'mateo', 'mateo'),
+('12', 'todo', 'todo', 'todo', 'todo'),
+('2', 'a ', 'a', 'e', 'e');
 
 --
 -- Índices para tablas volcadas
@@ -100,6 +124,14 @@ ALTER TABLE `libros`
   ADD KEY `idGenero` (`idGenero`);
 
 --
+-- Indices de la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idLibro` (`isbnLibro`),
+  ADD KEY `idUsuario` (`cedulaUsuario`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -114,6 +146,13 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `libros`
   ADD CONSTRAINT `libros_ibfk_1` FOREIGN KEY (`idGenero`) REFERENCES `generos` (`id`);
+
+--
+-- Filtros para la tabla `prestamos`
+--
+ALTER TABLE `prestamos`
+  ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`isbnLibro`) REFERENCES `libros` (`isbn`),
+  ADD CONSTRAINT `prestamos_ibfk_2` FOREIGN KEY (`cedulaUsuario`) REFERENCES `usuarios` (`cedula`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
