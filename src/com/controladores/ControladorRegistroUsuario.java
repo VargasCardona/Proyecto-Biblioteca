@@ -9,7 +9,7 @@ import com.excepciones.EntradasNumericasInvalidasException;
 import com.modelos.Usuario;
 import com.utils.GeneralUtils;
 
-public class ControladorRegistroUsuario extends ControladorBase{
+public class ControladorRegistroUsuario {
 	
 	DaoUsuario daoUsuario;
 	

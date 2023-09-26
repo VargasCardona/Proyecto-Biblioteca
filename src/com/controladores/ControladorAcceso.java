@@ -7,9 +7,8 @@ import com.excepciones.UsuarioNoEncontradoException;
 import com.modelos.Usuario;
 import com.utils.GeneralUtils;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 
-public class ControladorAcceso extends ControladorBase {
+public class ControladorAcceso {
 
 	private DaoUsuario daoUsuario;
 

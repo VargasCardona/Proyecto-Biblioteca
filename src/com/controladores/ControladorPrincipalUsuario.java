@@ -8,7 +8,7 @@ import com.modelos.Libro;
 import com.modelos.Usuario;
 import java.util.ArrayList;
 
-public class ControladorPrincipalUsuario extends ControladorBase{
+public class ControladorPrincipalUsuario {
 
 	private DaoUsuario daoUsuario;
 	private DaoGenero daoGenero;

@@ -1,20 +1,27 @@
 package com.daos;
 
 import com.modelos.Libro;
-import com.utils.ConexionUtils;
+import com.singleton.DatabaseSingleton;
 import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.mariadb.jdbc.Connection;
 
 public class DaoLibro {
+	
+	private Connection connection;
+	
+	public DaoLibro() {
+		connection = DatabaseSingleton.getInstance().getConnection();
+	}
         
 	public ArrayList<Libro> obtenerListaLibros() {
 		ArrayList<Libro> retornoLibros = new ArrayList<>();
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT l.isbn, l.titulo, l.autor, g.nombre, l.anioPublicacion, l.unidadesDisponibles FROM libros as l INNER JOIN generos g ON l.idGenero = g.id");
+			PreparedStatement ps = connection.prepareStatement("SELECT l.isbn, l.titulo, l.autor, g.nombre, l.anioPublicacion, l.unidadesDisponibles FROM libros as l INNER JOIN generos g ON l.idGenero = g.id");
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -50,7 +57,7 @@ public class DaoLibro {
                 }
                 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT l.isbn, l.titulo, l.autor, g.nombre, l.anioPublicacion, l.unidadesDisponibles FROM libros as l INNER JOIN generos g ON l.idGenero = g.id"+where);
+			PreparedStatement ps = connection.prepareStatement("SELECT l.isbn, l.titulo, l.autor, g.nombre, l.anioPublicacion, l.unidadesDisponibles FROM libros as l INNER JOIN generos g ON l.idGenero = g.id"+where);
                         if (idGenero != null) {
                                 ps.setString(i, idGenero);
                                 i++;
@@ -80,7 +87,7 @@ public class DaoLibro {
 
 	public void insertarLibro(String titulo, String autor, String idGenero, String anioPublicacion, String unidadesDisponibles) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("INSERT INTO libros (isbn, titulo, autor, idGenero, anioPublicacion, unidadesDisponibles) VALUES (?, ?, ?, ?, ?, ?)");
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO libros (isbn, titulo, autor, idGenero, anioPublicacion, unidadesDisponibles) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setString(1, GeneralUtils.generarSku(titulo));
 			ps.setString(2, titulo);
 			ps.setString(3, autor);
@@ -97,7 +104,7 @@ public class DaoLibro {
 
 	public Libro consultarLibro(String isbn) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM libros WHERE isbn = ?");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM libros WHERE isbn = ?");
 
 			ps.setString(1, isbn);
 
@@ -128,7 +135,7 @@ public class DaoLibro {
 	public void actualizarLibro(String titulo, String autor, String idGenero, String anioPublicacion, String unidadesDisponibles, String isbn) {
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE libros SET titulo = ?, autor = ?, idGenero = ?, anioPublicacion = ?, unidadesDisponibles = ? WHERE isbn = ?");
+			PreparedStatement ps = connection.prepareStatement("UPDATE libros SET titulo = ?, autor = ?, idGenero = ?, anioPublicacion = ?, unidadesDisponibles = ? WHERE isbn = ?");
 			ps.setString(1, titulo);
 			ps.setString(2, autor);
 			ps.setString(3, idGenero);
@@ -144,7 +151,7 @@ public class DaoLibro {
 
 	public void eliminarLibro(String isbn) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM libros WHERE isbn = ?");
+			PreparedStatement ps = connection.prepareStatement("DELETE FROM libros WHERE isbn = ?");
 			ps.setString(1, isbn);
 
 			ps.execute();

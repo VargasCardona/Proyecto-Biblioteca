@@ -2,7 +2,6 @@ package com.vistas;
 
 import com.controladores.ControladorGestionLibro;
 import com.controladores.ControladorPrincipalUsuario;
-import com.excepciones.CamposVaciosException;
 import com.modelos.Genero;
 import com.modelos.Libro;
 import java.awt.Color;

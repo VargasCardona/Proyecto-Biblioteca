@@ -7,7 +7,7 @@ import com.utils.GeneralUtils;
 import com.modelos.Usuario;
 import java.sql.SQLException;
 
-public class ControladorGestionPerfil extends ControladorBase {
+public class ControladorGestionPerfil {
 
 	private DaoUsuario daoUsuario;
 

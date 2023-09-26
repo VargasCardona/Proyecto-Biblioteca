@@ -2,20 +2,26 @@ package com.daos;
 
 import com.excepciones.ConexionNoInicializadaException;
 import com.modelos.Usuario;
-import com.utils.ConexionUtils;
+import com.singleton.DatabaseSingleton;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLNonTransientConnectionException;
 import java.util.ArrayList;
+import org.mariadb.jdbc.Connection;
 
 public class DaoUsuario {
+	
+	private Connection connection;
+	
+	public DaoUsuario() {
+		connection = DatabaseSingleton.getInstance().getConnection();
+	}
 
 	public ArrayList<Usuario> obtenerListaUsuarios() {
 		ArrayList<Usuario> retornoUsuarios = new ArrayList<>();
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuarios");
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -40,7 +46,7 @@ public class DaoUsuario {
 		ArrayList<Usuario> retornoUsuarios = new ArrayList<>();
 		PreparedStatement ps;
 		try {
-			ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE cedula LIKE CONCAT('%',?,'%')");
+			ps = connection.prepareStatement("SELECT * FROM usuarios WHERE cedula LIKE CONCAT('%',?,'%')");
 			ps.setString(1, where);
 
 			ResultSet rs = ps.executeQuery();
@@ -65,7 +71,7 @@ public class DaoUsuario {
 
 	public void insertarUsuario(Usuario usuario) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("INSERT INTO usuarios (cedula, nombre, apellidos, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO usuarios (cedula, nombre, apellidos, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
 			ps.setString(1, usuario.getCedula());
 			ps.setString(2, usuario.getNombre());
 			ps.setString(3, usuario.getApellidos());
@@ -85,9 +91,9 @@ public class DaoUsuario {
 			PreparedStatement ps = null;
 
 			if (esConsultaCedula) {
-				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE cedula = ?");
+				ps = connection.prepareStatement("SELECT * FROM usuarios WHERE cedula = ?");
 			} else {
-				ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM usuarios WHERE usuario = ?");
+				ps = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario = ?");
 			}
 
 			ps.setString(1, argumento);
@@ -118,7 +124,7 @@ public class DaoUsuario {
 
 	public void actualizarCredenciales(String usuarioNuevo, String contrasenia, String usuario) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuarios SET usuario = ?, contrasenia = ? WHERE usuario = ?");
+			PreparedStatement ps = connection.prepareStatement("UPDATE usuarios SET usuario = ?, contrasenia = ? WHERE usuario = ?");
 			ps.setString(1, usuarioNuevo);
 			ps.setString(2, contrasenia);
 			ps.setString(3, usuario);
@@ -132,7 +138,7 @@ public class DaoUsuario {
 	public void actualizarUsuario(String nombre, String apellidos, String cedula) {
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE usuarios SET nombre = ?, apellidos = ? WHERE cedula = ?");
+			PreparedStatement ps = connection.prepareStatement("UPDATE usuarios SET nombre = ?, apellidos = ? WHERE cedula = ?");
 			ps.setString(1, nombre);
 			ps.setString(2, apellidos);
 			ps.setString(3, cedula);
@@ -145,7 +151,7 @@ public class DaoUsuario {
 
 	public void eliminarUsuario(String cedula, String cedulaUsuarioActivo) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM usuarios WHERE cedula = ?");
+			PreparedStatement ps = connection.prepareStatement("DELETE FROM usuarios WHERE cedula = ?");
 			ps.setString(1, cedula);
 
 			ps.execute();

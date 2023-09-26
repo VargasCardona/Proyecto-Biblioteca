@@ -6,7 +6,7 @@ import com.excepciones.CamposVaciosException;
 import com.excepciones.EntradasNumericasInvalidasException;
 import com.utils.GeneralUtils;
 
-public class ControladorRegistroLibro extends ControladorBase{
+public class ControladorRegistroLibro {
 
 	private DaoLibro daoLibro;
 

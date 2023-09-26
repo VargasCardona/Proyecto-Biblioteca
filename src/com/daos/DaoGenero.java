@@ -2,21 +2,28 @@ package com.daos;
 
 import com.excepciones.GeneroEnUsoException;
 import com.modelos.Genero;
-import com.utils.ConexionUtils;
+import com.singleton.DatabaseSingleton;
 import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import org.mariadb.jdbc.Connection;
 
 public class DaoGenero {
+
+	private Connection connection;
+	
+	public DaoGenero() {
+		connection = DatabaseSingleton.getInstance().getConnection();
+	}
 
 	public ArrayList<Genero> obtenerListaGeneros() {
 		ArrayList<Genero> retornoGeneros = new ArrayList<>();
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM generos");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM generos");
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -36,7 +43,7 @@ public class DaoGenero {
 
 	public void insertarGenero(String nombreGenero) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("INSERT INTO generos (id, nombre) VALUES (?, ?)");
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO generos (id, nombre) VALUES (?, ?)");
 			ps.setString(1, GeneralUtils.generarSku(nombreGenero));
 			ps.setString(2, nombreGenero);
 
@@ -49,7 +56,7 @@ public class DaoGenero {
 
 	public Genero consultarGenero(String idGenero) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("SELECT * FROM generos WHERE id = ?");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM generos WHERE id = ?");
 
 			ps.setString(1, idGenero);
 
@@ -76,7 +83,7 @@ public class DaoGenero {
 	public void actualizarGenero(String nombre, String idGenero) {
 
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("UPDATE generos SET nombre = ? WHERE id = ?");
+			PreparedStatement ps = connection.prepareStatement("UPDATE generos SET nombre = ? WHERE id = ?");
 			ps.setString(1, nombre);
 			ps.setString(2, idGenero);
 
@@ -88,7 +95,7 @@ public class DaoGenero {
 
 	public void eliminarGenero(String idGenero) {
 		try {
-			PreparedStatement ps = ConexionUtils.realizarConexion().prepareStatement("DELETE FROM generos WHERE id = ?");
+			PreparedStatement ps = connection.prepareStatement("DELETE FROM generos WHERE id = ?");
 			ps.setString(1, idGenero);
 
 			ps.execute();
