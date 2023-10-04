@@ -1,6 +1,8 @@
 package com.utils;
 
 import static java.lang.String.valueOf;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class GeneralUtils {
 	
@@ -78,5 +80,24 @@ public class GeneralUtils {
 		int numeroMaximo = 100;
 		int numeroMinimo = 999;
 		return "" + Character.toUpperCase(stringIngresado.charAt(0)) + valueOf((int) (Math.random() * (numeroMaximo - numeroMinimo + 1) + numeroMinimo));
+	}
+	
+	/**
+	 * Convierte un objeto tipo String en un objeto tipo Calendar
+	 *
+	 * @param fechaString Fecha a convertir en Calendar
+	 * @return Objeto tipo Calendar
+	 */
+	public static Calendar convertirStringFecha(String fechaString) {
+		Calendar fechaRetorno = new GregorianCalendar();
+
+		String[] fechaSplit = fechaString.split("/");
+
+		fechaRetorno.set(Calendar.YEAR, Integer.parseInt(fechaSplit[2]));
+		fechaRetorno.set(Calendar.MONTH, Integer.parseInt(fechaSplit[1]));
+		fechaRetorno.add(Calendar.MONTH, -1);
+		fechaRetorno.set(Calendar.DAY_OF_MONTH, Integer.parseInt(fechaSplit[0]));
+
+		return fechaRetorno;
 	}
 }

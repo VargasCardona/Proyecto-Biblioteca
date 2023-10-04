@@ -4,45 +4,87 @@ import java.util.Calendar;
 
 public class Prestamo {
 
-	public static final String ACTIVO = "Activo";
-	public static final String INACTIVO = "Inactivo";
-
-	private String estado;
-	private String cedulaUsuarioResponsable;
-	private String[] arregloIdLibros;
-	private Calendar fechaDePrestamo;
+	private String id;
+	private String isbnLibro;
+	private String cedulaUsuario;
+	private Calendar fechaPrestamo;
 	private Calendar fechaVencimiento;
+	private Calendar fechaRetorno;
+	private boolean estaActivo;
 
-	public Prestamo(String cedulaUsuarioResponsable, String[] arregloIdLibros, Calendar fechaDePrestamo, Calendar fechaVencimiento) {
-		this.estado = ACTIVO;
-		this.cedulaUsuarioResponsable = cedulaUsuarioResponsable;
-		this.arregloIdLibros = arregloIdLibros;
-		this.fechaDePrestamo = fechaDePrestamo;
+	public Prestamo(String id, String isbnLibro, String cedulaUsuario, Calendar fechaPrestamo, Calendar fechaVencimiento) {
+		this.id = id;
+		this.isbnLibro = isbnLibro;
+		this.cedulaUsuario = cedulaUsuario;
+		this.fechaPrestamo = fechaPrestamo;
 		this.fechaVencimiento = fechaVencimiento;
+		this.estaActivo = true;
 	}
 
-	public String getEstado() {
-		return estado;
+	public Prestamo(String id, String isbnLibro, String cedulaUsuario, Calendar fechaPrestamo, Calendar fechaVencimiento, Calendar fechaRetorno, boolean estaActivo) {
+		this.id = id;
+		this.isbnLibro = isbnLibro;
+		this.cedulaUsuario = cedulaUsuario;
+		this.fechaPrestamo = fechaPrestamo;
+		this.fechaVencimiento = fechaVencimiento;
+		this.fechaRetorno = fechaRetorno;
+		this.estaActivo = estaActivo;
 	}
 
-	public String getCedulaUsuarioResponsable() {
-		return cedulaUsuarioResponsable;
+	public String getId() {
+		return id;
 	}
 
-	public String[] getArregloIdLibros() {
-		return arregloIdLibros;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public Calendar getFechaDePrestamo() {
-		return fechaDePrestamo;
+	public String getIsbnLibro() {
+		return isbnLibro;
+	}
+
+	public void setIsbnLibro(String isbnLibro) {
+		this.isbnLibro = isbnLibro;
+	}
+
+	public String getCedulaUsuario() {
+		return cedulaUsuario;
+	}
+
+	public void setCedulaUsuario(String cedulaUsuario) {
+		this.cedulaUsuario = cedulaUsuario;
+	}
+
+	public Calendar getFechaPrestamo() {
+		return fechaPrestamo;
+	}
+
+	public void setFechaPrestamo(Calendar fechaPrestamo) {
+		this.fechaPrestamo = fechaPrestamo;
 	}
 
 	public Calendar getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setFechaVencimiento(Calendar fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
+	}
+
+	public Calendar getFechaRetorno() {
+		return fechaRetorno;
+	}
+
+	public void setFechaRetorno(Calendar fechaRetorno) {
+		this.fechaRetorno = fechaRetorno;
+	}
+
+	public boolean isEstaActivo() {
+		return estaActivo;
+	}
+
+	public void setEstaActivo(boolean estaActivo) {
+		this.estaActivo = estaActivo;
 	}
 
 }
