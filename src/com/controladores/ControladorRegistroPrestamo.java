@@ -4,9 +4,11 @@ import com.daos.DaoLibro;
 import com.daos.DaoPrestamo;
 import com.daos.DaoUsuario;
 import com.excepciones.FechaInvalidaException;
+import com.excepciones.PrestamoVencidoException;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Usuario;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -56,14 +58,13 @@ public class ControladorRegistroPrestamo {
                 ArrayList<Prestamo> prestamosUsuario = daoPrestamo.obtenerListaPrestamos(cedulaUsuario);
                 for (Prestamo prestamo : prestamosUsuario) {
                         if (prestamo.getFechaVencimiento().before(fechaActual)) {
-                        	//Aquí excepción si el usuario tiene faltas
-                                //Lo chistoso es que no se como aún, se me ocurre
-                                //Simplemente mandar la excepcion con el id del primer 
-                                //Prestamo vencido que encuentre
+                        	throw new PrestamoVencidoException(isbnLibro);
                         }
                 }
                 
-		daoPrestamo.insertarPrestamo(isbnLibro, cedulaUsuario, cedulaUsuario, cedulaUsuario, cedulaUsuario, estaActivo);
+                final SimpleDateFormat FORMATO = new SimpleDateFormat("dd/MM/yyyy");
+                
+		daoPrestamo.insertarPrestamo(isbnLibro, cedulaUsuario, FORMATO.format(fechaActual.getTime()), cedulaUsuario, cedulaUsuario, estaActivo);
 	}
 
 	public void devolverPrestamo(Prestamo prestamoSeleccionado) {
