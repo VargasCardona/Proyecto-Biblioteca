@@ -1,32 +1,34 @@
 package com.vistas;
 
+import com.controladores.ControladorRegistroPrestamo;
+import com.modelos.Libro;
 import com.modelos.Usuario;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaRegistroPrestamo extends javax.swing.JFrame {
 
 	int xMouse, yMouse;
-	ControladorRegistroCirugiaPersonal controlador;
-	VistaPrincipalAdministrador vistaPrincipal;
-	Quirofano quirofanoSeleccionado;
-	Paciente pacienteSeleccionado;
-	Medico medicoSeleccionado;
+	ControladorRegistroPrestamo controlador;
+	VistaPrincipalUsuario vistaPrincipal;
+        
+        Usuario usuarioSeleccionado;
+        Libro libroSeleccionado;
 
-	boolean estanSelecionadosAmbos;
-
-	public VistaRegistroPrestamo(VistaPrincipalAdministrador vistaPrincipal, Quirofano quirofanoSeleccionado) {
+        boolean estanSeleccionadosAmbos;
+        
+	public VistaRegistroPrestamo(VistaPrincipalUsuario vistaPrincipal) {
 		initComponents();
 		this.setLocationRelativeTo(null);
-		this.controlador = new ControladorRegistroCirugiaPersonal();
+		this.controlador = new ControladorRegistroPrestamo();
 		this.vistaPrincipal = vistaPrincipal;
-		this.quirofanoSeleccionado = quirofanoSeleccionado;
-		this.estanSelecionadosAmbos = false;
 
-		llenarTablaCirujanos();
-		llenarTablaPacientes();
-
+		llenarTablaLibros();
+		llenarTablaUsuarios();
+                
+                estanSeleccionadosAmbos = false;
 		btnContinuar.setBackground(new Color(204, 204, 204));
 	}
 
@@ -43,7 +45,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblNombre4 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         scrlMedicos = new javax.swing.JScrollPane();
-        tblCirujanos = new com.vistas.Table();
+        tblLibros = new com.vistas.Table();
         lblAutor = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         lblTituloLibro = new javax.swing.JLabel();
@@ -55,7 +57,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblNombre7 = new javax.swing.JLabel();
         lblNombre8 = new javax.swing.JLabel();
         scrlMedicos2 = new javax.swing.JScrollPane();
-        tblPacientes = new com.vistas.Table();
+        tblUsuarios = new com.vistas.Table();
         lblApellidosPaciente = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         lblNombrePaciente = new javax.swing.JLabel();
@@ -168,7 +170,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         jLabel26.setText("Unidades Disponibles:");
         bg.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, -1, 20));
 
-        tblCirujanos.setModel(new javax.swing.table.DefaultTableModel(
+        tblLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -176,16 +178,16 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Especialización"
             }
         ));
-        tblCirujanos.setFocusable(false);
-        tblCirujanos.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        tblCirujanos.getTableHeader().setResizingAllowed(false);
-        tblCirujanos.getTableHeader().setReorderingAllowed(false);
-        tblCirujanos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblLibros.setFocusable(false);
+        tblLibros.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        tblLibros.getTableHeader().setResizingAllowed(false);
+        tblLibros.getTableHeader().setReorderingAllowed(false);
+        tblLibros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblCirujanosMouseClicked(evt);
+                tblLibrosMouseClicked(evt);
             }
         });
-        scrlMedicos.setViewportView(tblCirujanos);
+        scrlMedicos.setViewportView(tblLibros);
 
         bg.add(scrlMedicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 330, 220));
 
@@ -259,7 +261,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblNombre8.setText("Detalles del Usuario");
         bg.add(lblNombre8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 230, 40));
 
-        tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -267,16 +269,16 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Apellidos"
             }
         ));
-        tblPacientes.setFocusable(false);
-        tblPacientes.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        tblPacientes.getTableHeader().setResizingAllowed(false);
-        tblPacientes.getTableHeader().setReorderingAllowed(false);
-        tblPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblUsuarios.setFocusable(false);
+        tblUsuarios.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        tblUsuarios.getTableHeader().setResizingAllowed(false);
+        tblUsuarios.getTableHeader().setReorderingAllowed(false);
+        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPacientesMouseClicked(evt);
+                tblUsuariosMouseClicked(evt);
             }
         });
-        scrlMedicos2.setViewportView(tblPacientes);
+        scrlMedicos2.setViewportView(tblUsuarios);
 
         bg.add(scrlMedicos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 330, 210));
 
@@ -365,7 +367,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnContinuarMouseEntered
 
     private void btnContinuarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseExited
-	    if (!estanSelecionadosAmbos) {
+	    if (!estanSeleccionadosAmbos) {
 		    return;
 	    }
 
@@ -388,92 +390,78 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
 	// Metodos encargados de los Botones
 
     private void btnContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseClicked
-	    if (!estanSelecionadosAmbos) {
+	    if (!estanSeleccionadosAmbos) {
 		    return;
 	    }
-
-	    if (pacienteSeleccionado.getCedula().equals(medicoSeleccionado.getCedula())) {
-		    VistaNotificacion vista = new VistaNotificacion("El cirujano no puede un paciente");
-		    vista.setVisible(true);
-		    return;
-	    }
-
-	    VistaRegistroCirugiaHorario vista = new VistaRegistroCirugiaHorario(vistaPrincipal, pacienteSeleccionado, medicoSeleccionado, quirofanoSeleccionado);
-	    vista.setVisible(true);
 
 	    this.dispose();
-
     }//GEN-LAST:event_btnContinuarMouseClicked
 
 	    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
 		    this.dispose();
     }//GEN-LAST:event_btnSalirMouseClicked
 
-        private void tblCirujanosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCirujanosMouseClicked
+        private void tblLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibrosMouseClicked
 
-		String cedula = String.valueOf(tblCirujanos.getValueAt(tblCirujanos.getSelectedRow(), 0));
-		this.medicoSeleccionado = controlador.buscarCirujano(cedula);
+		String isbn = String.valueOf(tblLibros.getValueAt(tblLibros.getSelectedRow(), 0));
+		this.libroSeleccionado = controlador.obtenerLibro(isbn);
 
-		lblTituloLibro.setText(medicoSeleccionado.getNombre());
-		lblAutor.setText(medicoSeleccionado.getApellidos());
-		lblIsbn.setText(String.valueOf(medicoSeleccionado.getCedula()));
-		lblPublicacion.setText(medicoSeleccionado.getEspecializacion());
+		lblTituloLibro.setText(libroSeleccionado.getTitulo());
+		lblAutor.setText(libroSeleccionado.getAutor());
+		lblIsbn.setText(libroSeleccionado.getISBN());
+		lblPublicacion.setText(libroSeleccionado.getAnioPublicacion());
+                lblUnidades.setText(String.valueOf(libroSeleccionado.getUnidadesDisponibles()));
 
-		lblJornada.setText(Utilidades.convertirHoraString(medicoSeleccionado.getInicioJornada()) + " - "
-			+ Utilidades.convertirHoraString(medicoSeleccionado.getFinalJornada()));
-
-		lblDiasLibres.setText((medicoSeleccionado.getDiaLibre() == null) ? "No Registrado" : Utilidades.convertirFechaString(medicoSeleccionado.getDiaLibre()));
-
-		if (pacienteSeleccionado != null && medicoSeleccionado != null) {
-			estanSelecionadosAmbos = true;
+		if (usuarioSeleccionado != null && libroSeleccionado != null) {
+			estanSeleccionadosAmbos = true;
 			btnContinuar.setBackground(new Color(255, 255, 255));
 		}
 
-        }//GEN-LAST:event_tblCirujanosMouseClicked
+        }//GEN-LAST:event_tblLibrosMouseClicked
 
-        private void tblPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseClicked
-		String cedula = String.valueOf(tblPacientes.getValueAt(tblPacientes.getSelectedRow(), 0));
-		this.pacienteSeleccionado = controlador.buscarPaciente(cedula);
+        private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
+		String cedula = String.valueOf(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0));
+		this.usuarioSeleccionado = controlador.obtenerUsuario(cedula);
 
-		lblNombrePaciente.setText(pacienteSeleccionado.getNombre());
-		lblApellidosPaciente.setText(pacienteSeleccionado.getApellidos());
-		lblCedulaPaciente.setText(String.valueOf(pacienteSeleccionado.getCedula()));
+		lblNombrePaciente.setText(usuarioSeleccionado.getNombre());
+		lblApellidosPaciente.setText(usuarioSeleccionado.getApellidos());
+		lblCedulaPaciente.setText(usuarioSeleccionado.getCedula());
 
-		if (pacienteSeleccionado != null && medicoSeleccionado != null) {
-			estanSelecionadosAmbos = true;
+		if (usuarioSeleccionado != null && libroSeleccionado != null) {
+			estanSeleccionadosAmbos = true;
 			btnContinuar.setBackground(new Color(255, 255, 255));
 		}
-        }//GEN-LAST:event_tblPacientesMouseClicked
+        }//GEN-LAST:event_tblUsuariosMouseClicked
 
-	private void llenarTablaCirujanos() {
+	private void llenarTablaLibros() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		ListaGenerica<Usuario> listaPersonalMedico = controlador.getListaCirujanos();
-		modelo.setColumnIdentifiers(new Object[]{"Cedula", "Nombre", "Especialización"});
-		tblCirujanos.setModel(modelo);
+		ArrayList<Libro> listaLibros = controlador.obtenerListaLibros();
+		modelo.setColumnIdentifiers(new Object[]{"Isbn", "Título", "Unidades"});
+		tblLibros.setModel(modelo);
 
-		for (Usuario personalAlmacenado : listaPersonalMedico) {
+		for (Libro libro : listaLibros) {
 
 			modelo.addRow(new Object[]{
-				personalAlmacenado.getCedula(),
-				personalAlmacenado.getNombre(),
-				((Medico) personalAlmacenado).getEspecializacion()});
+				libro.getISBN(),
+				libro.getTitulo(),
+				libro.getUnidadesDisponibles()});
 
 		}
 
 	}
 
-	private void llenarTablaPacientes() {
+	private void llenarTablaUsuarios() {
 		DefaultTableModel modelo = new DefaultTableModel();
-		ListaGenerica<Paciente> listaPersonalMedico = controlador.getListaPacientes();
+		ArrayList<Usuario> listaUsuarios = controlador.obtenerListaUsuarios();
 		modelo.setColumnIdentifiers(new Object[]{"Cedula", "Nombre", "Apellidos"});
-		tblPacientes.setModel(modelo);
+		tblUsuarios.setModel(modelo);
 
-		for (Usuario personalAlmacenado : listaPersonalMedico) {
+		for (Usuario usuario : listaUsuarios) {
 
 			modelo.addRow(new Object[]{
-				personalAlmacenado.getCedula(),
-				personalAlmacenado.getNombre(),
-				personalAlmacenado.getApellidos()});
+				usuario.getCedula(),
+				usuario.getNombre(),
+				usuario.getApellidos()});
 
 		}
 
@@ -508,7 +496,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel lblUnidades;
     private javax.swing.JScrollPane scrlMedicos;
     private javax.swing.JScrollPane scrlMedicos2;
-    private com.vistas.Table tblCirujanos;
-    private com.vistas.Table tblPacientes;
+    private com.vistas.Table tblLibros;
+    private com.vistas.Table tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }

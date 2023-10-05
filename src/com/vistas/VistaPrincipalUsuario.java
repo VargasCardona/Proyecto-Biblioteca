@@ -79,7 +79,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlPrestamos = new javax.swing.JPanel();
         pnlAdministradoresRound1 = new com.vistas.PanelRound();
         pnlBusquedaUsuario1 = new com.vistas.PanelRound();
-        txtCedulaFiltroUsuarios1 = new javax.swing.JTextField();
+        txtIdFiltroPrestamos = new javax.swing.JTextField();
         label3 = new javax.swing.JLabel();
         btnRegistrarPrestamo = new com.vistas.PanelRound();
         lblRegistrar4 = new javax.swing.JLabel();
@@ -622,26 +622,26 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlBusquedaUsuario1.setRoundTopRight(20);
         pnlBusquedaUsuario1.setLayout(null);
 
-        txtCedulaFiltroUsuarios1.setBackground(new java.awt.Color(37, 42, 52));
-        txtCedulaFiltroUsuarios1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        txtCedulaFiltroUsuarios1.setForeground(new java.awt.Color(255, 255, 255));
-        txtCedulaFiltroUsuarios1.setText("Filtrar por ID");
-        txtCedulaFiltroUsuarios1.setBorder(null);
-        txtCedulaFiltroUsuarios1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdFiltroPrestamos.setBackground(new java.awt.Color(37, 42, 52));
+        txtIdFiltroPrestamos.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtIdFiltroPrestamos.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdFiltroPrestamos.setText("Filtrar por ID");
+        txtIdFiltroPrestamos.setBorder(null);
+        txtIdFiltroPrestamos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCedulaFiltroUsuarios1FocusGained(evt);
+                txtIdFiltroPrestamosFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFiltroUsuarios1FocusLost(evt);
+                txtIdFiltroPrestamosFocusLost(evt);
             }
         });
-        txtCedulaFiltroUsuarios1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdFiltroPrestamos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCedulaFiltroUsuarios1KeyReleased(evt);
+                txtIdFiltroPrestamosKeyReleased(evt);
             }
         });
-        pnlBusquedaUsuario1.add(txtCedulaFiltroUsuarios1);
-        txtCedulaFiltroUsuarios1.setBounds(10, 10, 660, 20);
+        pnlBusquedaUsuario1.add(txtIdFiltroPrestamos);
+        txtIdFiltroPrestamos.setBounds(10, 10, 660, 20);
 
         pnlAdministradoresRound1.add(pnlBusquedaUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 680, 40));
 
@@ -1125,20 +1125,25 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabPrestamosRegistradosMouseExited
 
-    private void txtCedulaFiltroUsuarios1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFiltroUsuarios1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaFiltroUsuarios1FocusGained
+    private void txtIdFiltroPrestamosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFiltroPrestamosFocusGained
+            if (txtIdFiltroPrestamos.getText().equals("Filtrar por ID")) {
+                    txtIdFiltroPrestamos.setText("");
+            }
+    }//GEN-LAST:event_txtIdFiltroPrestamosFocusGained
 
-    private void txtCedulaFiltroUsuarios1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFiltroUsuarios1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaFiltroUsuarios1FocusLost
+    private void txtIdFiltroPrestamosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFiltroPrestamosFocusLost
+            if (txtIdFiltroPrestamos.getText().equals("")) {
+                    txtIdFiltroPrestamos.setText("Filtrar por ID");
+            }
+    }//GEN-LAST:event_txtIdFiltroPrestamosFocusLost
 
-    private void txtCedulaFiltroUsuarios1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaFiltroUsuarios1KeyReleased
+    private void txtIdFiltroPrestamosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdFiltroPrestamosKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaFiltroUsuarios1KeyReleased
+    }//GEN-LAST:event_txtIdFiltroPrestamosKeyReleased
 
     private void btnRegistrarPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarPrestamoMouseClicked
-        // TODO add your handling code here:
+            VistaRegistroPrestamo vista = new VistaRegistroPrestamo(this);
+            vista.setVisible(true);
     }//GEN-LAST:event_btnRegistrarPrestamoMouseClicked
 
     private void btnRegistrarPrestamoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarPrestamoMouseEntered
@@ -1298,7 +1303,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.Table tblLibros;
     private com.vistas.Table tblPrestamos;
     private com.vistas.Table tblUsuarios;
-    private javax.swing.JTextField txtCedulaFiltroUsuarios1;
+    private javax.swing.JTextField txtIdFiltroPrestamos;
     private javax.swing.JTextField txtIdPrestamoFiltro;
     private javax.swing.JTextField txtIsbnFiltroLibro;
     // End of variables declaration//GEN-END:variables

@@ -15,13 +15,13 @@ public class ControladorPrincipalUsuario {
 
 	private DaoUsuario daoUsuario;
 	private DaoGenero daoGenero;
-    private DaoLibro daoLibro;
+        private DaoLibro daoLibro;
 	private DaoPrestamo daoPrestamo;
 
 	public ControladorPrincipalUsuario() {
 		this.daoUsuario = new DaoUsuario();
 		this.daoGenero = new DaoGenero();
-        this.daoLibro = new DaoLibro();
+                this.daoLibro = new DaoLibro();
 		this.daoPrestamo = new DaoPrestamo();
 	}
 	

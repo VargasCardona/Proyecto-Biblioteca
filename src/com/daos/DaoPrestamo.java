@@ -45,6 +45,33 @@ public class DaoPrestamo {
 		}
 		return null;
 	}
+        
+	public ArrayList<Prestamo> obtenerListaPrestamos(String cedulaUsuario) {
+		ArrayList<Prestamo> retornoPrestamos = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prestamos WHERE cedulaUsuario = ?");
+                        ps.setString(1, cedulaUsuario);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Prestamo prestamoObtenido = new Prestamo(
+						rs.getString("id"),
+						rs.getString("isbnLibro"),
+						rs.getString("cedulaUsuario"),
+						GeneralUtils.convertirStringFecha(rs.getString("fechaPrestamo")),
+						GeneralUtils.convertirStringFecha(rs.getString("fechaVencimiento")),
+						GeneralUtils.convertirStringFecha(rs.getString("fechaRetorno")),
+						rs.getString("estaActivo").equals("1"));
+				retornoPrestamos.add(prestamoObtenido);
+			}
+			return retornoPrestamos;
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return null;
+	}
 
 	public DefaultTableModel obtenerTablaPrestamos() {
 		try {
