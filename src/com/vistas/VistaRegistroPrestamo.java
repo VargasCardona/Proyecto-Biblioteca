@@ -3,9 +3,11 @@ package com.vistas;
 import com.controladores.ControladorRegistroPrestamo;
 import com.modelos.Libro;
 import com.modelos.Usuario;
+import com.utils.GeneralUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaRegistroPrestamo extends javax.swing.JFrame {
@@ -13,12 +15,12 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
 	int xMouse, yMouse;
 	ControladorRegistroPrestamo controlador;
 	VistaPrincipalUsuario vistaPrincipal;
-        
-        Usuario usuarioSeleccionado;
-        Libro libroSeleccionado;
 
-        boolean estanSeleccionadosAmbos;
-        
+	Usuario usuarioSeleccionado;
+	Libro libroSeleccionado;
+
+	boolean estanSeleccionadosAmbos;
+
 	public VistaRegistroPrestamo(VistaPrincipalUsuario vistaPrincipal) {
 		initComponents();
 		this.setLocationRelativeTo(null);
@@ -27,8 +29,8 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
 
 		llenarTablaLibros();
 		llenarTablaUsuarios();
-                
-                estanSeleccionadosAmbos = false;
+
+		estanSeleccionadosAmbos = false;
 		btnContinuar.setBackground(new Color(204, 204, 204));
 	}
 
@@ -66,6 +68,11 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         lblNombre10 = new javax.swing.JLabel();
         lblUnidades = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        panelRound13 = new com.vistas.PanelRound();
+        cmbAnio = new javax.swing.JComboBox<>();
+        cmbDia = new javax.swing.JComboBox<>();
+        cmbMes = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -107,7 +114,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         btnContinuar.add(jLabel4);
         jLabel4.setBounds(0, 10, 320, 20);
 
-        bg.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, 320, 40));
+        bg.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 640, 320, 40));
         Cursor cursorHand6 = new Cursor(Cursor.HAND_CURSOR);
         btnContinuar.setCursor(cursorHand6);
         btnContinuar.setVisible(true);
@@ -194,9 +201,9 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblAutor.setBackground(new java.awt.Color(255, 255, 255));
         lblAutor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblAutor.setForeground(new java.awt.Color(255, 255, 255));
-        lblAutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAutor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAutor.setText(" ");
-        bg.add(lblAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 40, -1));
+        bg.add(lblAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 180, -1));
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -208,23 +215,23 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblTituloLibro.setBackground(new java.awt.Color(255, 255, 255));
         lblTituloLibro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblTituloLibro.setForeground(new java.awt.Color(255, 255, 255));
-        lblTituloLibro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloLibro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTituloLibro.setText(" ");
-        bg.add(lblTituloLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 40, 20));
+        bg.add(lblTituloLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 180, 20));
 
         lblPublicacion.setBackground(new java.awt.Color(255, 255, 255));
         lblPublicacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblPublicacion.setForeground(new java.awt.Color(255, 255, 255));
-        lblPublicacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPublicacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPublicacion.setText(" ");
-        bg.add(lblPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, -1, 20));
+        bg.add(lblPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 120, 20));
 
         lblIsbn.setBackground(new java.awt.Color(255, 255, 255));
         lblIsbn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblIsbn.setForeground(new java.awt.Color(255, 255, 255));
-        lblIsbn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIsbn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblIsbn.setText(" ");
-        bg.add(lblIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 40, -1));
+        bg.add(lblIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 190, -1));
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -285,9 +292,9 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblApellidosPaciente.setBackground(new java.awt.Color(255, 255, 255));
         lblApellidosPaciente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblApellidosPaciente.setForeground(new java.awt.Color(255, 255, 255));
-        lblApellidosPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblApellidosPaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblApellidosPaciente.setText(" ");
-        bg.add(lblApellidosPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, -1, -1));
+        bg.add(lblApellidosPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 460, 170, -1));
 
         jLabel24.setBackground(new java.awt.Color(255, 255, 255));
         jLabel24.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -299,16 +306,16 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblNombrePaciente.setBackground(new java.awt.Color(255, 255, 255));
         lblNombrePaciente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblNombrePaciente.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombrePaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombrePaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNombrePaciente.setText(" ");
-        bg.add(lblNombrePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 20));
+        bg.add(lblNombrePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 430, 170, 20));
 
         lblCedulaPaciente.setBackground(new java.awt.Color(255, 255, 255));
         lblCedulaPaciente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblCedulaPaciente.setForeground(new java.awt.Color(255, 255, 255));
-        lblCedulaPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCedulaPaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCedulaPaciente.setText(" ");
-        bg.add(lblCedulaPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 490, -1, -1));
+        bg.add(lblCedulaPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 490, 180, -1));
 
         jLabel25.setBackground(new java.awt.Color(255, 255, 255));
         jLabel25.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -334,9 +341,59 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         lblUnidades.setBackground(new java.awt.Color(255, 255, 255));
         lblUnidades.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblUnidades.setForeground(new java.awt.Color(255, 255, 255));
-        lblUnidades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUnidades.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblUnidades.setText(" ");
-        bg.add(lblUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, 20));
+        bg.add(lblUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 90, 20));
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel16.setText("Fecha de Retorno");
+        bg.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 590, 130, 40));
+
+        panelRound13.setBackground(new java.awt.Color(37, 42, 52));
+        panelRound13.setForeground(new java.awt.Color(57, 59, 70));
+        panelRound13.setRoundBottomLeft(20);
+        panelRound13.setRoundBottomRight(20);
+        panelRound13.setRoundTopLeft(20);
+        panelRound13.setRoundTopRight(20);
+        panelRound13.setLayout(null);
+
+        cmbAnio.setBackground(new java.awt.Color(37, 42, 52));
+        cmbAnio.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        cmbAnio.setForeground(new java.awt.Color(255, 255, 255));
+        cmbAnio.setMaximumRowCount(5);
+        cmbAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AAAA", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040" }));
+        cmbAnio.setToolTipText("");
+        cmbAnio.setBorder(null);
+        cmbAnio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelRound13.add(cmbAnio);
+        cmbAnio.setBounds(140, 10, 70, 20);
+
+        cmbDia.setBackground(new java.awt.Color(37, 42, 52));
+        cmbDia.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        cmbDia.setForeground(new java.awt.Color(255, 255, 255));
+        cmbDia.setMaximumRowCount(5);
+        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DD", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cmbDia.setToolTipText("");
+        cmbDia.setBorder(null);
+        cmbDia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelRound13.add(cmbDia);
+        cmbDia.setBounds(10, 10, 50, 20);
+
+        cmbMes.setBackground(new java.awt.Color(37, 42, 52));
+        cmbMes.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        cmbMes.setForeground(new java.awt.Color(255, 255, 255));
+        cmbMes.setMaximumRowCount(5);
+        cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MM", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cmbMes.setToolTipText("");
+        cmbMes.setBorder(null);
+        cmbMes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelRound13.add(cmbMes);
+        cmbMes.setBounds(70, 10, 60, 20);
+
+        bg.add(panelRound13, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 220, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -346,7 +403,9 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -359,78 +418,94 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-	    btnSalir.setBackground(new Color(255, 255, 255));
+		btnSalir.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnContinuarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseEntered
-	    btnContinuar.setBackground(new Color(204, 204, 204));
+		btnContinuar.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_btnContinuarMouseEntered
 
     private void btnContinuarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseExited
-	    if (!estanSeleccionadosAmbos) {
-		    return;
-	    }
+		if (!estanSeleccionadosAmbos) {
+			return;
+		}
 
-	    btnContinuar.setBackground(new Color(255, 255, 255));
+		btnContinuar.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnContinuarMouseExited
 
 	// Metodos encargados de arrastrar la ventana
 
     private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
-	    xMouse = evt.getX();
-	    yMouse = evt.getY();
+		xMouse = evt.getX();
+		yMouse = evt.getY();
     }//GEN-LAST:event_headerMousePressed
 
     private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
-	    int x = evt.getXOnScreen();
-	    int y = evt.getYOnScreen();
-	    this.setLocation(x - xMouse, y - yMouse);
+		int x = evt.getXOnScreen();
+		int y = evt.getYOnScreen();
+		this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_headerMouseDragged
 
 	// Metodos encargados de los Botones
 
     private void btnContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseClicked
-	    if (!estanSeleccionadosAmbos) {
-		    return;
-	    }
+		try {
+			if (!estanSeleccionadosAmbos) {
+				return;
+			}
 
-	    this.dispose();
+			Calendar fechaRetorno = GeneralUtils.convertirStringFecha(String.valueOf(cmbDia.getSelectedItem())
+					+ "/" + String.valueOf(cmbMes.getSelectedItem())
+					+ "/" + String.valueOf(cmbAnio.getSelectedItem()));
+
+			controlador.registrarPrestamo(lblIsbn.getText(), lblCedulaPaciente.getText(), fechaRetorno, true);
+
+			this.dispose();
+			vistaPrincipal.llenarTablaPrestamos();
+
+			VistaNotificacion vista = new VistaNotificacion("Prestamo registrado exitosamente");
+			vista.setVisible(true);
+
+		} catch (Exception e) {
+			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+			vista.setVisible(true);
+		}
     }//GEN-LAST:event_btnContinuarMouseClicked
 
 	    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-		    this.dispose();
+			this.dispose();
     }//GEN-LAST:event_btnSalirMouseClicked
 
         private void tblLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibrosMouseClicked
 
-		String isbn = String.valueOf(tblLibros.getValueAt(tblLibros.getSelectedRow(), 0));
-		this.libroSeleccionado = controlador.obtenerLibro(isbn);
+			String isbn = String.valueOf(tblLibros.getValueAt(tblLibros.getSelectedRow(), 0));
+			this.libroSeleccionado = controlador.obtenerLibro(isbn);
 
-		lblTituloLibro.setText(libroSeleccionado.getTitulo());
-		lblAutor.setText(libroSeleccionado.getAutor());
-		lblIsbn.setText(libroSeleccionado.getISBN());
-		lblPublicacion.setText(libroSeleccionado.getAnioPublicacion());
-                lblUnidades.setText(String.valueOf(libroSeleccionado.getUnidadesDisponibles()));
+			lblTituloLibro.setText(libroSeleccionado.getTitulo());
+			lblAutor.setText(libroSeleccionado.getAutor());
+			lblIsbn.setText(libroSeleccionado.getISBN());
+			lblPublicacion.setText(libroSeleccionado.getAnioPublicacion());
+			lblUnidades.setText(String.valueOf(libroSeleccionado.getUnidadesDisponibles()));
 
-		if (usuarioSeleccionado != null && libroSeleccionado != null) {
-			estanSeleccionadosAmbos = true;
-			btnContinuar.setBackground(new Color(255, 255, 255));
-		}
+			if (usuarioSeleccionado != null && libroSeleccionado != null) {
+				estanSeleccionadosAmbos = true;
+				btnContinuar.setBackground(new Color(255, 255, 255));
+			}
 
         }//GEN-LAST:event_tblLibrosMouseClicked
 
         private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-		String cedula = String.valueOf(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0));
-		this.usuarioSeleccionado = controlador.obtenerUsuario(cedula);
+			String cedula = String.valueOf(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0));
+			this.usuarioSeleccionado = controlador.obtenerUsuario(cedula);
 
-		lblNombrePaciente.setText(usuarioSeleccionado.getNombre());
-		lblApellidosPaciente.setText(usuarioSeleccionado.getApellidos());
-		lblCedulaPaciente.setText(usuarioSeleccionado.getCedula());
+			lblNombrePaciente.setText(usuarioSeleccionado.getNombre());
+			lblApellidosPaciente.setText(usuarioSeleccionado.getApellidos());
+			lblCedulaPaciente.setText(usuarioSeleccionado.getCedula());
 
-		if (usuarioSeleccionado != null && libroSeleccionado != null) {
-			estanSeleccionadosAmbos = true;
-			btnContinuar.setBackground(new Color(255, 255, 255));
-		}
+			if (usuarioSeleccionado != null && libroSeleccionado != null) {
+				estanSeleccionadosAmbos = true;
+				btnContinuar.setBackground(new Color(255, 255, 255));
+			}
         }//GEN-LAST:event_tblUsuariosMouseClicked
 
 	private void llenarTablaLibros() {
@@ -471,7 +546,11 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private com.vistas.PanelRound btnContinuar;
     private com.vistas.PanelRound btnSalir;
+    private javax.swing.JComboBox<String> cmbAnio;
+    private javax.swing.JComboBox<String> cmbDia;
+    private javax.swing.JComboBox<String> cmbMes;
     private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -494,6 +573,7 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTituloLibro;
     private javax.swing.JLabel lblUnidades;
+    private com.vistas.PanelRound panelRound13;
     private javax.swing.JScrollPane scrlMedicos;
     private javax.swing.JScrollPane scrlMedicos2;
     private com.vistas.Table tblLibros;

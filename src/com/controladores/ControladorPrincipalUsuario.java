@@ -57,4 +57,8 @@ public class ControladorPrincipalUsuario {
 		return daoPrestamo.obtenerTablaPrestamos();
 	}
 	
+	public Prestamo consultarPrestamo(String id){
+		return daoPrestamo.consultarPrestamo(id);
+	}
+	
 }

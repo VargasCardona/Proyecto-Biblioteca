@@ -148,6 +148,21 @@ public class DaoLibro {
 			System.err.print(ex);
 		}
 	}
+	
+	public void modificarExistencias(int valorModificacion, String isbn) {
+
+		try {
+			Libro libroObtenido = consultarLibro(isbn);
+			
+			PreparedStatement ps = connection.prepareStatement("UPDATE libros SET unidadesDisponibles = ? WHERE isbn = ?");
+			ps.setString(1, String.valueOf(libroObtenido.getUnidadesDisponibles() + valorModificacion));
+			ps.setString(2, isbn);
+
+			ps.execute();
+		} catch (SQLException ex) {
+			System.err.print(ex);
+		}
+	}
 
 	public void eliminarLibro(String isbn) {
 		try {

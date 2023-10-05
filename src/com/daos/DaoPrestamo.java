@@ -45,13 +45,13 @@ public class DaoPrestamo {
 		}
 		return null;
 	}
-        
+
 	public ArrayList<Prestamo> obtenerListaPrestamos(String cedulaUsuario) {
 		ArrayList<Prestamo> retornoPrestamos = new ArrayList<>();
 
 		try {
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prestamos WHERE cedulaUsuario = ?");
-                        ps.setString(1, cedulaUsuario);
+			ps.setString(1, cedulaUsuario);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -61,7 +61,7 @@ public class DaoPrestamo {
 						rs.getString("cedulaUsuario"),
 						GeneralUtils.convertirStringFecha(rs.getString("fechaPrestamo")),
 						GeneralUtils.convertirStringFecha(rs.getString("fechaVencimiento")),
-						GeneralUtils.convertirStringFecha(rs.getString("fechaRetorno")),
+						null,
 						rs.getString("estaActivo").equals("1"));
 				retornoPrestamos.add(prestamoObtenido);
 			}
@@ -76,15 +76,19 @@ public class DaoPrestamo {
 	public DefaultTableModel obtenerTablaPrestamos() {
 		try {
 			DefaultTableModel modelo = new DefaultTableModel();
-			modelo.setColumnIdentifiers(new Object[]{"ID", "Fecha de Vencimiento", "Libro", "Usuario Responsable"});
-			
-			PreparedStatement ps = connection.prepareStatement("SELECT p.id, p.fechaVencimiento, l.titulo, u.usuario from prestamos as p INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula");
+			modelo.setColumnIdentifiers(new Object[]{"ID", "Vencimiento", "Libro", "Usuario", "Préstamo Activo"});
+
+			PreparedStatement ps = connection.prepareStatement("SELECT p.id, p.fechaVencimiento, l.titulo, u.usuario, p.estaActivo from prestamos as p INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula");
 			ResultSet rs = ps.executeQuery();
 
-			Object[] tabla = new Object[4];
+			Object[] tabla = new Object[5];
 			while (rs.next()) {
-				for (int i = 0; i < 4; i++) {
-					tabla[i] = rs.getObject(i + 1);
+				for (int i = 0; i < 5; i++) {
+					if (i == 4) {
+						tabla[i] = (rs.getObject(i + 1)).equals("1") ? "No" : "Si";
+					} else {
+						tabla[i] = rs.getObject(i + 1);
+					}
 				}
 				modelo.addRow(tabla);
 			}
@@ -95,7 +99,7 @@ public class DaoPrestamo {
 		return null;
 	}
 
-	public void insertarPrestamo(String isbnLibro, String cedulaUsuario, String fechaPrestamo, String fechaVencimiento, String fechaRetorno, boolean estaActivo) {
+	public void insertarPrestamo(String isbnLibro, String cedulaUsuario, String fechaPrestamo, String fechaVencimiento, boolean estaActivo) {
 		try {
 			PreparedStatement ps = connection.prepareStatement("INSERT INTO prestamos (id, isbnLibro, cedulaUsuario, fechaPrestamo, fechaVencimiento, fechaRetorno, estaActivo) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, GeneralUtils.generarSku("P"));
@@ -103,7 +107,7 @@ public class DaoPrestamo {
 			ps.setString(3, cedulaUsuario);
 			ps.setString(4, fechaPrestamo);
 			ps.setString(5, fechaVencimiento);
-			ps.setString(6, fechaRetorno);
+			ps.setString(6, null);
 			ps.setString(7, estaActivo ? "1" : "0");
 
 			ps.execute();
@@ -129,7 +133,7 @@ public class DaoPrestamo {
 							rs.getString("cedulaUsuario"),
 							GeneralUtils.convertirStringFecha(rs.getString("fechaPrestamo")),
 							GeneralUtils.convertirStringFecha(rs.getString("fechaVencimiento")),
-							GeneralUtils.convertirStringFecha(rs.getString("fechaRetorno")),
+							rs.getString("fechaRetorno") == null ? null : GeneralUtils.convertirStringFecha(rs.getString("fechaRetorno")),
 							rs.getString("estaActivo").equals("1"));
 					return prestamoObtenido;
 				}

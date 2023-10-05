@@ -175,7 +175,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         jLabel46.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel46.setText("Desde esta ventana se le permitira administrar todo lo referente a usuarios y gestion de prestamos");
+        jLabel46.setText("Desde esta ventana se le permitira administrar todo lo referente a usuarios y gestion de préstamos");
         panelRound18.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 660, 40));
 
         jLabel47.setBackground(new java.awt.Color(255, 255, 255));
@@ -649,7 +649,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         label3.setForeground(new java.awt.Color(255, 255, 255));
         label3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label3.setText("Prestamos Registrados");
+        label3.setText("Préstamos Registrados");
         pnlAdministradoresRound1.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
 
         btnRegistrarPrestamo.setBackground(new java.awt.Color(255, 255, 255));
@@ -675,7 +675,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblRegistrar4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblRegistrar4.setForeground(new java.awt.Color(24, 25, 32));
         lblRegistrar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRegistrar4.setText("Registrar Prestamo");
+        lblRegistrar4.setText("Registrar Préstamo");
         btnRegistrarPrestamo.add(lblRegistrar4);
         lblRegistrar4.setBounds(0, 10, 210, 20);
 
@@ -845,7 +845,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblGestionBiblioteca.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblGestionBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblGestionBiblioteca.setText("Gestión de Prestamos");
+        lblGestionBiblioteca.setText("Gestión de Préstamos");
         bg.add(lblGestionBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 180, 20));
 
         tabLibrosRegistrados.setBackground(new java.awt.Color(255, 255, 255));
@@ -879,7 +879,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         tabPrestamosRegistrados.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         tabPrestamosRegistrados.setForeground(new java.awt.Color(255, 255, 255));
         tabPrestamosRegistrados.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        tabPrestamosRegistrados.setText("Prestamos Registrados");
+        tabPrestamosRegistrados.setText("Préstamos Registrados");
         tabPrestamosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tabPrestamosRegistrados.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         tabPrestamosRegistrados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1118,11 +1118,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tabPrestamosRegistradosMouseClicked
 
     private void tabPrestamosRegistradosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPrestamosRegistradosMouseEntered
-        // TODO add your handling code here:
+        tabPrestamosRegistrados.setForeground(new Color(204, 204, 204));
     }//GEN-LAST:event_tabPrestamosRegistradosMouseEntered
 
     private void tabPrestamosRegistradosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPrestamosRegistradosMouseExited
-        // TODO add your handling code here:
+        tabPrestamosRegistrados.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_tabPrestamosRegistradosMouseExited
 
     private void txtIdFiltroPrestamosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFiltroPrestamosFocusGained
@@ -1147,15 +1147,19 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarPrestamoMouseClicked
 
     private void btnRegistrarPrestamoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarPrestamoMouseEntered
-        // TODO add your handling code here:
+        btnRegistrarPrestamo.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_btnRegistrarPrestamoMouseEntered
 
     private void btnRegistrarPrestamoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarPrestamoMouseExited
-        // TODO add your handling code here:
+        btnRegistrarPrestamo.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnRegistrarPrestamoMouseExited
 
     private void tblPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPrestamosMouseClicked
-        // TODO add your handling code here:
+        String id = (String) tblPrestamos.getValueAt(tblPrestamos.getSelectedRow(), 0);
+		Prestamo prestamoSeleccionado = controlador.consultarPrestamo(id);
+
+		VistaRetornoPrestamo ventana = new VistaRetornoPrestamo(this, prestamoSeleccionado);
+		ventana.setVisible(true);
     }//GEN-LAST:event_tblPrestamosMouseClicked
 
 	public void cambiarPanel() {
