@@ -27,7 +27,11 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
 		lblCedulaUsuario.setText(prestamoSeleccionado.getCedulaUsuario());
 		lblFechaPrestamo.setText(GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaPrestamo()));
 		lblFechaVencimiento.setText(GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaVencimiento()));
-		lblFechaRetorno.setText((prestamoSeleccionado == null) ? GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaRetorno()) : " ");
+		lblFechaRetorno.setText((prestamoSeleccionado.getFechaRetorno() == null) ? "No retornado" : GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaRetorno()));
+		if (!prestamoSeleccionado.isEstaActivo()){
+			lblTitulo.setText("Detalles de Prestamo");
+			lblBoton.setText("Cerrar");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -37,7 +41,7 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         btnCerrar = new com.vistas.PanelRound();
-        jLabel4 = new javax.swing.JLabel();
+        lblBoton = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         btnSalir = new com.vistas.PanelRound();
         jLabel30 = new javax.swing.JLabel();
@@ -86,13 +90,13 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
         });
         btnCerrar.setLayout(null);
 
-        jLabel4.setBackground(new java.awt.Color(24, 25, 32));
-        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(24, 25, 32));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Retornar");
-        btnCerrar.add(jLabel4);
-        jLabel4.setBounds(0, 10, 280, 20);
+        lblBoton.setBackground(new java.awt.Color(24, 25, 32));
+        lblBoton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        lblBoton.setForeground(new java.awt.Color(24, 25, 32));
+        lblBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBoton.setText("Retornar");
+        btnCerrar.add(lblBoton);
+        lblBoton.setBounds(0, 10, 280, 20);
 
         bg.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 280, 40));
         Cursor cursorHand6 = new Cursor(Cursor.HAND_CURSOR);
@@ -242,7 +246,9 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,7 +288,12 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
 	// Metodos encargados de los Botones
 
     private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
-        controlador.devolverPrestamo(prestamoSeleccionado);
+        if (!prestamoSeleccionado.isEstaActivo()){
+			this.dispose();
+			return;
+		}
+		
+		controlador.devolverPrestamo(prestamoSeleccionado);
 		
 		this.dispose();
 		vistaPrincipal.llenarTablaPrestamos();
@@ -306,7 +317,7 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblBoton;
     private javax.swing.JLabel lblCedulaUsuario;
     private javax.swing.JLabel lblFechaPrestamo;
     private javax.swing.JLabel lblFechaRetorno;

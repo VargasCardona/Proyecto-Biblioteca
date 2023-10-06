@@ -76,6 +76,15 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         label2 = new javax.swing.JLabel();
         btnRegistrarGenero = new com.vistas.PanelRound();
         lblRegistrar3 = new javax.swing.JLabel();
+        pnlBuscador = new javax.swing.JPanel();
+        pnlLibrosRegistro1 = new com.vistas.PanelRound();
+        scrlLibros1 = new javax.swing.JScrollPane();
+        tblBuscador = new com.vistas.Table();
+        panelRound3 = new com.vistas.PanelRound();
+        txtFiltroTermino = new javax.swing.JTextField();
+        label4 = new javax.swing.JLabel();
+        panelRound8 = new com.vistas.PanelRound();
+        cmbxBuscador = new javax.swing.JComboBox<>();
         pnlPrestamos = new javax.swing.JPanel();
         pnlAdministradoresRound1 = new com.vistas.PanelRound();
         pnlBusquedaUsuario1 = new com.vistas.PanelRound();
@@ -98,6 +107,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         tabLibrosRegistrados = new javax.swing.JLabel();
         lblGestionBiblioteca1 = new javax.swing.JLabel();
         tabPrestamosRegistrados = new javax.swing.JLabel();
+        tabBuscador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(951, 628));
@@ -604,6 +614,128 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 
         bg.add(pnlLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
 
+        pnlBuscador.setBackground(new java.awt.Color(35, 36, 47));
+        pnlBuscador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlLibrosRegistro1.setBackground(new java.awt.Color(24, 25, 32));
+        pnlLibrosRegistro1.setRoundBottomLeft(10);
+        pnlLibrosRegistro1.setRoundBottomRight(10);
+        pnlLibrosRegistro1.setRoundTopLeft(10);
+        pnlLibrosRegistro1.setRoundTopRight(10);
+        pnlLibrosRegistro1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblBuscador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellidos", "Usuario", "Cargo"
+            }
+        ));
+        tblBuscador.setFocusable(false);
+        tblBuscador.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        tblBuscador.getTableHeader().setResizingAllowed(false);
+        tblBuscador.getTableHeader().setReorderingAllowed(false);
+        tblBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBuscadorMouseClicked(evt);
+            }
+        });
+        scrlLibros1.setViewportView(tblBuscador);
+
+        pnlLibrosRegistro1.add(scrlLibros1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 680, 470));
+
+        panelRound3.setBackground(new java.awt.Color(37, 42, 52));
+        panelRound3.setForeground(new java.awt.Color(57, 59, 70));
+        panelRound3.setRoundBottomLeft(20);
+        panelRound3.setRoundBottomRight(20);
+        panelRound3.setRoundTopLeft(20);
+        panelRound3.setRoundTopRight(20);
+        panelRound3.setLayout(null);
+
+        txtFiltroTermino.setBackground(new java.awt.Color(37, 42, 52));
+        txtFiltroTermino.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtFiltroTermino.setForeground(new java.awt.Color(255, 255, 255));
+        txtFiltroTermino.setText("Filtrar por término");
+        txtFiltroTermino.setBorder(null);
+        txtFiltroTermino.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFiltroTerminoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFiltroTerminoFocusLost(evt);
+            }
+        });
+        txtFiltroTermino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroTerminoActionPerformed(evt);
+            }
+        });
+        txtFiltroTermino.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFiltroTerminoKeyReleased(evt);
+            }
+        });
+        panelRound3.add(txtFiltroTermino);
+        txtFiltroTermino.setBounds(10, 10, 290, 20);
+
+        pnlLibrosRegistro1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 310, 40));
+
+        label4.setBackground(new java.awt.Color(255, 255, 255));
+        label4.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        label4.setForeground(new java.awt.Color(255, 255, 255));
+        label4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label4.setText("Buscador Avanzado");
+        pnlLibrosRegistro1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
+
+        panelRound8.setBackground(new java.awt.Color(37, 42, 52));
+        panelRound8.setForeground(new java.awt.Color(57, 59, 70));
+        panelRound8.setRoundBottomLeft(20);
+        panelRound8.setRoundBottomRight(20);
+        panelRound8.setRoundTopLeft(20);
+        panelRound8.setRoundTopRight(20);
+        panelRound8.setLayout(null);
+
+        cmbxBuscador.setBackground(new java.awt.Color(37, 42, 52));
+        cmbxBuscador.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbxBuscador.setForeground(new java.awt.Color(255, 255, 255));
+        cmbxBuscador.setMaximumRowCount(5);
+        cmbxBuscador.setToolTipText("");
+        cmbxBuscador.setBorder(null);
+        cmbxBuscador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbxBuscador.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbxBuscadorItemStateChanged(evt);
+            }
+        });
+        panelRound8.add(cmbxBuscador);
+        cmbxBuscador.setBounds(10, 10, 340, 20);
+
+        pnlLibrosRegistro1.add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 360, 40));
+
+        pnlBuscador.add(pnlLibrosRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 580));
+
+        bg.add(pnlBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
+
         pnlPrestamos.setBackground(new java.awt.Color(35, 36, 47));
         pnlPrestamos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -846,7 +978,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblGestionBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGestionBiblioteca.setText("Gestión de Préstamos");
-        bg.add(lblGestionBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 180, 20));
+        bg.add(lblGestionBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 180, 20));
 
         tabLibrosRegistrados.setBackground(new java.awt.Color(255, 255, 255));
         tabLibrosRegistrados.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -893,7 +1025,27 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 tabPrestamosRegistradosMouseExited(evt);
             }
         });
-        bg.add(tabPrestamosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 180, 30));
+        bg.add(tabPrestamosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 180, 30));
+
+        tabBuscador.setBackground(new java.awt.Color(255, 255, 255));
+        tabBuscador.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        tabBuscador.setForeground(new java.awt.Color(255, 255, 255));
+        tabBuscador.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tabBuscador.setText("Buscador Avanzado");
+        tabBuscador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabBuscador.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        tabBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabBuscadorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabBuscadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tabBuscadorMouseExited(evt);
+            }
+        });
+        bg.add(tabBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1162,10 +1314,48 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		ventana.setVisible(true);
     }//GEN-LAST:event_tblPrestamosMouseClicked
 
+    private void tabBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBuscadorMouseClicked
+        cambiarPanel();
+		pnlBuscador.setVisible(true);
+    }//GEN-LAST:event_tabBuscadorMouseClicked
+
+    private void tabBuscadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBuscadorMouseEntered
+        tabBuscador.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_tabBuscadorMouseEntered
+
+    private void tabBuscadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBuscadorMouseExited
+        tabBuscador.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_tabBuscadorMouseExited
+
+    private void tblBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBuscadorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblBuscadorMouseClicked
+
+    private void txtFiltroTerminoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroTerminoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroTerminoFocusGained
+
+    private void txtFiltroTerminoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroTerminoFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroTerminoFocusLost
+
+    private void txtFiltroTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroTerminoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroTerminoActionPerformed
+
+    private void txtFiltroTerminoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroTerminoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroTerminoKeyReleased
+
+    private void cmbxBuscadorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxBuscadorItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbxBuscadorItemStateChanged
+
 	public void cambiarPanel() {
 		pnlResumen.setVisible(false);
 		pnlUsuarios.setVisible(false);
 		pnlLibros.setVisible(false);
+		pnlBuscador.setVisible(false);
 		pnlPrestamos.setVisible(false);
 	}
 
@@ -1256,6 +1446,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.PanelRound btnRegistrarUsuario;
     private com.vistas.PanelRound btnSalir;
     private javax.swing.JComboBox<String> cmbGeneros;
+    private javax.swing.JComboBox<String> cmbxBuscador;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
@@ -1268,6 +1459,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
     private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblGestionBiblioteca;
@@ -1284,29 +1476,37 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuarioLogeado;
     private com.vistas.PanelRound panelRound18;
     private com.vistas.PanelRound panelRound2;
+    private com.vistas.PanelRound panelRound3;
     private com.vistas.PanelRound panelRound7;
+    private com.vistas.PanelRound panelRound8;
     private com.vistas.PanelRound pnlAdministradoresRound;
     private com.vistas.PanelRound pnlAdministradoresRound1;
+    private javax.swing.JPanel pnlBuscador;
     private com.vistas.PanelRound pnlBusquedaUsuario;
     private com.vistas.PanelRound pnlBusquedaUsuario1;
     private com.vistas.PanelRound pnlCategoriasRegistro;
     private javax.swing.JPanel pnlLibros;
     private com.vistas.PanelRound pnlLibrosRegistro;
+    private com.vistas.PanelRound pnlLibrosRegistro1;
     private javax.swing.JPanel pnlPrestamos;
     private javax.swing.JPanel pnlResumen;
     private javax.swing.JPanel pnlUsuarios;
     private javax.swing.JScrollPane scrlGeneros;
     private javax.swing.JScrollPane scrlLibros;
+    private javax.swing.JScrollPane scrlLibros1;
     private javax.swing.JScrollPane scrlUsuarios;
     private javax.swing.JScrollPane scrlUsuarios1;
+    private javax.swing.JLabel tabBuscador;
     private javax.swing.JLabel tabLibrosRegistrados;
     private javax.swing.JLabel tabPrestamosRegistrados;
     private javax.swing.JLabel tabResumen;
     private javax.swing.JLabel tabUsuarios;
+    private com.vistas.Table tblBuscador;
     private com.vistas.Table tblGeneros;
     private com.vistas.Table tblLibros;
     private com.vistas.Table tblPrestamos;
     private com.vistas.Table tblUsuarios;
+    private javax.swing.JTextField txtFiltroTermino;
     private javax.swing.JTextField txtIdFiltroPrestamos;
     private javax.swing.JTextField txtIdPrestamoFiltro;
     private javax.swing.JTextField txtIsbnFiltroLibro;

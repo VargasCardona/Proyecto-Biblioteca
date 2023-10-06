@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -85,7 +86,7 @@ public class DaoPrestamo {
 			while (rs.next()) {
 				for (int i = 0; i < 5; i++) {
 					if (i == 4) {
-						tabla[i] = (rs.getObject(i + 1)).equals("1") ? "No" : "Si";
+						tabla[i] = (rs.getObject(i + 1)).equals(false) ? "No" : "Si";
 					} else {
 						tabla[i] = rs.getObject(i + 1);
 					}
@@ -148,11 +149,12 @@ public class DaoPrestamo {
 		return null;
 	}
 
-	public void actualizarEstado(boolean estaActivo, String idPrestamo) {
+	public void actualizarEstado(String idPrestamo) {
 		try {
-			PreparedStatement ps = connection.prepareStatement("UPDATE prestamos SET estaActivo = ? WHERE id = ?");
-			ps.setString(1, estaActivo ? "1" : "0");
-			ps.setString(2, idPrestamo);
+			PreparedStatement ps = connection.prepareStatement("UPDATE prestamos SET estaActivo = ?, fechaRetorno = ? WHERE id = ?");
+			ps.setString(1, "0");
+			ps.setString(2, GeneralUtils.convertirFechaString(new GregorianCalendar()));
+			ps.setString(3, idPrestamo);
 
 			ps.execute();
 		} catch (SQLException ex) {

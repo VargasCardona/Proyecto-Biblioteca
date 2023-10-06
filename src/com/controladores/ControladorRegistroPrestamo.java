@@ -64,7 +64,7 @@ public class ControladorRegistroPrestamo {
 		
 		ArrayList<Prestamo> prestamosUsuario = daoPrestamo.obtenerListaPrestamos(cedulaUsuario);
 		for (Prestamo prestamo : prestamosUsuario) {
-			if (prestamo.getFechaVencimiento().before(fechaActual)) {
+			if (prestamo.getFechaVencimiento().before(fechaActual) && prestamo.isEstaActivo()) {
 				throw new PrestamoVencidoException(isbnLibro);
 			}
 		}
@@ -77,7 +77,7 @@ public class ControladorRegistroPrestamo {
 	}
 	
 	public void devolverPrestamo(Prestamo prestamoSeleccionado) {
-		daoPrestamo.actualizarEstado(prestamoSeleccionado.isEstaActivo(), prestamoSeleccionado.getId());
+		daoPrestamo.actualizarEstado(prestamoSeleccionado.getId());
 	}
 
 }
