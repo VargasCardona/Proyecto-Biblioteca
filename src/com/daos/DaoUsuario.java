@@ -1,10 +1,12 @@
 package com.daos;
 
 import com.excepciones.ConexionNoInicializadaException;
+import com.excepciones.UsuarioEnPrestamoException;
 import com.modelos.Usuario;
 import com.singleton.DatabaseSingleton;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.mariadb.jdbc.Connection;
@@ -155,7 +157,9 @@ public class DaoUsuario {
 			ps.setString(1, cedula);
 
 			ps.execute();
-		} catch (SQLException ex) {
+		} catch (SQLIntegrityConstraintViolationException x) {
+                        throw new UsuarioEnPrestamoException();
+                } catch (SQLException ex) {
 			System.err.print(ex);
 		}
 	}

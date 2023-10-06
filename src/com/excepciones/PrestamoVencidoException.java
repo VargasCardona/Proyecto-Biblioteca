@@ -6,8 +6,8 @@ package com.excepciones;
  */
 public class PrestamoVencidoException extends RuntimeException{
 
-    public PrestamoVencidoException(String isbn) {
-        super("Préstamo vencido para el libro con isbn: "+isbn);
+    public PrestamoVencidoException(String id) {
+        super("Préstamo vencido. Id: "+id);
     }
     
 }

@@ -84,6 +84,40 @@ public class DaoLibro {
 		}
 		return null;
 	}
+        
+	public ArrayList<Libro> obtenerListaLibrosFiltroAvanzado(String atributo, String clave) {
+		ArrayList<Libro> retornoLibros = new ArrayList<>();
+                
+                String where = "";
+                if (atributo != null && clave != null) {
+                        where += " WHERE " + atributo + " LIKE CONCAT('%',?,'%')";
+                }
+                
+		try {
+                        String query = "SELECT l.isbn, l.titulo, l.autor, g.nombre, l.anioPublicacion, l.unidadesDisponibles FROM libros as l INNER JOIN generos g ON l.idGenero = g.id";
+			PreparedStatement ps = connection.prepareStatement(query+where);
+                        if (atributo != null && clave != null) {
+                                ps.setString(1, clave);
+                        }
+                        ResultSet rs = ps.executeQuery();
+                        
+			while (rs.next()) {
+				Libro libroObtenido = new Libro(
+						rs.getString("l.isbn"),
+						rs.getString("l.titulo"),
+						rs.getString("l.autor"),
+						rs.getString("g.nombre"),
+						rs.getString("l.anioPublicacion"),
+						rs.getInt("l.unidadesDisponibles"));
+				retornoLibros.add(libroObtenido);
+			}
+			return retornoLibros;
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return null;
+	}
 
 	public void insertarLibro(String titulo, String autor, String idGenero, String anioPublicacion, String unidadesDisponibles) {
 		try {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-09-2023 a las 18:43:05
+-- Tiempo de generación: 06-10-2023 a las 22:16:39
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -62,7 +62,7 @@ CREATE TABLE `libros` (
 
 INSERT INTO `libros` (`isbn`, `titulo`, `autor`, `idGenero`, `anioPublicacion`, `unidadesDisponibles`) VALUES
 ('F649', 'Following', 'Christopher Nolan', 'S986', '1998', 1),
-('G942', 'Good Fellas', 'Scorscese', 'M244', '1990', 500),
+('G942', 'Good Fellas', 'Scorscese', 'M244', '1990', 499),
 ('L992', 'Los intocables', 'Brian de Palma', 'M244', '1989', 20),
 ('T265', 'The Godfather', 'Mario Puzo', 'M244', '1970', 20);
 
@@ -78,9 +78,16 @@ CREATE TABLE `prestamos` (
   `cedulaUsuario` varchar(20) NOT NULL,
   `fechaPrestamo` varchar(70) NOT NULL,
   `fechaVencimiento` varchar(70) NOT NULL,
-  `fechaRetorno` varchar(70) NOT NULL,
+  `fechaRetorno` varchar(70) DEFAULT NULL,
   `estaActivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`id`, `isbnLibro`, `cedulaUsuario`, `fechaPrestamo`, `fechaVencimiento`, `fechaRetorno`, `estaActivo`) VALUES
+('P716', 'G942', '1090272917', '6/10/2023', '8/10/2023', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -103,8 +110,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`cedula`, `nombre`, `apellidos`, `usuario`, `contrasenia`) VALUES
 ('1', 'root', 'root', 'root', 'root'),
 ('1090272917', 'Mateo', 'Loaiza', 'mateo', 'mateo'),
-('12', 'todo', 'todo', 'todo', 'todo'),
-('2', 'a ', 'a', 'e', 'e');
+('12', 'todo', 'todo', 'todo', 'todo');
 
 --
 -- Índices para tablas volcadas

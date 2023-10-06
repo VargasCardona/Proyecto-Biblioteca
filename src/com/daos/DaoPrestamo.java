@@ -99,6 +99,33 @@ public class DaoPrestamo {
 		}
 		return null;
 	}
+        
+	public DefaultTableModel obtenerTablaPrestamos(String id) {
+		try {
+			DefaultTableModel modelo = new DefaultTableModel();
+			modelo.setColumnIdentifiers(new Object[]{"ID", "Vencimiento", "Libro", "Usuario", "Préstamo Activo"});
+
+			PreparedStatement ps = connection.prepareStatement("SELECT p.id, p.fechaVencimiento, l.titulo, u.usuario, p.estaActivo from prestamos as p INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula WHERE p.id LIKE CONCAT('%',?,'%')");
+			ps.setString(1, id);
+                        ResultSet rs = ps.executeQuery();
+
+			Object[] tabla = new Object[5];
+			while (rs.next()) {
+				for (int i = 0; i < 5; i++) {
+					if (i == 4) {
+						tabla[i] = (rs.getObject(i + 1)).equals(false) ? "No" : "Si";
+					} else {
+						tabla[i] = rs.getObject(i + 1);
+					}
+				}
+				modelo.addRow(tabla);
+			}
+			return modelo;
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 
 	public void insertarPrestamo(String isbnLibro, String cedulaUsuario, String fechaPrestamo, String fechaVencimiento, boolean estaActivo) {
 		try {

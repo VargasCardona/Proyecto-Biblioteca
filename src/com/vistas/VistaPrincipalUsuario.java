@@ -719,6 +719,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         cmbxBuscador.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cmbxBuscador.setForeground(new java.awt.Color(255, 255, 255));
         cmbxBuscador.setMaximumRowCount(5);
+        cmbxBuscador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un atributo", "ISBN", "Título", "Autor", "Género", "Año de publicación" }));
         cmbxBuscador.setToolTipText("");
         cmbxBuscador.setBorder(null);
         cmbxBuscador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1290,7 +1291,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdFiltroPrestamosFocusLost
 
     private void txtIdFiltroPrestamosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdFiltroPrestamosKeyReleased
-        // TODO add your handling code here:
+            llenarTablaPrestamos();
     }//GEN-LAST:event_txtIdFiltroPrestamosKeyReleased
 
     private void btnRegistrarPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarPrestamoMouseClicked
@@ -1316,7 +1317,8 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 
     private void tabBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBuscadorMouseClicked
         cambiarPanel();
-		pnlBuscador.setVisible(true);
+        llenarTablaLibrosFiltro();
+        pnlBuscador.setVisible(true);
     }//GEN-LAST:event_tabBuscadorMouseClicked
 
     private void tabBuscadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBuscadorMouseEntered
@@ -1332,11 +1334,15 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tblBuscadorMouseClicked
 
     private void txtFiltroTerminoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroTerminoFocusGained
-        // TODO add your handling code here:
+            if (txtFiltroTermino.getText().equals("Filtrar por término")) {
+                    txtFiltroTermino.setText("");
+            }
     }//GEN-LAST:event_txtFiltroTerminoFocusGained
 
     private void txtFiltroTerminoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroTerminoFocusLost
-        // TODO add your handling code here:
+            if (txtFiltroTermino.getText().equals("")) {
+                    txtFiltroTermino.setText("Filtrar por término");
+            }
     }//GEN-LAST:event_txtFiltroTerminoFocusLost
 
     private void txtFiltroTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroTerminoActionPerformed
@@ -1344,11 +1350,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFiltroTerminoActionPerformed
 
     private void txtFiltroTerminoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroTerminoKeyReleased
-        // TODO add your handling code here:
+            llenarTablaLibrosFiltro();
     }//GEN-LAST:event_txtFiltroTerminoKeyReleased
 
     private void cmbxBuscadorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxBuscadorItemStateChanged
-        // TODO add your handling code here:
+            llenarTablaLibrosFiltro();
     }//GEN-LAST:event_cmbxBuscadorItemStateChanged
 
 	public void cambiarPanel() {
@@ -1378,8 +1384,28 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 	public void llenarTablaLibros(String isbn, String idGenero) {
 		DefaultTableModel modelo = new DefaultTableModel();
 		ArrayList<Libro> listaLibros = controlador.obtenerListaLibros(isbn, idGenero);
-		modelo.setColumnIdentifiers(new Object[]{"ISBN", "Titulo", "Autor", "Género", "Año de publicacion", "Unidades disponibles"});
+		modelo.setColumnIdentifiers(new Object[]{"ISBN", "Título", "Autor", "Género", "Año de publicación", "Unidades disponibles"});
 		tblLibros.setModel(modelo);
+
+		for (Libro generoAlmacenado : listaLibros) {
+			modelo.addRow(new Object[]{
+				generoAlmacenado.getISBN(),
+				generoAlmacenado.getTitulo(),
+				generoAlmacenado.getAutor(),
+				generoAlmacenado.getGenero(),
+				generoAlmacenado.getAnioPublicacion(),
+				generoAlmacenado.getUnidadesDisponibles(),});
+		}
+	}
+        
+	public void llenarTablaLibrosFiltro() {
+                String atributo = cmbxBuscador.getSelectedItem().toString();
+                String valor = txtFiltroTermino.getText();
+            
+                DefaultTableModel modelo = new DefaultTableModel();
+		ArrayList<Libro> listaLibros = controlador.obtenerListaLibrosFiltro(atributo, valor);
+		modelo.setColumnIdentifiers(new Object[]{"ISBN", "Título", "Autor", "Género", "Año de publicación", "Unidades disponibles"});
+		tblBuscador.setModel(modelo);
 
 		for (Libro generoAlmacenado : listaLibros) {
 			modelo.addRow(new Object[]{
@@ -1407,7 +1433,8 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 	}
 	
 	public void llenarTablaPrestamos() {
-		tblPrestamos.setModel(controlador.obtenerListaPrestamos());
+                String id = txtIdFiltroPrestamos.getText();
+		tblPrestamos.setModel(controlador.obtenerListaPrestamos(id));
 	}
 
 	public void llenarCmbGeneros() {

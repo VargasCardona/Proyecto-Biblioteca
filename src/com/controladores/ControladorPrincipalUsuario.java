@@ -8,6 +8,7 @@ import com.modelos.Genero;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Usuario;
+import com.utils.GeneralUtils;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,15 +47,32 @@ public class ControladorPrincipalUsuario {
 	}
         
 	public ArrayList<Libro> obtenerListaLibros(String isbn, String idGenero) {
-        return daoLibro.obtenerListaLibrosFiltro(isbn, idGenero); 
+                return daoLibro.obtenerListaLibrosFiltro(isbn, idGenero); 
+	}
+        
+	public ArrayList<Libro> obtenerListaLibrosFiltro(String atributo, String entrada) {
+                String clave = (GeneralUtils.estaVacio(entrada, "Filtrar por término"))
+                        ? null
+                        : entrada;
+                String atributoTabla = null;
+                switch (atributo) {
+                        case "ISBN" -> atributoTabla = "l.isbn";
+                        case "Título" -> atributoTabla = "l.titulo";
+                        case "Autor" -> atributoTabla = "l.autor";
+                        case "Género" -> atributoTabla = "g.nombre";
+                        case "Año de publicación" -> atributoTabla = "l.anioPublicacion";
+                }
+                return daoLibro.obtenerListaLibrosFiltroAvanzado(atributoTabla, clave); 
 	}
 	
 	public Libro consultarLibro(String idLibro){
 		return daoLibro.consultarLibro(idLibro);
 	}
 	
-	public DefaultTableModel obtenerListaPrestamos() {
-		return daoPrestamo.obtenerTablaPrestamos();
+	public DefaultTableModel obtenerListaPrestamos(String id) {
+		return (GeneralUtils.estaVacio(id, "Filtrar por ID"))
+                        ? daoPrestamo.obtenerTablaPrestamos()
+                        : daoPrestamo.obtenerTablaPrestamos(id);
 	}
 	
 	public Prestamo consultarPrestamo(String id){
