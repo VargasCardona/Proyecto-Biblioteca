@@ -187,13 +187,13 @@ public class DaoPrestamo implements ControladorDao {
 
 	@Override
 	public void actualizar(Object object) {
-		Prestamo prestamo = (Prestamo) object;
+		String id = (String) object;
 		
 		try {
 			PreparedStatement ps = connection.prepareStatement("UPDATE prestamos SET estaActivo = ?, fechaRetorno = ? WHERE id = ?");
 			ps.setString(1, "0");
 			ps.setString(2, GeneralUtils.convertirFechaString(new GregorianCalendar()));
-			ps.setString(3, prestamo.getId());
+			ps.setString(3, id);
 
 			ps.execute();
 		} catch (SQLException ex) {

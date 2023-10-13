@@ -15,7 +15,7 @@ public class ControladorRetornoPrestamo {
 	}
 
 	public void devolverPrestamo(Prestamo prestamoSeleccionado) {
-		daoPrestamo.actualizarEstado(prestamoSeleccionado.getId());
+		daoPrestamo.actualizar(prestamoSeleccionado.getId());
 		daoLibro.modificarExistencias(1, prestamoSeleccionado.getIsbnLibro());
 	}
 

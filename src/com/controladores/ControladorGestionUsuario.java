@@ -3,6 +3,7 @@ package com.controladores;
 import com.daos.DaoUsuario;
 import com.excepciones.CamposVaciosException;
 import com.excepciones.EliminacionPropiaException;
+import com.modelos.Usuario;
 import com.utils.GeneralUtils;
 
 public class ControladorGestionUsuario {
@@ -18,13 +19,13 @@ public class ControladorGestionUsuario {
 				|| GeneralUtils.estaVacio(apellidos, "Apellidos")) {
 			throw new CamposVaciosException();
 		}
-		daoUsuario.actualizarUsuario(nombre, apellidos, cedula);
+		daoUsuario.actualizar(new Usuario(nombre, apellidos, cedula, null, null));
 	}
 
 	public void eliminarUsuario(String cedula, String cedulaUsuarioActivo) {
 		if (cedula.equals(cedulaUsuarioActivo)) {
 			throw new EliminacionPropiaException();
 		}
-		daoUsuario.eliminarUsuario(cedula, cedulaUsuarioActivo);
+		daoUsuario.eliminar(cedula);
 	}
 }

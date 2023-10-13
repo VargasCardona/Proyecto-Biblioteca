@@ -72,10 +72,6 @@ public class DaoUsuario implements ControladorDao {
 		return null;
 	}
 
-	public void insertarUsuario(Usuario usuario) {
-
-	}
-
 	public Usuario consultarUsuario(String argumento, boolean esConsultaCedula) {
 		try {
 

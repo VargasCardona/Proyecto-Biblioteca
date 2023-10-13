@@ -4,6 +4,7 @@ import com.daos.DaoLibro;
 import com.excepciones.AnioInvalidoException;
 import com.excepciones.CamposVaciosException;
 import com.excepciones.EntradasNumericasInvalidasException;
+import com.modelos.Libro;
 import com.utils.GeneralUtils;
 
 public class ControladorRegistroLibro {
@@ -33,6 +34,6 @@ public class ControladorRegistroLibro {
 			throw new AnioInvalidoException();
 		}
 		
-		daoLibro.insertarLibro(titulo, autor, idGenero, anioPublicacion, unidadesDisponibles);
+		daoLibro.insertar(new Libro(null, titulo, autor, idGenero, anioPublicacion, Integer.parseInt(unidadesDisponibles)));
 	}
 }

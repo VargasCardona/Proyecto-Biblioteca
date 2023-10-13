@@ -2,6 +2,7 @@ package com.controladores;
 
 import com.daos.DaoGenero;
 import com.excepciones.CamposVaciosException;
+import com.modelos.Genero;
 import com.utils.GeneralUtils;
 
 public class ControladorRegistroGenero {
@@ -17,6 +18,6 @@ public class ControladorRegistroGenero {
 			throw new CamposVaciosException();
 		}
 		
-		daoGenero.insertarGenero(nombre);
+		daoGenero.insertar(new Genero(null, nombre));
 	}
 }

@@ -4,6 +4,7 @@ import com.daos.DaoLibro;
 import com.excepciones.AnioInvalidoException;
 import com.excepciones.CamposVaciosException;
 import com.excepciones.EntradasNumericasInvalidasException;
+import com.modelos.Libro;
 import com.utils.GeneralUtils;
 
 public class ControladorGestionLibro {
@@ -33,10 +34,10 @@ public class ControladorGestionLibro {
 			throw new AnioInvalidoException();
 		}
 
-		daoLibro.actualizarLibro(titulo, autor, idGenero, anioPublicacion, unidadesDisponibles, isbn);
+		daoLibro.actualizar(new Libro(isbn, titulo, autor, idGenero, anioPublicacion, Integer.parseInt(unidadesDisponibles)));
 	}
 
 	public void eliminarLibro(String isbn) {
-		daoLibro.eliminarLibro(isbn);
+		daoLibro.eliminar(isbn);
 	}
 }

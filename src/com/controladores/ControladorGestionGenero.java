@@ -2,6 +2,7 @@ package com.controladores;
 
 import com.daos.DaoGenero;
 import com.excepciones.CamposVaciosException;
+import com.modelos.Genero;
 import com.utils.GeneralUtils;
 
 public class ControladorGestionGenero {
@@ -16,10 +17,10 @@ public class ControladorGestionGenero {
 		if (GeneralUtils.estaVacio(nombre, "Nombre")) {
 			throw new CamposVaciosException();
 		}
-		daoGenero.actualizarGenero(nombre, idGenero);
+		daoGenero.actualizar(new Genero(idGenero, nombre));
 	}
 
 	public void eliminarGenero(String idGenero) {
-		daoGenero.eliminarGenero(idGenero);
+		daoGenero.eliminar(idGenero);
 	}
 }

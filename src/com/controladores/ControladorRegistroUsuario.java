@@ -44,6 +44,6 @@ public class ControladorRegistroUsuario {
 			throw new CuentaExistenteException();
 		}
 		
-		daoUsuario.insertarUsuario(new Usuario(nombre, apellidos, cedula, usuario, contrasenia));
+		daoUsuario.insertar(new Usuario(nombre, apellidos, cedula, usuario, contrasenia));
 	}
 }

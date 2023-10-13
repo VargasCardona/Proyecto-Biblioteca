@@ -10,7 +10,6 @@ import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Usuario;
 import com.utils.GeneralUtils;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -69,15 +68,12 @@ public class ControladorRegistroPrestamo {
 			}
 		}
 
-		daoPrestamo.insertarPrestamo(isbnLibro, cedulaUsuario,
-				GeneralUtils.convertirFechaString(fechaActual),
-				GeneralUtils.convertirFechaString(fechaVencimiento),
-				estaActivo);
+		daoPrestamo.insertar(new Prestamo(null, isbnLibro, cedulaUsuario, fechaActual, fechaVencimiento));
 		daoLibro.modificarExistencias(-1, isbnLibro);
 	}
 	
 	public void devolverPrestamo(Prestamo prestamoSeleccionado) {
-		daoPrestamo.actualizarEstado(prestamoSeleccionado.getId());
+		daoPrestamo.actualizar(prestamoSeleccionado.getId());
 	}
 
 }
