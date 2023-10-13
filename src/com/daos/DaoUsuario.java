@@ -2,6 +2,7 @@ package com.daos;
 
 import com.excepciones.ConexionNoInicializadaException;
 import com.excepciones.UsuarioEnPrestamoException;
+import com.interfaces.ControladorDao;
 import com.modelos.Usuario;
 import com.singleton.DatabaseSingleton;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import org.mariadb.jdbc.Connection;
 
-public class DaoUsuario {
+public class DaoUsuario implements ControladorDao {
 	
 	private Connection connection;
 	
@@ -162,6 +163,21 @@ public class DaoUsuario {
                 } catch (SQLException ex) {
 			System.err.print(ex);
 		}
+	}
+
+	@Override
+	public void insertar(Object object) {
+		
+	}
+
+	@Override
+	public void eliminar(String identificador) {
+		
+	}
+
+	@Override
+	public void actualizar(Object object) {
+		
 	}
 
 }

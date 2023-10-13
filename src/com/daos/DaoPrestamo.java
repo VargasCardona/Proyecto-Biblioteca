@@ -1,5 +1,6 @@
 package com.daos;
 
+import com.interfaces.ControladorDao;
 import com.modelos.Prestamo;
 import com.singleton.DatabaseSingleton;
 import com.utils.GeneralUtils;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.mariadb.jdbc.Connection;
 
-public class DaoPrestamo {
+public class DaoPrestamo implements ControladorDao {
 
 	private Connection connection;
 
@@ -127,24 +128,6 @@ public class DaoPrestamo {
 		return null;
 	}
 
-	public void insertarPrestamo(String isbnLibro, String cedulaUsuario, String fechaPrestamo, String fechaVencimiento, boolean estaActivo) {
-		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO prestamos (id, isbnLibro, cedulaUsuario, fechaPrestamo, fechaVencimiento, fechaRetorno, estaActivo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-			ps.setString(1, GeneralUtils.generarSku("P"));
-			ps.setString(2, isbnLibro);
-			ps.setString(3, cedulaUsuario);
-			ps.setString(4, fechaPrestamo);
-			ps.setString(5, fechaVencimiento);
-			ps.setString(6, null);
-			ps.setString(7, estaActivo ? "1" : "0");
-
-			ps.execute();
-
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
-	}
-
 	public Prestamo consultarPrestamo(String idPrestamo) {
 		try {
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prestamos WHERE id = ?");
@@ -176,17 +159,47 @@ public class DaoPrestamo {
 		return null;
 	}
 
-	public void actualizarEstado(String idPrestamo) {
+	@Override
+	public void insertar(Object object) {
+		Prestamo prestamo = (Prestamo) object;
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO prestamos (id, isbnLibro, cedulaUsuario, fechaPrestamo, fechaVencimiento, fechaRetorno, estaActivo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			ps.setString(1, GeneralUtils.generarSku("P"));
+			ps.setString(2, prestamo.getIsbnLibro());
+			ps.setString(3, prestamo.getCedulaUsuario());
+			ps.setString(4, GeneralUtils.convertirFechaString(prestamo.getFechaPrestamo()));
+			ps.setString(5, GeneralUtils.convertirFechaString(prestamo.getFechaVencimiento()));
+			ps.setString(6, null);
+			ps.setString(7, prestamo.isEstaActivo() ? "1" : "0");
+
+			ps.execute();
+
+		} catch (SQLException ex) {
+			System.err.print(ex);
+		}
+	}
+
+	@Override
+	public void eliminar(String identificador) {
+		
+	}
+
+	@Override
+	public void actualizar(Object object) {
+		Prestamo prestamo = (Prestamo) object;
+		
 		try {
 			PreparedStatement ps = connection.prepareStatement("UPDATE prestamos SET estaActivo = ?, fechaRetorno = ? WHERE id = ?");
 			ps.setString(1, "0");
 			ps.setString(2, GeneralUtils.convertirFechaString(new GregorianCalendar()));
-			ps.setString(3, idPrestamo);
+			ps.setString(3, prestamo.getId());
 
 			ps.execute();
 		} catch (SQLException ex) {
 			System.err.print(ex);
 		}
+		
 	}
 
 }

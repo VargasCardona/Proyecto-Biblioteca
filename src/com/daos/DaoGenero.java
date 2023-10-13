@@ -1,6 +1,7 @@
 package com.daos;
 
 import com.excepciones.GeneroEnUsoException;
+import com.interfaces.ControladorDao;
 import com.modelos.Genero;
 import com.singleton.DatabaseSingleton;
 import com.utils.GeneralUtils;
@@ -11,10 +12,10 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import org.mariadb.jdbc.Connection;
 
-public class DaoGenero {
+public class DaoGenero implements ControladorDao {
 
 	private Connection connection;
-	
+
 	public DaoGenero() {
 		connection = DatabaseSingleton.getInstance().getConnection();
 	}
@@ -39,19 +40,6 @@ public class DaoGenero {
 			System.out.println(ex.getMessage());
 		}
 		return null;
-	}
-
-	public void insertarGenero(String nombreGenero) {
-		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO generos (id, nombre) VALUES (?, ?)");
-			ps.setString(1, GeneralUtils.generarSku(nombreGenero));
-			ps.setString(2, nombreGenero);
-
-			ps.execute();
-
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
 	}
 
 	public Genero consultarGenero(String idGenero) {
@@ -80,28 +68,47 @@ public class DaoGenero {
 		return null;
 	}
 
-	public void actualizarGenero(String nombre, String idGenero) {
+	@Override
+	public void insertar(Object object) {
+		Genero genero = (Genero) object;
 
 		try {
-			PreparedStatement ps = connection.prepareStatement("UPDATE generos SET nombre = ? WHERE id = ?");
-			ps.setString(1, nombre);
-			ps.setString(2, idGenero);
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO generos (id, nombre) VALUES (?, ?)");
+			ps.setString(1, GeneralUtils.generarSku(genero.getNombre()));
+			ps.setString(2, genero.getNombre());
 
 			ps.execute();
+
 		} catch (SQLException ex) {
 			System.err.print(ex);
 		}
 	}
 
-	public void eliminarGenero(String idGenero) {
+	@Override
+	public void eliminar(String identificador) {
 		try {
 			PreparedStatement ps = connection.prepareStatement("DELETE FROM generos WHERE id = ?");
-			ps.setString(1, idGenero);
+			ps.setString(1, identificador);
 
 			ps.execute();
 		} catch (SQLIntegrityConstraintViolationException x) {
 			throw new GeneroEnUsoException();
-                } catch (SQLException ex) {
+		} catch (SQLException ex) {
+			System.err.print(ex);
+		}
+	}
+
+	@Override
+	public void actualizar(Object object) {
+		Genero genero = (Genero) object;
+
+		try {
+			PreparedStatement ps = connection.prepareStatement("UPDATE generos SET nombre = ? WHERE id = ?");
+			ps.setString(1, genero.getNombre());
+			ps.setString(2, genero.getId());
+
+			ps.execute();
+		} catch (SQLException ex) {
 			System.err.print(ex);
 		}
 	}
