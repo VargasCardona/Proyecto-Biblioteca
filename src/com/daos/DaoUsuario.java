@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import org.mariadb.jdbc.Connection;
 
 public class DaoUsuario implements ControladorDao {
-	
+
 	private Connection connection;
-	
+
 	public DaoUsuario() {
 		connection = DatabaseSingleton.getInstance().getConnection();
 	}
@@ -73,19 +73,7 @@ public class DaoUsuario implements ControladorDao {
 	}
 
 	public void insertarUsuario(Usuario usuario) {
-		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO usuarios (cedula, nombre, apellidos, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
-			ps.setString(1, usuario.getCedula());
-			ps.setString(2, usuario.getNombre());
-			ps.setString(3, usuario.getApellidos());
-			ps.setString(4, usuario.getUsuario());
-			ps.setString(5, usuario.getContrasenia());
 
-			ps.execute();
-
-		} catch (SQLException ex) {
-			System.err.print(ex);
-		}
 	}
 
 	public Usuario consultarUsuario(String argumento, boolean esConsultaCedula) {
@@ -118,8 +106,8 @@ public class DaoUsuario implements ControladorDao {
 			}
 
 		} catch (ConexionNoInicializadaException e) {
-                        throw new ConexionNoInicializadaException();
-                } catch (SQLException ex) {
+			throw new ConexionNoInicializadaException();
+		} catch (SQLException ex) {
 			System.err.print(ex);
 		}
 		return null;
@@ -138,46 +126,52 @@ public class DaoUsuario implements ControladorDao {
 		}
 	}
 
-	public void actualizarUsuario(String nombre, String apellidos, String cedula) {
+	@Override
+	public void insertar(Object object) {
+		Usuario usuario = (Usuario) object;
 
 		try {
-			PreparedStatement ps = connection.prepareStatement("UPDATE usuarios SET nombre = ?, apellidos = ? WHERE cedula = ?");
-			ps.setString(1, nombre);
-			ps.setString(2, apellidos);
-			ps.setString(3, cedula);
-
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO usuarios (cedula, nombre, apellidos, usuario, contrasenia) VALUES (?, ?, ?, ? ,?)");
+			ps.setString(1, usuario.getCedula());
+			ps.setString(2, usuario.getNombre());
+			ps.setString(3, usuario.getApellidos());
+			ps.setString(4, usuario.getUsuario());
+			ps.setString(5, usuario.getContrasenia());
 			ps.execute();
+
 		} catch (SQLException ex) {
 			System.err.print(ex);
 		}
 	}
 
-	public void eliminarUsuario(String cedula, String cedulaUsuarioActivo) {
+	@Override
+	public void eliminar(String identificador) {
 		try {
 			PreparedStatement ps = connection.prepareStatement("DELETE FROM usuarios WHERE cedula = ?");
-			ps.setString(1, cedula);
+			ps.setString(1, identificador);
 
 			ps.execute();
 		} catch (SQLIntegrityConstraintViolationException x) {
-                        throw new UsuarioEnPrestamoException();
-                } catch (SQLException ex) {
+			throw new UsuarioEnPrestamoException();
+		} catch (SQLException ex) {
 			System.err.print(ex);
 		}
 	}
 
 	@Override
-	public void insertar(Object object) {
-		
-	}
-
-	@Override
-	public void eliminar(String identificador) {
-		
-	}
-
-	@Override
 	public void actualizar(Object object) {
+		Usuario usuario = (Usuario) object;
 		
+		try {
+			PreparedStatement ps = connection.prepareStatement("UPDATE usuarios SET nombre = ?, apellidos = ? WHERE cedula = ?");
+			ps.setString(1, usuario.getNombre());
+			ps.setString(2, usuario.getApellidos());
+			ps.setString(3, usuario.getCedula());
+
+			ps.execute();
+		} catch (SQLException ex) {
+			System.err.print(ex);
+		}
 	}
 
 }
