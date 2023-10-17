@@ -2,6 +2,7 @@ package com.utils;
 
 import com.excepciones.CamposVaciosException;
 import static java.lang.String.valueOf;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -112,8 +113,10 @@ public class GeneralUtils {
 	 * @return String con formato "dd/mm/yyyy"
 	 */
 	public static String convertirFechaString(Calendar fechaIngresada) {
-		return fechaIngresada.get(Calendar.DAY_OF_MONTH) + "/"
-				+ (fechaIngresada.get(Calendar.MONTH) + 1) + "/"
-				+ fechaIngresada.get(Calendar.YEAR);
+                final SimpleDateFormat FORMATO = new SimpleDateFormat("dd/MM/yyyy");
+                return FORMATO.format(fechaIngresada.getTime());
+//		return fechaIngresada.get(Calendar.DAY_OF_MONTH) + "/"
+//				+ (fechaIngresada.get(Calendar.MONTH) + 1) + "/"
+//				+ fechaIngresada.get(Calendar.YEAR);
 	}
 }
