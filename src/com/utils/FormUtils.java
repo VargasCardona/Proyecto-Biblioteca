@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * @author Mateo
  */
 public class FormUtils {
+    
     public static void generarInformeObjects(ArrayList<Object> pedidos) {
         Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
         Font regularFont = new Font(Font.FontFamily.HELVETICA, 12);

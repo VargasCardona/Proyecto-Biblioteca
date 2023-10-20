@@ -80,7 +80,7 @@ public class DaoPrestamo implements ControladorDao {
 			DefaultTableModel modelo = new DefaultTableModel();
 			modelo.setColumnIdentifiers(new Object[]{"ID", "Vencimiento", "Libro", "Usuario", "Préstamo Activo"});
 
-			PreparedStatement ps = connection.prepareStatement("SELECT p.id, p.fechaVencimiento, l.titulo, u.usuario, p.estaActivo from prestamos as p INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula");
+			PreparedStatement ps = connection.prepareStatement("SELECT p.id, p.fechaVencimiento, l.titulo, u.usuario, p.estaActivo from prestamos as p INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula ORDER BY p.fechaVencimiento");
 			ResultSet rs = ps.executeQuery();
 
 			Object[] tabla = new Object[5];

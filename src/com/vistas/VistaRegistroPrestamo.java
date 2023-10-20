@@ -454,9 +454,9 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
 				return;
 			}
 
-			Calendar fechaRetorno = GeneralUtils.convertirStringFecha(String.valueOf(cmbDia.getSelectedItem())
-					+ "/" + String.valueOf(cmbMes.getSelectedItem())
-					+ "/" + String.valueOf(cmbAnio.getSelectedItem()));
+			Calendar fechaRetorno = GeneralUtils.convertirStringFecha(String.valueOf(cmbAnio.getSelectedItem())
+					+ "-" + String.valueOf(cmbMes.getSelectedItem())
+					+ "-" + String.valueOf(cmbDia.getSelectedItem()));
 
 			controlador.registrarPrestamo(lblIsbn.getText(), lblCedulaPaciente.getText(), fechaRetorno, true);
 

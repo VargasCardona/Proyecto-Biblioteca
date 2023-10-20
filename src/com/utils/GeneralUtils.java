@@ -90,7 +90,7 @@ public class GeneralUtils {
 	 */
 	public static Calendar convertirStringFecha(String fechaString) {
 		Calendar fechaRetorno = new GregorianCalendar();
-		String[] fechaSplit = fechaString.split("/");
+		String[] fechaSplit = fechaString.split("-");
 		
 		if (fechaSplit[0].equals("DD")
 				|| fechaSplit[1].equals("MM")
@@ -98,10 +98,10 @@ public class GeneralUtils {
 			throw new CamposVaciosException();
 		}
 
-		fechaRetorno.set(Calendar.YEAR, Integer.parseInt(fechaSplit[2]));
+		fechaRetorno.set(Calendar.YEAR, Integer.parseInt(fechaSplit[0]));
 		fechaRetorno.set(Calendar.MONTH, Integer.parseInt(fechaSplit[1]));
 		fechaRetorno.add(Calendar.MONTH, -1);
-		fechaRetorno.set(Calendar.DAY_OF_MONTH, Integer.parseInt(fechaSplit[0]));
+		fechaRetorno.set(Calendar.DAY_OF_MONTH, Integer.parseInt(fechaSplit[2]));
 
 		return fechaRetorno;
 	}
@@ -110,10 +110,10 @@ public class GeneralUtils {
 	 * Convierte un objeto tipo Calendar en un string con su fecha
 	 *
 	 * @param fechaIngresada Calendar a convertir
-	 * @return String con formato "dd/mm/yyyy"
+	 * @return String con formato "yyyy-MM-dd"
 	 */
 	public static String convertirFechaString(Calendar fechaIngresada) {
-                final SimpleDateFormat FORMATO = new SimpleDateFormat("dd/MM/yyyy");
+                final SimpleDateFormat FORMATO = new SimpleDateFormat("yyyy-MM-dd");
                 return FORMATO.format(fechaIngresada.getTime());
 //		return fechaIngresada.get(Calendar.DAY_OF_MONTH) + "/"
 //				+ (fechaIngresada.get(Calendar.MONTH) + 1) + "/"
