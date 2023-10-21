@@ -1,9 +1,5 @@
 package com.excepciones;
 
-/**
- *
- * @author Mateo
- */
 public class GeneroEnUsoException extends RuntimeException{
 
     public GeneroEnUsoException() {

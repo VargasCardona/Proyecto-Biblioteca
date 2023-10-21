@@ -110,13 +110,12 @@ public class GeneralUtils {
 	 * Convierte un objeto tipo Calendar en un string con su fecha
 	 *
 	 * @param fechaIngresada Calendar a convertir
-	 * @return String con formato "yyyy-MM-dd"
+         * @param tieneHora Especifica si el formato debe añadir la hora
+	 * @return String con formato "yyyy-MM-dd" o "dd-MM-yyyy h.mm.ss"
 	 */
-	public static String convertirFechaString(Calendar fechaIngresada) {
-                final SimpleDateFormat FORMATO = new SimpleDateFormat("yyyy-MM-dd");
+	public static String convertirFechaString(Calendar fechaIngresada, boolean tieneHora) {
+                String pattern = (tieneHora) ? "dd-MM-yyyy HH mm ss" : "dd-MM-yyyy";
+                final SimpleDateFormat FORMATO = new SimpleDateFormat(pattern);
                 return FORMATO.format(fechaIngresada.getTime());
-//		return fechaIngresada.get(Calendar.DAY_OF_MONTH) + "/"
-//				+ (fechaIngresada.get(Calendar.MONTH) + 1) + "/"
-//				+ fechaIngresada.get(Calendar.YEAR);
 	}
 }

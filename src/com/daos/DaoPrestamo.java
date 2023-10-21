@@ -1,6 +1,7 @@
 package com.daos;
 
 import com.interfaces.ControladorDao;
+import com.modelos.InformePrestamos;
 import com.modelos.Prestamo;
 import com.singleton.DatabaseSingleton;
 import com.utils.GeneralUtils;
@@ -158,6 +159,40 @@ public class DaoPrestamo implements ControladorDao {
 		}
 		return null;
 	}
+        
+        public ArrayList<InformePrestamos> obtenerListaInforme(String cedulaUsuario, String fechaInicio, String fechaFin, boolean estaActivo) {
+                ArrayList<InformePrestamos> filas = new ArrayList<>();
+                String fecha = estaActivo ? "p.fechaPrestamo" : "p.fechaRetorno";
+                String whereUsuario = cedulaUsuario == null ? "" : " AND u.cedula = ?";
+                
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT CONCAT(u.nombre,' ',u.apellidos) as 'nombreCompleto', u.cedula, l.titulo, "+fecha+", g.nombre FROM prestamos as p INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN generos as g ON l.idGenero = g.id WHERE p.estaActivo = ? AND "+fecha+" BETWEEN ? AND ?"+whereUsuario);
+			ps.setBoolean(1, estaActivo);
+                        ps.setString(2, fechaInicio);
+                        ps.setString(3, fechaFin);
+                        if (cedulaUsuario != null) {
+                            ps.setString(4, cedulaUsuario);
+                        }
+                        
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+                                InformePrestamos fila = new InformePrestamos(
+                                                rs.getString("nombreCompleto"),
+                                                rs.getString("cedula"),
+                                                rs.getString("titulo"),
+                                                rs.getString(fecha.substring(2)),
+                                                rs.getString("nombre"),
+                                                estaActivo ? InformePrestamos.PRESTAMOS : InformePrestamos.DEVOLUCIONES);
+				filas.add(fila);
+			}
+			return filas;
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return null;
+        }
 
 	@Override
 	public void insertar(Object object) {
@@ -168,8 +203,8 @@ public class DaoPrestamo implements ControladorDao {
 			ps.setString(1, GeneralUtils.generarSku("P"));
 			ps.setString(2, prestamo.getIsbnLibro());
 			ps.setString(3, prestamo.getCedulaUsuario());
-			ps.setString(4, GeneralUtils.convertirFechaString(prestamo.getFechaPrestamo()));
-			ps.setString(5, GeneralUtils.convertirFechaString(prestamo.getFechaVencimiento()));
+			ps.setString(4, GeneralUtils.convertirFechaString(prestamo.getFechaPrestamo(), false));
+			ps.setString(5, GeneralUtils.convertirFechaString(prestamo.getFechaVencimiento(), false));
 			ps.setString(6, null);
 			ps.setString(7, prestamo.isEstaActivo() ? "1" : "0");
 
@@ -192,7 +227,7 @@ public class DaoPrestamo implements ControladorDao {
 		try {
 			PreparedStatement ps = connection.prepareStatement("UPDATE prestamos SET estaActivo = ?, fechaRetorno = ? WHERE id = ?");
 			ps.setString(1, "0");
-			ps.setString(2, GeneralUtils.convertirFechaString(new GregorianCalendar()));
+			ps.setString(2, GeneralUtils.convertirFechaString(new GregorianCalendar(), false));
 			ps.setString(3, id);
 
 			ps.execute();

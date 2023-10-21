@@ -5,9 +5,11 @@ import com.daos.DaoLibro;
 import com.daos.DaoPrestamo;
 import com.daos.DaoUsuario;
 import com.modelos.Genero;
+import com.modelos.InformePrestamos;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Usuario;
+import com.utils.FormUtils;
 import com.utils.GeneralUtils;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -79,4 +81,8 @@ public class ControladorPrincipalUsuario {
 		return daoPrestamo.consultarPrestamo(id);
 	}
 	
+        public void generarInformeGeneral(String tipoInforme, String fechaInicio, String fechaFin) {
+                ArrayList<InformePrestamos> lista = daoPrestamo.obtenerListaInforme(null, "2023-10-01", "2023-11-01", true);
+                FormUtils.generarInformePrestamos(lista);
+        }
 }

@@ -1824,7 +1824,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			cmbInformeGeneralFinalDia.setEnabled(false);
 			cmbInformeGeneralFinalMes.setEnabled(false);
 			cmbInformeGeneralFinalAnio.setEnabled(false);
-		} else if() {
+		} else if(true) {
 			cmbUsuarioInforme.setEnabled(true);
 
 			cmbInformeGeneralInicioDia.setEnabled(true);
@@ -1842,7 +1842,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbUsuarioInformeItemStateChanged
 
     private void btnGenerarInformeGeneralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseClicked
-		// TODO add your handling code here:
+		controlador.generarInformeGeneral(null, null, null);
     }//GEN-LAST:event_btnGenerarInformeGeneralMouseClicked
 
     private void btnGenerarInformeGeneralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseEntered

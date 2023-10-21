@@ -25,9 +25,9 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
 		lblId.setText(prestamoSeleccionado.getId());
 		lblIsbn.setText(prestamoSeleccionado.getIsbnLibro());
 		lblCedulaUsuario.setText(prestamoSeleccionado.getCedulaUsuario());
-		lblFechaPrestamo.setText(GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaPrestamo()));
-		lblFechaVencimiento.setText(GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaVencimiento()));
-		lblFechaRetorno.setText((prestamoSeleccionado.getFechaRetorno() == null) ? "No retornado" : GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaRetorno()));
+		lblFechaPrestamo.setText(GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaPrestamo(), false));
+		lblFechaVencimiento.setText(GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaVencimiento(), false));
+		lblFechaRetorno.setText((prestamoSeleccionado.getFechaRetorno() == null) ? "No retornado" : GeneralUtils.convertirFechaString(prestamoSeleccionado.getFechaRetorno(), false));
 		if (!prestamoSeleccionado.isEstaActivo()){
 			lblTitulo.setText("Detalles de Prestamo");
 			lblBoton.setText("Cerrar");

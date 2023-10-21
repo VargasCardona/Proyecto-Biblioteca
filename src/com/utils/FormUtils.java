@@ -1,11 +1,16 @@
 package com.utils;
 
+import com.excepciones.InformeVacioException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.modelos.InformePrestamos;
+import static com.utils.GeneralUtils.convertirFechaString;
 import java.awt.Desktop;
 import java.awt.HeadlessException;
 import java.io.File;
@@ -13,47 +18,62 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-/**
- *
- * @author Mateo
- */
 public class FormUtils {
     
-    public static void generarInformeObjects(ArrayList<Object> pedidos) {
-        Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-        Font regularFont = new Font(Font.FontFamily.HELVETICA, 12);
+    public static void generarInformePrestamos(ArrayList<InformePrestamos> filas) {
+        if (filas.isEmpty()) {
+            throw new InformeVacioException();
+        }
+        
+        Font boldFont = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
+        Font regularFont = new Font(Font.FontFamily.HELVETICA, 9);
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
+        Font footerFont = new Font(Font.FontFamily.HELVETICA, 8, Font.ITALIC, BaseColor.GRAY);
         Document documento = new Document();
+        String fechaActual = convertirFechaString(Calendar.getInstance(), true);
         try {
             String ruta = System.getProperty("user.home");
-            ruta += "/OneDrive/.Universidad/4 Semestre/Diseño de Software/Parcial_2/Parcial_2/informes/pedidos.pdf";
+            String tipo = filas.get(0).getTipoInforme();
+            String nombreArchivo = tipo + " - " + fechaActual;
+            File folder = new File(ruta + "/Informes Biblioteca");
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+            ruta += "/Informes Biblioteca/"+nombreArchivo+".pdf";
             PdfWriter.getInstance(documento, new FileOutputStream(ruta));
 
             documento.open();
 
-            PdfPTable tabla = new PdfPTable(4);
-
-            tabla.addCell(new Phrase("Id:", boldFont));
-            tabla.addCell(new Phrase("Fecha Object:", boldFont));
-            tabla.addCell(new Phrase("Total:", boldFont));
-            tabla.addCell(new Phrase("Cliente:", boldFont));
-            
-            for (Object pedido : pedidos) {
-//                tabla.addCell(new Phrase(pedido.getId(), regularFont));
-//                tabla.addCell(new Phrase(pedido.getFecha(), regularFont));
-//                tabla.addCell(new Phrase(pedido.getTotal()+"", regularFont));
-//                tabla.addCell(new Phrase(pedido.getCedulaCliente(), regularFont));
+            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", "Fecha "+tipo.substring(0, tipo.length()-1)+":"};
+            PdfPTable tabla = new PdfPTable(encabezados.length);
+          
+            for (String encabezado : encabezados) {
+                tabla.addCell(new Phrase(encabezado, boldFont));
             }
             
-            documento.add(new Phrase("Objects:", titleFont));
+            for (InformePrestamos fila : filas) {
+                tabla.addCell(new Phrase(fila.getNombreUsuario(), regularFont));
+                tabla.addCell(new Phrase(fila.getCedulaUsuario(), regularFont));
+                tabla.addCell(new Phrase(fila.getTituloLibro(), regularFont));
+                tabla.addCell(new Phrase(fila.getCategoriaLibro(), regularFont));
+                tabla.addCell(new Phrase(fila.getFecha(), regularFont));
+            }
+            
+            String title = tipo + ":";
+            String footerText = "\nCreado el: " + fechaActual;
+            Paragraph footer = new Paragraph(footerText, footerFont);
+            footer.setAlignment(Paragraph.ALIGN_RIGHT);
+            documento.add(new Phrase(title, titleFont));
             documento.add(tabla);
+            documento.add(footer);
             documento.close();
             
             abrirDocumento(ruta);
 
         } catch (DocumentException | HeadlessException | FileNotFoundException e) {
-            //Manejar Excepciones
+            e.printStackTrace();
         }
     }
     
