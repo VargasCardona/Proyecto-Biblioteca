@@ -5,9 +5,11 @@ import com.modelos.Genero;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Usuario;
+import com.utils.GeneralUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -1824,7 +1826,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			cmbInformeGeneralFinalDia.setEnabled(false);
 			cmbInformeGeneralFinalMes.setEnabled(false);
 			cmbInformeGeneralFinalAnio.setEnabled(false);
-		} else if(true) {
+		} else if (true) {
 			cmbUsuarioInforme.setEnabled(true);
 
 			cmbInformeGeneralInicioDia.setEnabled(true);
@@ -1842,7 +1844,19 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbUsuarioInformeItemStateChanged
 
     private void btnGenerarInformeGeneralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseClicked
-		controlador.generarInformeGeneral(null, null, null);
+		try {
+			controlador.generarInformeGeneral((String) cmbTipoInforme.getSelectedItem(),
+					String.valueOf(cmbInformeGeneralInicioAnio.getSelectedItem())
+					+ "-" + String.valueOf(cmbInformeGeneralInicioMes.getSelectedItem())
+					+ "-" + String.valueOf(cmbInformeGeneralInicioDia.getSelectedItem()),
+					String.valueOf(cmbInformeGeneralFinalAnio.getSelectedItem())
+					+ "-" + String.valueOf(cmbInformeGeneralFinalMes.getSelectedItem())
+					+ "-" + String.valueOf(cmbInformeGeneralFinalDia.getSelectedItem()));
+
+		} catch (Exception e) {
+			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
+			vista.setVisible(true);
+		}
     }//GEN-LAST:event_btnGenerarInformeGeneralMouseClicked
 
     private void btnGenerarInformeGeneralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseEntered
