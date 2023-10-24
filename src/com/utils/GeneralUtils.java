@@ -114,7 +114,7 @@ public class GeneralUtils {
 	 * @return String con formato "yyyy-MM-dd" o "dd-MM-yyyy h.mm.ss"
 	 */
 	public static String convertirFechaString(Calendar fechaIngresada, boolean tieneHora) {
-                String pattern = (tieneHora) ? "dd-MM-yyyy HH mm ss" : "dd-MM-yyyy";
+                String pattern = (tieneHora) ? "dd-MM-yyyy HH:mm:ss" : "yyyy-MM-dd";
                 final SimpleDateFormat FORMATO = new SimpleDateFormat(pattern);
                 return FORMATO.format(fechaIngresada.getTime());
 	}

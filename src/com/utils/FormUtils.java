@@ -36,7 +36,7 @@ public class FormUtils {
         try {
             String ruta = System.getProperty("user.home");
             String tipo = filas.get(0).getTipoInforme();
-            String nombreArchivo = tipo + " - " + fechaActual;
+            String nombreArchivo = tipo + " - " + fechaActual.replace(':', ' ');
             File folder = new File(ruta + "/Informes Biblioteca");
             if (!folder.exists()) {
                 folder.mkdir();
@@ -46,7 +46,8 @@ public class FormUtils {
 
             documento.open();
 
-            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", "Fecha "+tipo.substring(0, tipo.length()-1)+":"};
+            int endIndex = tipo.equals(InformePrestamos.PRESTAMOS) ? tipo.length()-1 : tipo.length()-2;
+            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", "Fecha "+tipo.substring(0, endIndex).replace("io", "ió")+":"};
             PdfPTable tabla = new PdfPTable(encabezados.length);
           
             for (String encabezado : encabezados) {
