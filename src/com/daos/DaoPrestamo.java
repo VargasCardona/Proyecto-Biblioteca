@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -160,13 +161,23 @@ public class DaoPrestamo implements ControladorDao {
 		return null;
 	}
         
-        public ArrayList<InformePrestamos> obtenerListaInforme(String cedulaUsuario, String fechaInicio, String fechaFin, boolean estaActivo) {
+        public ArrayList<InformePrestamos> obtenerListaInforme(String cedulaUsuario, String fechaInicio, String fechaFin, String tipo) {
                 ArrayList<InformePrestamos> filas = new ArrayList<>();
-                String fecha = estaActivo ? "p.fechaPrestamo" : "p.fechaRetorno";
-                String whereUsuario = cedulaUsuario == null ? "" : " AND u.cedula = ?";
+                
+                boolean estaActivo = !tipo.equals(InformePrestamos.DEVOLUCIONES);
+                String fecha = null;
+                switch (tipo) {
+                        case InformePrestamos.PRESTAMOS -> fecha = "p.fechaPrestamo";
+                        case InformePrestamos.DEVOLUCIONES -> fecha = "p.fechaRetorno";
+                        case InformePrestamos.PENDIENTES -> fecha = "p.fechaVencimiento";
+                }
+                String where = cedulaUsuario == null ? "" : " AND u.cedula = ?";
+                if (tipo.equals(InformePrestamos.PENDIENTES)) {
+                    where += " AND p.fechaVencimiento < '" + GeneralUtils.convertirFechaString(Calendar.getInstance(), false) + "'";
+                }
                 
 		try {
-			PreparedStatement ps = connection.prepareStatement("SELECT CONCAT(u.nombre,' ',u.apellidos) as 'nombreCompleto', u.cedula, l.titulo, "+fecha+", g.nombre FROM prestamos as p INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN generos as g ON l.idGenero = g.id WHERE p.estaActivo = ? AND "+fecha+" BETWEEN ? AND ?"+whereUsuario);
+			PreparedStatement ps = connection.prepareStatement("SELECT CONCAT(u.nombre,' ',u.apellidos) as 'nombreCompleto', u.cedula, l.titulo, "+fecha+", g.nombre FROM prestamos as p INNER JOIN usuarios as u ON p.cedulaUsuario = u.cedula INNER JOIN libros as l ON p.isbnLibro = l.isbn INNER JOIN generos as g ON l.idGenero = g.id WHERE p.estaActivo = ? AND "+fecha+" BETWEEN ? AND ?"+where);
 			ps.setBoolean(1, estaActivo);
                         ps.setString(2, fechaInicio);
                         ps.setString(3, fechaFin);
@@ -183,7 +194,7 @@ public class DaoPrestamo implements ControladorDao {
                                                 rs.getString("titulo"),
                                                 rs.getString(fecha.substring(2)),
                                                 rs.getString("nombre"),
-                                                estaActivo ? InformePrestamos.PRESTAMOS : InformePrestamos.DEVOLUCIONES);
+                                                tipo);
 				filas.add(fila);
 			}
 			return filas;

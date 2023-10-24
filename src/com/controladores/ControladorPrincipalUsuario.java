@@ -87,18 +87,18 @@ public class ControladorPrincipalUsuario {
 	}
 
 	public void generarInformeGeneral(String tipoInforme, String fechaInicio, String fechaFin) {
-		System.out.println(fechaInicio);
-		ArrayList<InformePrestamos> lista = new ArrayList<>();
+                fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
+                fechaFin = GeneralUtils.formatearFechaString(fechaFin);
+		String tipo = null;
 		switch (tipoInforme) {
-			case "Prestamos Realizados":
-				lista = daoPrestamo.obtenerListaInforme(null, fechaInicio, fechaFin, true);
-				break;
-			case "Devoluciones realizadas":
-				lista = daoPrestamo.obtenerListaInforme(null, fechaInicio, fechaFin, false);
-				break;
-			case "Prestamos Retrasados":
-				break;
+			case "Prestamos Realizados" ->
+                                tipo = InformePrestamos.PRESTAMOS;
+			case "Devoluciones realizadas" -> 
+                                tipo = InformePrestamos.DEVOLUCIONES;
+			case "Prestamos Retrasados" -> 
+                                tipo = InformePrestamos.PENDIENTES;
 		}
+                ArrayList<InformePrestamos> lista = daoPrestamo.obtenerListaInforme(null, fechaInicio, fechaFin, tipo);
 		FormUtils.generarInformePrestamos(lista);
 	}
 }

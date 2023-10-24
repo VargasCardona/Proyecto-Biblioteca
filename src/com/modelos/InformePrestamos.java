@@ -2,8 +2,9 @@ package com.modelos;
 
 public class InformePrestamos {
     
-    public static String PRESTAMOS = "Prestamos";
-    public static String DEVOLUCIONES = "Devoluciones";
+    public static final String PRESTAMOS = "Prestamos";
+    public static final String DEVOLUCIONES = "Devoluciones";
+    public static final String PENDIENTES = "Pendientes";
     
     private String nombreUsuario;
     private String cedulaUsuario;

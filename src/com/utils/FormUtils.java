@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class FormUtils {
-    
+
     public static void generarInformePrestamos(ArrayList<InformePrestamos> filas) {
         if (filas.isEmpty()) {
             throw new InformeVacioException();
         }
-        
+
         Font boldFont = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Font regularFont = new Font(Font.FontFamily.HELVETICA, 9);
         Font titleFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
@@ -41,19 +41,25 @@ public class FormUtils {
             if (!folder.exists()) {
                 folder.mkdir();
             }
-            ruta += "/Informes Biblioteca/"+nombreArchivo+".pdf";
+            ruta += "/Informes Biblioteca/" + nombreArchivo + ".pdf";
             PdfWriter.getInstance(documento, new FileOutputStream(ruta));
 
             documento.open();
 
-            int endIndex = tipo.equals(InformePrestamos.PRESTAMOS) ? tipo.length()-1 : tipo.length()-2;
-            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", "Fecha "+tipo.substring(0, endIndex).replace("io", "ió")+":"};
+            String encabezadoFecha = null;
+            switch (tipo) {
+                case InformePrestamos.PRESTAMOS -> encabezadoFecha = "prestamo";
+                case InformePrestamos.DEVOLUCIONES -> encabezadoFecha = "retorno";
+                case InformePrestamos.PENDIENTES -> encabezadoFecha = "vencimiento";
+            }
+            int endIndex = tipo.equals(InformePrestamos.PRESTAMOS) ? tipo.length() - 1 : tipo.length() - 2;
+            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", "Fecha " + encabezadoFecha + ":"};
             PdfPTable tabla = new PdfPTable(encabezados.length);
-          
+
             for (String encabezado : encabezados) {
                 tabla.addCell(new Phrase(encabezado, boldFont));
             }
-            
+
             for (InformePrestamos fila : filas) {
                 tabla.addCell(new Phrase(fila.getNombreUsuario(), regularFont));
                 tabla.addCell(new Phrase(fila.getCedulaUsuario(), regularFont));
@@ -61,7 +67,7 @@ public class FormUtils {
                 tabla.addCell(new Phrase(fila.getCategoriaLibro(), regularFont));
                 tabla.addCell(new Phrase(fila.getFecha(), regularFont));
             }
-            
+
             String title = tipo + ":";
             String footerText = "\nCreado el: " + fechaActual;
             Paragraph footer = new Paragraph(footerText, footerFont);
@@ -70,14 +76,14 @@ public class FormUtils {
             documento.add(tabla);
             documento.add(footer);
             documento.close();
-            
+
             abrirDocumento(ruta);
 
         } catch (DocumentException | HeadlessException | FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-    
+
     private static void abrirDocumento(String ruta) {
         Desktop desktop = Desktop.getDesktop();
         File file = new File(ruta);
