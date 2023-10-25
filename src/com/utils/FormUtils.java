@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 public class FormUtils {
 
-    public static void generarInformePrestamos(ArrayList<InformePrestamos> filas) {
+    public static void generarInformePrestamos(ArrayList<InformePrestamos> filas, String detalles) {
         if (filas.isEmpty()) {
             throw new InformeVacioException();
         }
@@ -48,12 +48,12 @@ public class FormUtils {
 
             String encabezadoFecha = null;
             switch (tipo) {
-                case InformePrestamos.PRESTAMOS -> encabezadoFecha = "prestamo";
-                case InformePrestamos.DEVOLUCIONES -> encabezadoFecha = "retorno";
-                case InformePrestamos.PENDIENTES -> encabezadoFecha = "vencimiento";
+                case InformePrestamos.PRESTAMOS -> encabezadoFecha = "Fecha prestamo:";
+                case InformePrestamos.DEVOLUCIONES -> encabezadoFecha = "Fecha retorno:";
+                case InformePrestamos.PENDIENTES -> encabezadoFecha = "Fecha vencimiento:";
             }
-            int endIndex = tipo.equals(InformePrestamos.PRESTAMOS) ? tipo.length() - 1 : tipo.length() - 2;
-            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", "Fecha " + encabezadoFecha + ":"};
+            
+            String[] encabezados = {"Usuario:", "Cédula:", "Libro:", "Categoria", encabezadoFecha};
             PdfPTable tabla = new PdfPTable(encabezados.length);
 
             for (String encabezado : encabezados) {
@@ -73,6 +73,7 @@ public class FormUtils {
             Paragraph footer = new Paragraph(footerText, footerFont);
             footer.setAlignment(Paragraph.ALIGN_RIGHT);
             documento.add(new Phrase(title, titleFont));
+            documento.add(new Paragraph("\n" + detalles + "\n\n", regularFont));
             documento.add(tabla);
             documento.add(footer);
             documento.close();

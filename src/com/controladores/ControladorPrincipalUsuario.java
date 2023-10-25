@@ -4,6 +4,7 @@ import com.daos.DaoGenero;
 import com.daos.DaoLibro;
 import com.daos.DaoPrestamo;
 import com.daos.DaoUsuario;
+import com.excepciones.FechaInformeInvalidaException;
 import com.excepciones.FechaInvalidaException;
 import com.excepciones.TipoInformeNoSeleccionadoException;
 import com.modelos.Genero;
@@ -98,7 +99,7 @@ public class ControladorPrincipalUsuario {
 		}
 		
 		if (GeneralUtils.convertirStringFecha(fechaFin).before(GeneralUtils.convertirStringFecha(fechaInicio))) {
-			throw new FechaInvalidaException();
+			throw new FechaInformeInvalidaException();
 		}
 		
 		fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
@@ -117,7 +118,9 @@ public class ControladorPrincipalUsuario {
 				fechaInicio,
 				fechaFin,
 				tipo);
-
-		FormUtils.generarInformePrestamos(lista);
+                
+                String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
+                rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
+		FormUtils.generarInformePrestamos(lista, rango);
 	}
 }

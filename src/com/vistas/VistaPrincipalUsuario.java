@@ -1757,7 +1757,12 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarInformeGeneralMouseClicked
 
     private void btnEliminarSeleccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseClicked
-        lblCedulaInforme.setText("No seleccionado");
+        if (lblCedulaInforme.getText().equals("No seleccionado")) {
+                VistaNotificacion vista = new VistaNotificacion("No se ha seleccionado un usuario");
+                vista.setVisible(true);
+        } else {
+                lblCedulaInforme.setText("No seleccionado");
+        }
     }//GEN-LAST:event_btnEliminarSeleccionMouseClicked
 
     private void btnEliminarSeleccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseEntered
