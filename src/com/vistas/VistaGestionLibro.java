@@ -468,7 +468,9 @@ public class VistaGestionLibro extends javax.swing.JFrame {
 						txtPublicacion.getText(),
 						txtUnidades.getText(),
 						lblIsbn.getText());
-
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                        "Edición de libro");
+                                
 				this.dispose();
 
 				vistaPrincipal.llenarTablaLibros(null, null);
@@ -487,6 +489,8 @@ public class VistaGestionLibro extends javax.swing.JFrame {
 
 			try {
 				controladorLibro.eliminarLibro(String.valueOf(libroSeleccionado.getISBN()));
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                        "Eliminación de libro");
 			} catch (Exception e) {
 				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 				vista.setVisible(true);

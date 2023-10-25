@@ -282,7 +282,9 @@ public class VistaGestionGenero extends javax.swing.JFrame {
 
 			try {
 				controlador.actualizarGenero(txtNombre.getText(), generoSeleccionado.getId());
-
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                        "Edición de género");
+                                
 				this.dispose();
 
 				vistaPrincipal.llenarTablaGeneros();
@@ -316,6 +318,8 @@ public class VistaGestionGenero extends javax.swing.JFrame {
 
 			try {
 				controlador.eliminarGenero(generoSeleccionado.getId());
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                        "Eliminación de género");
 			} catch (Exception e) {
 				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 				vista.setVisible(true);

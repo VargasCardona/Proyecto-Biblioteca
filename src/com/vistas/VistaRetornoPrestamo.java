@@ -294,6 +294,8 @@ public class VistaRetornoPrestamo extends javax.swing.JFrame {
 		}
 		
 		controlador.devolverPrestamo(prestamoSeleccionado);
+                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                        "Devolución de libro");
 		
 		this.dispose();
 		vistaPrincipal.llenarTablaPrestamos();

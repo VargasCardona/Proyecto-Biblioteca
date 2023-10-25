@@ -6,7 +6,6 @@ import com.daos.DaoPrestamo;
 import com.daos.DaoRegistro;
 import com.daos.DaoUsuario;
 import com.excepciones.FechaInformeInvalidaException;
-import com.excepciones.FechaInvalidaException;
 import com.excepciones.TipoInformeNoSeleccionadoException;
 import com.modelos.Genero;
 import com.modelos.InformePrestamos;
@@ -87,6 +86,10 @@ public class ControladorPrincipalUsuario {
 		return (GeneralUtils.estaVacio(id, "Filtrar por ID"))
 				? daoPrestamo.obtenerTablaPrestamos()
 				: daoPrestamo.obtenerTablaPrestamos(id);
+	}
+        
+	public DefaultTableModel obtenerTablaRegistros(String cedulaUsuario) {
+		return daoRegistro.obtenerTablaRegistros(GeneralUtils.estaVacio(cedulaUsuario, "placeholder") ? null : cedulaUsuario);
 	}
 
 	public Prestamo consultarPrestamo(String id) {

@@ -503,8 +503,12 @@ public class VistaRegistroUsuario extends javax.swing.JFrame implements KeyListe
 				this.dispose();
 
 				if (vistaPrincipal instanceof VistaPrincipalUsuario) {
-					((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios();
+					controlador.insertarRegistro(((VistaPrincipalUsuario) vistaPrincipal).usuarioActivo.getCedula(),
+                                                "Registro de usuario");
+                                        ((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios();
 				} else {
+                                        controlador.insertarRegistro(txtIdentificacion.getText(),
+                                                "Creación de cuenta");
 					VistaAcceso vistaAcceso = new VistaAcceso();
 					vistaAcceso.setVisible(true);
 				}

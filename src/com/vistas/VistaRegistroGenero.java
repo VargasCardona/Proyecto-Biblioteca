@@ -230,7 +230,9 @@ public class VistaRegistroGenero extends javax.swing.JFrame implements KeyListen
         private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
 			try {
 				controlador.registrarGenero(txtNombre.getText());
-
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                    "Registro de género");
+                                
 				this.dispose();
 
 				vistaPrincipal.llenarTablaGeneros();

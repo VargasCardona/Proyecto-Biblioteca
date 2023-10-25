@@ -410,7 +410,9 @@ public class VistaRegistroLibro extends javax.swing.JFrame implements KeyListene
                         cmbGeneros.getSelectedItem().toString().split(" ")[0],
                         txtPublicacion.getText(),
                         txtUnidades.getText());
-
+                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                        "Registro de libro");
+                
                 this.dispose();
                 vistaPrincipal.llenarTablaLibros(null, null);
 

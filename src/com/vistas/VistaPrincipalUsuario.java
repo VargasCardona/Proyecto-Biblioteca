@@ -2020,19 +2020,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 	}
 
 	public void llenarTablaAcciones(String where) {
-		DefaultTableModel modelo = new DefaultTableModel();
-		ArrayList<Registro> listaRegistros = controlador.obtenerListaRegistros(where);
-		modelo.setColumnIdentifiers(new Object[]{"ID", "Usuario", "Detalles", "Fecha Realización"});
-		tblRegistros.setModel(modelo);
-
-		for (Registro registroAlmacenado : listaRegistros) {
-			modelo.addRow(new Object[]{
-				registroAlmacenado.getId(),
-				registroAlmacenado.getCedulaUsuario(),
-				registroAlmacenado.getDetalles(),
-				GeneralUtils.convertirFechaString(registroAlmacenado.getFechaRealizacion(), true)
-			});
-		}
+		tblRegistros.setModel(controlador.obtenerTablaRegistros(where));
 	}
 
 	public void llenarTablaPrestamos() {

@@ -323,7 +323,9 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
 				controlador.actualizarUsuario(txtNombre.getText(),
 						txtApellidos.getText(),
 						usuarioSeleccionado.getCedula());
-
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                        "Edición de usuario");
+                                
 				this.dispose();
 
 				vistaPrincipal.llenarTablaUsuarios();
@@ -355,6 +357,8 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
 
 			try {
 				controlador.eliminarUsuario(String.valueOf(usuarioSeleccionado.getCedula()), vistaPrincipal.usuarioActivo.getCedula());
+                                vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                                        "Eliminación de usuario");
 			} catch (Exception e) {
 				VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 				vista.setVisible(true);

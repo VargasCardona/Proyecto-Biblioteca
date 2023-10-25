@@ -89,7 +89,6 @@ public class GeneralUtils {
 	 * @return Objeto tipo Calendar
 	 */
 	public static Calendar convertirStringFecha(String fechaString) {
-		System.out.println(fechaString);
 		Calendar fechaRetorno = new GregorianCalendar();
 		String[] fechaSplit = fechaString.split("-");
 

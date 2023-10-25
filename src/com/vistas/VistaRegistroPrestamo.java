@@ -459,11 +459,13 @@ public class VistaRegistroPrestamo extends javax.swing.JFrame {
 					+ "-" + String.valueOf(cmbDia.getSelectedItem()));
 
 			controlador.registrarPrestamo(lblIsbn.getText(), lblCedulaPaciente.getText(), fechaRetorno, true);
-
+                        vistaPrincipal.controlador.insertarRegistro(vistaPrincipal.usuarioActivo.getCedula(),
+                        "Registro de préstamo");
+                        
 			this.dispose();
 			vistaPrincipal.llenarTablaPrestamos();
 
-			VistaNotificacion vista = new VistaNotificacion("Prestamo registrado exitosamente");
+			VistaNotificacion vista = new VistaNotificacion("Préstamo registrado exitosamente");
 			vista.setVisible(true);
 
 		} catch (Exception e) {

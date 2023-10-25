@@ -281,6 +281,8 @@ public class VistaGestionPerfil extends javax.swing.JFrame {
 					usuarioActivo.getUsuario(),
 					txtUsuario.getText(),
 					txtContrasenia.getText());
+                        ((VistaPrincipalUsuario) vistaPrincipal).controlador.insertarRegistro(((VistaPrincipalUsuario) vistaPrincipal).usuarioActivo.getCedula(),
+                                "Edición de cuenta");
 
 			this.dispose();
 			vistaPrincipal.dispose();
