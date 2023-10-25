@@ -3,6 +3,7 @@ package com.controladores;
 import com.daos.DaoGenero;
 import com.daos.DaoLibro;
 import com.daos.DaoPrestamo;
+import com.daos.DaoRegistro;
 import com.daos.DaoUsuario;
 import com.excepciones.FechaInformeInvalidaException;
 import com.excepciones.FechaInvalidaException;
@@ -11,6 +12,7 @@ import com.modelos.Genero;
 import com.modelos.InformePrestamos;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
+import com.modelos.Registro;
 import com.modelos.Usuario;
 import com.utils.FormUtils;
 import com.utils.GeneralUtils;
@@ -23,12 +25,14 @@ public class ControladorPrincipalUsuario {
 	private DaoGenero daoGenero;
 	private DaoLibro daoLibro;
 	private DaoPrestamo daoPrestamo;
+	private DaoRegistro daoRegistro;
 
 	public ControladorPrincipalUsuario() {
 		this.daoUsuario = new DaoUsuario();
 		this.daoGenero = new DaoGenero();
 		this.daoLibro = new DaoLibro();
 		this.daoPrestamo = new DaoPrestamo();
+		this.daoRegistro = new DaoRegistro();
 	}
 
 	public ArrayList<Usuario> obtenerListaUsuarios() {
@@ -88,12 +92,16 @@ public class ControladorPrincipalUsuario {
 	public Prestamo consultarPrestamo(String id) {
 		return daoPrestamo.consultarPrestamo(id);
 	}
+        
+        public ArrayList<Registro> obtenerListaRegistros(String cedulaUsuario) {
+                return daoRegistro.obtenerListaRegistros(GeneralUtils.estaVacio(cedulaUsuario, "placeholder") ? null : cedulaUsuario);
+        }
 
 	public void generarInformeGeneral(String cedulaUsuario, String tipoInforme, String fechaInicio, String fechaFin) {
 
 		GeneralUtils.convertirStringFecha(fechaInicio);
 		GeneralUtils.convertirStringFecha(fechaFin);
-		
+                
 		if (tipoInforme.equals("Seleccione un tipo de informe")){
 			throw new TipoInformeNoSeleccionadoException();
 		}
@@ -123,4 +131,9 @@ public class ControladorPrincipalUsuario {
                 rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
 		FormUtils.generarInformePrestamos(lista, rango);
 	}
+        
+        public void insertarRegistro(String cedulaUsuarioActivo, String detalles) {
+                Registro registro = new Registro(0, cedulaUsuarioActivo, detalles);
+                daoRegistro.insertar(registro);
+        }
 }

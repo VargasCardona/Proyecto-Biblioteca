@@ -124,6 +124,17 @@ public class GeneralUtils {
 		final SimpleDateFormat FORMATO = new SimpleDateFormat(pattern);
 		return FORMATO.format(fechaIngresada.getTime());
 	}
+        
+	/**
+	 * Convierte un objeto tipo Calendar en un string con su fecha
+	 *
+	 * @param fechaIngresada Calendar a convertir
+	 * @return String con formato "yyyy-MM-dd HH:mm:ss"
+	 */
+	public static String convertirFechaString(Calendar fechaIngresada) {
+		final SimpleDateFormat FORMATO = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return FORMATO.format(fechaIngresada.getTime());
+	}
 
 	/**
 	 * Ajusta cadena a formato "yyyy-MM-dd"

@@ -5,11 +5,9 @@ import com.modelos.Genero;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Usuario;
-import com.utils.GeneralUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -1749,7 +1747,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 					String.valueOf(cmbInformeGeneralFinalAnio.getSelectedItem())
 					+ "-" + String.valueOf(cmbInformeGeneralFinalMes.getSelectedItem())
 					+ "-" + String.valueOf(cmbInformeGeneralFinalDia.getSelectedItem()));
-
+                        controlador.insertarRegistro(usuarioActivo.getCedula(), "Generación de informe");
 		} catch (Exception e) {
 			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 			vista.setVisible(true);
