@@ -4,6 +4,8 @@ import com.daos.DaoGenero;
 import com.daos.DaoLibro;
 import com.daos.DaoPrestamo;
 import com.daos.DaoUsuario;
+import com.excepciones.FechaInvalidaException;
+import com.excepciones.TipoInformeNoSeleccionadoException;
 import com.modelos.Genero;
 import com.modelos.InformePrestamos;
 import com.modelos.Libro;
@@ -86,19 +88,36 @@ public class ControladorPrincipalUsuario {
 		return daoPrestamo.consultarPrestamo(id);
 	}
 
-	public void generarInformeGeneral(String tipoInforme, String fechaInicio, String fechaFin) {
-                fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
-                fechaFin = GeneralUtils.formatearFechaString(fechaFin);
+	public void generarInformeGeneral(String cedulaUsuario, String tipoInforme, String fechaInicio, String fechaFin) {
+
+		GeneralUtils.convertirStringFecha(fechaInicio);
+		GeneralUtils.convertirStringFecha(fechaFin);
+		
+		if (tipoInforme.equals("Seleccione un tipo de informe")){
+			throw new TipoInformeNoSeleccionadoException();
+		}
+		
+		if (GeneralUtils.convertirStringFecha(fechaFin).before(GeneralUtils.convertirStringFecha(fechaInicio))) {
+			throw new FechaInvalidaException();
+		}
+		
+		fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
+		fechaFin = GeneralUtils.formatearFechaString(fechaFin);
 		String tipo = null;
 		switch (tipoInforme) {
 			case "Prestamos Realizados" ->
-                                tipo = InformePrestamos.PRESTAMOS;
-			case "Devoluciones realizadas" -> 
-                                tipo = InformePrestamos.DEVOLUCIONES;
-			case "Prestamos Retrasados" -> 
-                                tipo = InformePrestamos.PENDIENTES;
+				tipo = InformePrestamos.PRESTAMOS;
+			case "Devoluciones realizadas" ->
+				tipo = InformePrestamos.DEVOLUCIONES;
+			case "Prestamos Retrasados" ->
+				tipo = InformePrestamos.PENDIENTES;
 		}
-                ArrayList<InformePrestamos> lista = daoPrestamo.obtenerListaInforme(null, fechaInicio, fechaFin, tipo);
+
+		ArrayList<InformePrestamos> lista = daoPrestamo.obtenerListaInforme(cedulaUsuario.equals("No seleccionado") ? null : cedulaUsuario,
+				fechaInicio,
+				fechaFin,
+				tipo);
+
 		FormUtils.generarInformePrestamos(lista);
 	}
 }

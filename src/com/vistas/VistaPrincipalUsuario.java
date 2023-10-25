@@ -99,28 +99,15 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlInformes = new javax.swing.JPanel();
         pnlLibrosRegistro2 = new com.vistas.PanelRound();
         scrlLibros2 = new javax.swing.JScrollPane();
-        tblLibros1 = new com.vistas.Table();
+        tblUsuariosInformes = new com.vistas.Table();
         label5 = new javax.swing.JLabel();
-        btnGenerarInformeEspecifico = new com.vistas.PanelRound();
-        lblRegistrar5 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        panelRound14 = new com.vistas.PanelRound();
-        cmbAnio1 = new javax.swing.JComboBox<>();
-        cmbDia1 = new javax.swing.JComboBox<>();
-        cmbMes1 = new javax.swing.JComboBox<>();
-        pnlCategoriasRegistro1 = new com.vistas.PanelRound();
-        label6 = new javax.swing.JLabel();
-        panelRound9 = new com.vistas.PanelRound();
-        cmbTipoInforme = new javax.swing.JComboBox<>();
+        jLabel37 = new javax.swing.JLabel();
+        lblCedulaInforme = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        panelRound10 = new com.vistas.PanelRound();
-        cmbUsuarioInforme = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
         panelRound15 = new com.vistas.PanelRound();
         cmbInformeGeneralInicioAnio = new javax.swing.JComboBox<>();
         cmbInformeGeneralInicioDia = new javax.swing.JComboBox<>();
         cmbInformeGeneralInicioMes = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         panelRound16 = new com.vistas.PanelRound();
         cmbInformeGeneralFinalAnio = new javax.swing.JComboBox<>();
@@ -128,6 +115,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         cmbInformeGeneralFinalMes = new javax.swing.JComboBox<>();
         btnGenerarInformeGeneral = new com.vistas.PanelRound();
         lblRegistrar7 = new javax.swing.JLabel();
+        panelRound9 = new com.vistas.PanelRound();
+        cmbTipoInforme = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        btnEliminarSeleccion = new com.vistas.PanelRound();
+        lblRegistrar8 = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         lblResumen = new javax.swing.JLabel();
         tabResumen = new javax.swing.JLabel();
@@ -907,7 +899,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlLibrosRegistro2.setRoundTopRight(10);
         pnlLibrosRegistro2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblLibros1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuariosInformes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -934,188 +926,46 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Apellidos", "Usuario", "Cargo"
             }
         ));
-        tblLibros1.setFocusable(false);
-        tblLibros1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        tblLibros1.getTableHeader().setResizingAllowed(false);
-        tblLibros1.getTableHeader().setReorderingAllowed(false);
-        tblLibros1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblUsuariosInformes.setFocusable(false);
+        tblUsuariosInformes.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        tblUsuariosInformes.getTableHeader().setResizingAllowed(false);
+        tblUsuariosInformes.getTableHeader().setReorderingAllowed(false);
+        tblUsuariosInformes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblLibros1MouseClicked(evt);
+                tblUsuariosInformesMouseClicked(evt);
             }
         });
-        scrlLibros2.setViewportView(tblLibros1);
+        scrlLibros2.setViewportView(tblUsuariosInformes);
 
-        pnlLibrosRegistro2.add(scrlLibros2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 680, 200));
+        pnlLibrosRegistro2.add(scrlLibros2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 380, 520));
 
         label5.setBackground(new java.awt.Color(255, 255, 255));
         label5.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
         label5.setForeground(new java.awt.Color(255, 255, 255));
         label5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label5.setText("Libros prestados por usuario y fecha");
+        label5.setText("Informes Generales");
         pnlLibrosRegistro2.add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
 
-        btnGenerarInformeEspecifico.setBackground(new java.awt.Color(255, 255, 255));
-        btnGenerarInformeEspecifico.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerarInformeEspecifico.setRoundBottomLeft(20);
-        btnGenerarInformeEspecifico.setRoundBottomRight(20);
-        btnGenerarInformeEspecifico.setRoundTopLeft(20);
-        btnGenerarInformeEspecifico.setRoundTopRight(20);
-        btnGenerarInformeEspecifico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGenerarInformeEspecificoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGenerarInformeEspecificoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGenerarInformeEspecificoMouseExited(evt);
-            }
-        });
-        btnGenerarInformeEspecifico.setLayout(null);
+        jLabel37.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel37.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel37.setText("Cédula de Usuario:");
+        pnlLibrosRegistro2.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 120, 20));
 
-        lblRegistrar5.setBackground(new java.awt.Color(24, 25, 32));
-        lblRegistrar5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        lblRegistrar5.setForeground(new java.awt.Color(24, 25, 32));
-        lblRegistrar5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRegistrar5.setText("Generar Informe");
-        btnGenerarInformeEspecifico.add(lblRegistrar5);
-        lblRegistrar5.setBounds(0, 10, 320, 20);
-
-        pnlLibrosRegistro2.add(btnGenerarInformeEspecifico, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 320, 40));
-        Cursor cursorHand77 = new Cursor(Cursor.HAND_CURSOR);
-        btnRegistrarLibro.setCursor(cursorHand77);
-        btnRegistrarLibro.setVisible(true);
-
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel17.setText("Fecha de solicitada");
-        pnlLibrosRegistro2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 40));
-
-        panelRound14.setBackground(new java.awt.Color(37, 42, 52));
-        panelRound14.setForeground(new java.awt.Color(57, 59, 70));
-        panelRound14.setRoundBottomLeft(20);
-        panelRound14.setRoundBottomRight(20);
-        panelRound14.setRoundTopLeft(20);
-        panelRound14.setRoundTopRight(20);
-        panelRound14.setLayout(null);
-
-        cmbAnio1.setBackground(new java.awt.Color(37, 42, 52));
-        cmbAnio1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        cmbAnio1.setForeground(new java.awt.Color(255, 255, 255));
-        cmbAnio1.setMaximumRowCount(5);
-        cmbAnio1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AAAA", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040" }));
-        cmbAnio1.setToolTipText("");
-        cmbAnio1.setBorder(null);
-        cmbAnio1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelRound14.add(cmbAnio1);
-        cmbAnio1.setBounds(140, 10, 70, 20);
-
-        cmbDia1.setBackground(new java.awt.Color(37, 42, 52));
-        cmbDia1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        cmbDia1.setForeground(new java.awt.Color(255, 255, 255));
-        cmbDia1.setMaximumRowCount(5);
-        cmbDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DD", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        cmbDia1.setToolTipText("");
-        cmbDia1.setBorder(null);
-        cmbDia1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelRound14.add(cmbDia1);
-        cmbDia1.setBounds(10, 10, 50, 20);
-
-        cmbMes1.setBackground(new java.awt.Color(37, 42, 52));
-        cmbMes1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        cmbMes1.setForeground(new java.awt.Color(255, 255, 255));
-        cmbMes1.setMaximumRowCount(5);
-        cmbMes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MM", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cmbMes1.setToolTipText("");
-        cmbMes1.setBorder(null);
-        cmbMes1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelRound14.add(cmbMes1);
-        cmbMes1.setBounds(70, 10, 60, 20);
-
-        pnlLibrosRegistro2.add(panelRound14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 220, 40));
-
-        pnlInformes.add(pnlLibrosRegistro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 310));
-
-        pnlCategoriasRegistro1.setBackground(new java.awt.Color(24, 25, 32));
-        pnlCategoriasRegistro1.setRoundBottomLeft(10);
-        pnlCategoriasRegistro1.setRoundBottomRight(10);
-        pnlCategoriasRegistro1.setRoundTopLeft(10);
-        pnlCategoriasRegistro1.setRoundTopRight(10);
-        pnlCategoriasRegistro1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label6.setBackground(new java.awt.Color(255, 255, 255));
-        label6.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
-        label6.setForeground(new java.awt.Color(255, 255, 255));
-        label6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label6.setText("Informes Generales");
-        pnlCategoriasRegistro1.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
-
-        panelRound9.setBackground(new java.awt.Color(37, 42, 52));
-        panelRound9.setForeground(new java.awt.Color(57, 59, 70));
-        panelRound9.setRoundBottomLeft(20);
-        panelRound9.setRoundBottomRight(20);
-        panelRound9.setRoundTopLeft(20);
-        panelRound9.setRoundTopRight(20);
-        panelRound9.setLayout(null);
-
-        cmbTipoInforme.setBackground(new java.awt.Color(37, 42, 52));
-        cmbTipoInforme.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbTipoInforme.setForeground(new java.awt.Color(255, 255, 255));
-        cmbTipoInforme.setMaximumRowCount(5);
-        cmbTipoInforme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de informe", "Prestamos Realizados", "Devoluciones realizadas", "Prestamos Retrasados" }));
-        cmbTipoInforme.setToolTipText("");
-        cmbTipoInforme.setBorder(null);
-        cmbTipoInforme.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cmbTipoInforme.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbTipoInformeItemStateChanged(evt);
-            }
-        });
-        panelRound9.add(cmbTipoInforme);
-        cmbTipoInforme.setBounds(10, 10, 340, 20);
-
-        pnlCategoriasRegistro1.add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 360, 40));
+        lblCedulaInforme.setBackground(new java.awt.Color(255, 255, 255));
+        lblCedulaInforme.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        lblCedulaInforme.setForeground(new java.awt.Color(255, 255, 255));
+        lblCedulaInforme.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCedulaInforme.setText("No seleccionado");
+        pnlLibrosRegistro2.add(lblCedulaInforme, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 160, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Fecha de Inicio");
-        pnlCategoriasRegistro1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 280, 30));
-
-        panelRound10.setBackground(new java.awt.Color(37, 42, 52));
-        panelRound10.setForeground(new java.awt.Color(57, 59, 70));
-        panelRound10.setRoundBottomLeft(20);
-        panelRound10.setRoundBottomRight(20);
-        panelRound10.setRoundTopLeft(20);
-        panelRound10.setRoundTopRight(20);
-        panelRound10.setLayout(null);
-
-        cmbUsuarioInforme.setBackground(new java.awt.Color(37, 42, 52));
-        cmbUsuarioInforme.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cmbUsuarioInforme.setForeground(new java.awt.Color(255, 255, 255));
-        cmbUsuarioInforme.setMaximumRowCount(5);
-        cmbUsuarioInforme.setToolTipText("");
-        cmbUsuarioInforme.setBorder(null);
-        cmbUsuarioInforme.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cmbUsuarioInforme.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbUsuarioInformeItemStateChanged(evt);
-            }
-        });
-        panelRound10.add(cmbUsuarioInforme);
-        cmbUsuarioInforme.setBounds(10, 10, 340, 20);
-
-        pnlCategoriasRegistro1.add(panelRound10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 360, 40));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("Usuario solicitado");
-        pnlCategoriasRegistro1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 360, 30));
+        pnlLibrosRegistro2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 280, 30));
 
         panelRound15.setBackground(new java.awt.Color(37, 42, 52));
         panelRound15.setForeground(new java.awt.Color(57, 59, 70));
@@ -1158,21 +1008,14 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         panelRound15.add(cmbInformeGeneralInicioMes);
         cmbInformeGeneralInicioMes.setBounds(100, 10, 60, 20);
 
-        pnlCategoriasRegistro1.add(panelRound15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 290, 40));
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("Tipo de Informe");
-        pnlCategoriasRegistro1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 360, 30));
+        pnlLibrosRegistro2.add(panelRound15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 290, 40));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Fecha de Finalización");
-        pnlCategoriasRegistro1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 280, 30));
+        pnlLibrosRegistro2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 280, 30));
 
         panelRound16.setBackground(new java.awt.Color(37, 42, 52));
         panelRound16.setForeground(new java.awt.Color(57, 59, 70));
@@ -1215,7 +1058,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         panelRound16.add(cmbInformeGeneralFinalMes);
         cmbInformeGeneralFinalMes.setBounds(100, 10, 60, 20);
 
-        pnlCategoriasRegistro1.add(panelRound16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 290, 40));
+        pnlLibrosRegistro2.add(panelRound16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 290, 40));
 
         btnGenerarInformeGeneral.setBackground(new java.awt.Color(255, 255, 255));
         btnGenerarInformeGeneral.setForeground(new java.awt.Color(255, 255, 255));
@@ -1242,14 +1085,79 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblRegistrar7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrar7.setText("Generar Informe");
         btnGenerarInformeGeneral.add(lblRegistrar7);
-        lblRegistrar7.setBounds(0, 10, 320, 20);
+        lblRegistrar7.setBounds(0, 10, 290, 20);
 
-        pnlCategoriasRegistro1.add(btnGenerarInformeGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 320, 40));
+        pnlLibrosRegistro2.add(btnGenerarInformeGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, 290, 40));
         Cursor cursorHand102 = new Cursor(Cursor.HAND_CURSOR);
         btnRegistrarLibro.setCursor(cursorHand102);
         btnRegistrarLibro.setVisible(true);
 
-        pnlInformes.add(pnlCategoriasRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 700, 260));
+        panelRound9.setBackground(new java.awt.Color(37, 42, 52));
+        panelRound9.setForeground(new java.awt.Color(57, 59, 70));
+        panelRound9.setRoundBottomLeft(20);
+        panelRound9.setRoundBottomRight(20);
+        panelRound9.setRoundTopLeft(20);
+        panelRound9.setRoundTopRight(20);
+        panelRound9.setLayout(null);
+
+        cmbTipoInforme.setBackground(new java.awt.Color(37, 42, 52));
+        cmbTipoInforme.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cmbTipoInforme.setForeground(new java.awt.Color(255, 255, 255));
+        cmbTipoInforme.setMaximumRowCount(5);
+        cmbTipoInforme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de informe", "Prestamos Realizados", "Devoluciones realizadas", "Prestamos Retrasados" }));
+        cmbTipoInforme.setToolTipText("");
+        cmbTipoInforme.setBorder(null);
+        cmbTipoInforme.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbTipoInforme.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoInformeItemStateChanged(evt);
+            }
+        });
+        panelRound9.add(cmbTipoInforme);
+        cmbTipoInforme.setBounds(10, 10, 270, 20);
+
+        pnlLibrosRegistro2.add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 290, 40));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("Tipo de Informe");
+        pnlLibrosRegistro2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 360, 30));
+
+        btnEliminarSeleccion.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminarSeleccion.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarSeleccion.setRoundBottomLeft(20);
+        btnEliminarSeleccion.setRoundBottomRight(20);
+        btnEliminarSeleccion.setRoundTopLeft(20);
+        btnEliminarSeleccion.setRoundTopRight(20);
+        btnEliminarSeleccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarSeleccionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarSeleccionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarSeleccionMouseExited(evt);
+            }
+        });
+        btnEliminarSeleccion.setLayout(null);
+
+        lblRegistrar8.setBackground(new java.awt.Color(24, 25, 32));
+        lblRegistrar8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        lblRegistrar8.setForeground(new java.awt.Color(24, 25, 32));
+        lblRegistrar8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRegistrar8.setText("Quitar mi selección");
+        btnEliminarSeleccion.add(lblRegistrar8);
+        lblRegistrar8.setBounds(0, 10, 290, 20);
+
+        pnlLibrosRegistro2.add(btnEliminarSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 290, 40));
+        Cursor cursorHand122 = new Cursor(Cursor.HAND_CURSOR);
+        btnRegistrarLibro.setCursor(cursorHand122);
+        btnRegistrarLibro.setVisible(true);
+
+        pnlInformes.add(pnlLibrosRegistro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 580));
 
         bg.add(pnlInformes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
 
@@ -1778,9 +1686,8 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 
     private void tabInformesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabInformesMouseClicked
 		cambiarPanel();
+		llenarTablaInformes();
 		pnlInformes.setVisible(true);
-
-		cmbUsuarioInforme.setEnabled(false);
 
 		cmbInformeGeneralInicioDia.setEnabled(false);
 		cmbInformeGeneralInicioMes.setEnabled(false);
@@ -1799,25 +1706,13 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		tabInformes.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_tabInformesMouseExited
 
-    private void tblLibros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibros1MouseClicked
-		// TODO add your handling code here:
-    }//GEN-LAST:event_tblLibros1MouseClicked
-
-    private void btnGenerarInformeEspecificoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeEspecificoMouseClicked
-		// TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarInformeEspecificoMouseClicked
-
-    private void btnGenerarInformeEspecificoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeEspecificoMouseEntered
-		// TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarInformeEspecificoMouseEntered
-
-    private void btnGenerarInformeEspecificoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeEspecificoMouseExited
-		// TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarInformeEspecificoMouseExited
+    private void tblUsuariosInformesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosInformesMouseClicked
+		String cedula = (String) tblUsuariosInformes.getValueAt(tblUsuariosInformes.getSelectedRow(), 0);
+        lblCedulaInforme.setText(cedula);
+    }//GEN-LAST:event_tblUsuariosInformesMouseClicked
 
     private void cmbTipoInformeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoInformeItemStateChanged
 		if (((String) cmbTipoInforme.getSelectedItem()).equals("Seleccione un tipo de informe")) {
-			cmbUsuarioInforme.setEnabled(false);
 
 			cmbInformeGeneralInicioDia.setEnabled(false);
 			cmbInformeGeneralInicioMes.setEnabled(false);
@@ -1827,8 +1722,6 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			cmbInformeGeneralFinalMes.setEnabled(false);
 			cmbInformeGeneralFinalAnio.setEnabled(false);
 		} else if (true) {
-			cmbUsuarioInforme.setEnabled(true);
-
 			cmbInformeGeneralInicioDia.setEnabled(true);
 			cmbInformeGeneralInicioMes.setEnabled(true);
 			cmbInformeGeneralInicioAnio.setEnabled(true);
@@ -1839,13 +1732,17 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_cmbTipoInformeItemStateChanged
 
-    private void cmbUsuarioInformeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbUsuarioInformeItemStateChanged
-		// TODO add your handling code here:
-    }//GEN-LAST:event_cmbUsuarioInformeItemStateChanged
+    private void btnGenerarInformeGeneralMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseExited
+		btnGenerarInformeGeneral.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_btnGenerarInformeGeneralMouseExited
+
+    private void btnGenerarInformeGeneralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseEntered
+		btnGenerarInformeGeneral.setBackground(new Color(204, 204, 204));
+    }//GEN-LAST:event_btnGenerarInformeGeneralMouseEntered
 
     private void btnGenerarInformeGeneralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseClicked
 		try {
-			controlador.generarInformeGeneral((String) cmbTipoInforme.getSelectedItem(),
+			controlador.generarInformeGeneral(lblCedulaInforme.getText(), (String) cmbTipoInforme.getSelectedItem(),
 					String.valueOf(cmbInformeGeneralInicioAnio.getSelectedItem())
 					+ "-" + String.valueOf(cmbInformeGeneralInicioMes.getSelectedItem())
 					+ "-" + String.valueOf(cmbInformeGeneralInicioDia.getSelectedItem()),
@@ -1859,13 +1756,18 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_btnGenerarInformeGeneralMouseClicked
 
-    private void btnGenerarInformeGeneralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseEntered
-		// TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarInformeGeneralMouseEntered
+    private void btnEliminarSeleccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseClicked
+        lblCedulaInforme.setText("No seleccionado");
+    }//GEN-LAST:event_btnEliminarSeleccionMouseClicked
 
-    private void btnGenerarInformeGeneralMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseExited
-		// TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarInformeGeneralMouseExited
+    private void btnEliminarSeleccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseEntered
+        btnEliminarSeleccion.setBackground(new Color(204, 204, 204));
+    }//GEN-LAST:event_btnEliminarSeleccionMouseEntered
+
+    private void btnEliminarSeleccionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseExited
+        
+		btnEliminarSeleccion.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_btnEliminarSeleccionMouseExited
 
 	public void cambiarPanel() {
 		pnlResumen.setVisible(false);
@@ -1943,6 +1845,21 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		}
 	}
 
+	public void llenarTablaInformes() {
+		DefaultTableModel modelo = new DefaultTableModel();
+		ArrayList<Usuario> listaUsuarios = controlador.obtenerListaUsuarios();
+		modelo.setColumnIdentifiers(new Object[]{"Cédula", "Nombre", "Apellidos"});
+		tblUsuariosInformes.setModel(modelo);
+
+		for (Usuario usuarioAlmacenado : listaUsuarios) {
+			modelo.addRow(new Object[]{
+				usuarioAlmacenado.getCedula(),
+				usuarioAlmacenado.getNombre(),
+				usuarioAlmacenado.getApellidos()
+			});
+		}
+	}
+
 	public void llenarTablaPrestamos() {
 		String id = txtIdFiltroPrestamos.getText();
 		tblPrestamos.setModel(controlador.obtenerListaPrestamos(id));
@@ -1977,7 +1894,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JLabel btnCerrarSesion;
-    private com.vistas.PanelRound btnGenerarInformeEspecifico;
+    private com.vistas.PanelRound btnEliminarSeleccion;
     private com.vistas.PanelRound btnGenerarInformeGeneral;
     private javax.swing.JLabel btnGestionCuenta;
     private com.vistas.PanelRound btnRegistrarGenero;
@@ -1985,8 +1902,6 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.PanelRound btnRegistrarPrestamo;
     private com.vistas.PanelRound btnRegistrarUsuario;
     private com.vistas.PanelRound btnSalir;
-    private javax.swing.JComboBox<String> cmbAnio1;
-    private javax.swing.JComboBox<String> cmbDia1;
     private javax.swing.JComboBox<String> cmbGeneros;
     private javax.swing.JComboBox<String> cmbInformeGeneralFinalAnio;
     private javax.swing.JComboBox<String> cmbInformeGeneralFinalDia;
@@ -1994,32 +1909,29 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbInformeGeneralInicioAnio;
     private javax.swing.JComboBox<String> cmbInformeGeneralInicioDia;
     private javax.swing.JComboBox<String> cmbInformeGeneralInicioMes;
-    private javax.swing.JComboBox<String> cmbMes1;
     private javax.swing.JComboBox<String> cmbTipoInforme;
-    private javax.swing.JComboBox<String> cmbUsuarioInforme;
     private javax.swing.JComboBox<String> cmbxBuscador;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel label;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label5;
-    private javax.swing.JLabel label6;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblCedulaInforme;
     private javax.swing.JLabel lblGestionBiblioteca;
     private javax.swing.JLabel lblGestionBiblioteca1;
     private javax.swing.JLabel lblGestionBiblioteca2;
@@ -2030,13 +1942,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblRegistrar2;
     private javax.swing.JLabel lblRegistrar3;
     private javax.swing.JLabel lblRegistrar4;
-    private javax.swing.JLabel lblRegistrar5;
     private javax.swing.JLabel lblRegistrar7;
+    private javax.swing.JLabel lblRegistrar8;
     private javax.swing.JLabel lblResumen;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioLogeado;
-    private com.vistas.PanelRound panelRound10;
-    private com.vistas.PanelRound panelRound14;
     private com.vistas.PanelRound panelRound15;
     private com.vistas.PanelRound panelRound16;
     private com.vistas.PanelRound panelRound18;
@@ -2051,7 +1961,6 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.PanelRound pnlBusquedaUsuario;
     private com.vistas.PanelRound pnlBusquedaUsuario1;
     private com.vistas.PanelRound pnlCategoriasRegistro;
-    private com.vistas.PanelRound pnlCategoriasRegistro1;
     private javax.swing.JPanel pnlInformes;
     private javax.swing.JPanel pnlLibros;
     private com.vistas.PanelRound pnlLibrosRegistro;
@@ -2075,9 +1984,9 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.Table tblBuscador;
     private com.vistas.Table tblGeneros;
     private com.vistas.Table tblLibros;
-    private com.vistas.Table tblLibros1;
     private com.vistas.Table tblPrestamos;
     private com.vistas.Table tblUsuarios;
+    private com.vistas.Table tblUsuariosInformes;
     private javax.swing.JTextField txtFiltroTermino;
     private javax.swing.JTextField txtIdFiltroPrestamos;
     private javax.swing.JTextField txtIdPrestamoFiltro;

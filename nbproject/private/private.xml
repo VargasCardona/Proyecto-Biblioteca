@@ -3,13 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/vistas/VistaRegistroPrestamo.java</file>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/utils/GeneralUtils.java</file>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/utils/FormUtils.java</file>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/controladores/ControladorPrincipalUsuario.java</file>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/modelos/Prestamo.java</file>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/vistas/VistaPrincipalUsuario.java</file>
-            <file>file:/E:/Github/Biblioteca/Proyecto-Biblioteca/src/com/daos/DaoPrestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaPrincipalUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorRegistroPrestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaRetornoPrestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/excepciones/TipoInformeNoSeleccionadoException.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/daos/DaoPrestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorPrincipalUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaRegistroPrestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaGestionUsuario.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/vistas/VistaNotificacion.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/utils/FormUtils.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/controladores/ControladorRetornoPrestamo.java</file>
+            <file>file:/C:/Users/57320/Documents/NetBeansProjects/ProyectoBiblioteca/src/com/utils/GeneralUtils.java</file>
         </group>
     </open-files>
 </project-private>

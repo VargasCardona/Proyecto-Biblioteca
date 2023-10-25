@@ -238,7 +238,7 @@ public class DaoPrestamo implements ControladorDao {
 		try {
 			PreparedStatement ps = connection.prepareStatement("UPDATE prestamos SET estaActivo = ?, fechaRetorno = ? WHERE id = ?");
 			ps.setString(1, "0");
-			ps.setString(2, GeneralUtils.convertirFechaString(new GregorianCalendar(), false));
+			ps.setString(2, GeneralUtils.convertirFechaString(Calendar.getInstance(), false));
 			ps.setString(3, id);
 
 			ps.execute();

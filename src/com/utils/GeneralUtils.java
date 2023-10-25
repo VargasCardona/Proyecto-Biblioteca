@@ -91,10 +91,16 @@ public class GeneralUtils {
 	public static Calendar convertirStringFecha(String fechaString) {
 		Calendar fechaRetorno = new GregorianCalendar();
 		String[] fechaSplit = fechaString.split("-");
-		
-		if (fechaSplit[0].equals("DD")
-				|| fechaSplit[1].equals("MM")
-				|| fechaSplit[2].equals("AAAA")) {
+
+		if (fechaSplit[0].equals("AAAA")) {
+			throw new CamposVaciosException();
+		}
+
+		if (fechaSplit[1].equals("MM")) {
+			throw new CamposVaciosException();
+		}
+
+		if (fechaSplit[2].equals("DD")) {
 			throw new CamposVaciosException();
 		}
 
@@ -110,33 +116,33 @@ public class GeneralUtils {
 	 * Convierte un objeto tipo Calendar en un string con su fecha
 	 *
 	 * @param fechaIngresada Calendar a convertir
-         * @param tieneHora Especifica si el formato debe añadir la hora
+	 * @param tieneHora Especifica si el formato debe añadir la hora
 	 * @return String con formato "yyyy-MM-dd" o "dd-MM-yyyy h.mm.ss"
 	 */
 	public static String convertirFechaString(Calendar fechaIngresada, boolean tieneHora) {
-                String pattern = (tieneHora) ? "dd-MM-yyyy HH:mm:ss" : "yyyy-MM-dd";
-                final SimpleDateFormat FORMATO = new SimpleDateFormat(pattern);
-                return FORMATO.format(fechaIngresada.getTime());
+		String pattern = (tieneHora) ? "dd-MM-yyyy HH:mm:ss" : "yyyy-MM-dd";
+		final SimpleDateFormat FORMATO = new SimpleDateFormat(pattern);
+		return FORMATO.format(fechaIngresada.getTime());
 	}
-        
-        /**
+
+	/**
 	 * Ajusta cadena a formato "yyyy-MM-dd"
 	 *
 	 * @param fechaIngresada Cadena a cambiar
 	 * @return String con formato "yyyy-MM-dd"
 	 */
-        public static String formatearFechaString(String fechaIngresada) {
-                String[] fecha = fechaIngresada.split("-");
-                fecha[1] = formatearDatoFecha(fecha[1]);
-                fecha[2] = formatearDatoFecha(fecha[2]);
-                return fecha[0] + "-" + fecha[1] + "-" + fecha[2];
-        }
-        
-        private static String formatearDatoFecha(String dato) {
-                String adicion = "";
-                if (Integer.parseInt(dato) < 10 && dato.charAt(0) != '0') {
-                        adicion = "0";
-                }
-                return adicion + dato;
-        }
+	public static String formatearFechaString(String fechaIngresada) {
+		String[] fecha = fechaIngresada.split("-");
+		fecha[1] = formatearDatoFecha(fecha[1]);
+		fecha[2] = formatearDatoFecha(fecha[2]);
+		return fecha[0] + "-" + fecha[1] + "-" + fecha[2];
+	}
+
+	private static String formatearDatoFecha(String dato) {
+		String adicion = "";
+		if (Integer.parseInt(dato) < 10 && dato.charAt(0) != '0') {
+			adicion = "0";
+		}
+		return adicion + dato;
+	}
 }
