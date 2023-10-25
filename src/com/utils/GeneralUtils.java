@@ -89,6 +89,7 @@ public class GeneralUtils {
 	 * @return Objeto tipo Calendar
 	 */
 	public static Calendar convertirStringFecha(String fechaString) {
+		System.out.println(fechaString);
 		Calendar fechaRetorno = new GregorianCalendar();
 		String[] fechaSplit = fechaString.split("-");
 
@@ -108,6 +109,30 @@ public class GeneralUtils {
 		fechaRetorno.set(Calendar.MONTH, Integer.parseInt(fechaSplit[1]));
 		fechaRetorno.add(Calendar.MONTH, -1);
 		fechaRetorno.set(Calendar.DAY_OF_MONTH, Integer.parseInt(fechaSplit[2]));
+
+		return fechaRetorno;
+	}
+	
+	/**
+	 * Convierte un objeto tipo String en un objeto tipo Calendar
+	 *
+	 * @param fechaString Fecha a convertir en Calendar
+	 * @return Objeto tipo Calendar
+	 */
+	public static Calendar convertirStringFechaHora(String fechaString) {
+		Calendar fechaRetorno = new GregorianCalendar();
+		String[] calendarSplit = fechaString.split(" ");
+		String[] fechaSplit = calendarSplit[0].split("-");
+		String[] horaSplit = calendarSplit[1].split(":");
+
+		fechaRetorno.set(Calendar.YEAR, Integer.parseInt(fechaSplit[0]));
+		fechaRetorno.set(Calendar.MONTH, Integer.parseInt(fechaSplit[1]));
+		fechaRetorno.add(Calendar.MONTH, -1);
+		fechaRetorno.set(Calendar.DAY_OF_MONTH, Integer.parseInt(fechaSplit[2]));
+		
+		fechaRetorno.set(Calendar.HOUR_OF_DAY, Integer.parseInt(horaSplit[0]));
+		fechaRetorno.set(Calendar.MINUTE, Integer.parseInt(horaSplit[1]));
+		fechaRetorno.set(Calendar.SECOND, Integer.parseInt(horaSplit[2]));
 
 		return fechaRetorno;
 	}

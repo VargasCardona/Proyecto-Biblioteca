@@ -4,7 +4,9 @@ import com.controladores.ControladorPrincipalUsuario;
 import com.modelos.Genero;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
+import com.modelos.Registro;
 import com.modelos.Usuario;
+import com.utils.GeneralUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.ArrayList;
@@ -50,6 +52,13 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        pnlRegistros = new javax.swing.JPanel();
+        pnlAdministradoresRound2 = new com.vistas.PanelRound();
+        pnlBusquedaUsuario2 = new com.vistas.PanelRound();
+        txtIdPrestamoFiltro1 = new javax.swing.JTextField();
+        label6 = new javax.swing.JLabel();
+        scrlUsuarios2 = new javax.swing.JScrollPane();
+        tblRegistros = new com.vistas.Table();
         pnlUsuarios = new javax.swing.JPanel();
         pnlAdministradoresRound = new com.vistas.PanelRound();
         pnlBusquedaUsuario = new com.vistas.PanelRound();
@@ -134,6 +143,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         tabBuscador = new javax.swing.JLabel();
         lblGestionBiblioteca2 = new javax.swing.JLabel();
         tabInformes = new javax.swing.JLabel();
+        tabAcciones = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(951, 628));
@@ -273,6 +283,98 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlResumen.add(panelRound18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 580));
 
         bg.add(pnlResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
+
+        pnlRegistros.setBackground(new java.awt.Color(35, 36, 47));
+        pnlRegistros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlAdministradoresRound2.setBackground(new java.awt.Color(24, 25, 32));
+        pnlAdministradoresRound2.setRoundBottomLeft(10);
+        pnlAdministradoresRound2.setRoundBottomRight(10);
+        pnlAdministradoresRound2.setRoundTopLeft(10);
+        pnlAdministradoresRound2.setRoundTopRight(10);
+        pnlAdministradoresRound2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlBusquedaUsuario2.setBackground(new java.awt.Color(37, 42, 52));
+        pnlBusquedaUsuario2.setForeground(new java.awt.Color(57, 59, 70));
+        pnlBusquedaUsuario2.setRoundBottomLeft(20);
+        pnlBusquedaUsuario2.setRoundBottomRight(20);
+        pnlBusquedaUsuario2.setRoundTopLeft(20);
+        pnlBusquedaUsuario2.setRoundTopRight(20);
+        pnlBusquedaUsuario2.setLayout(null);
+
+        txtIdPrestamoFiltro1.setBackground(new java.awt.Color(37, 42, 52));
+        txtIdPrestamoFiltro1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtIdPrestamoFiltro1.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdPrestamoFiltro1.setText("Filtrar por Cédula");
+        txtIdPrestamoFiltro1.setBorder(null);
+        txtIdPrestamoFiltro1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtIdPrestamoFiltro1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIdPrestamoFiltro1FocusLost(evt);
+            }
+        });
+        txtIdPrestamoFiltro1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdPrestamoFiltro1KeyReleased(evt);
+            }
+        });
+        pnlBusquedaUsuario2.add(txtIdPrestamoFiltro1);
+        txtIdPrestamoFiltro1.setBounds(10, 10, 660, 20);
+
+        pnlAdministradoresRound2.add(pnlBusquedaUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 680, 40));
+
+        label6.setBackground(new java.awt.Color(255, 255, 255));
+        label6.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label6.setText("Historial de Acciones");
+        pnlAdministradoresRound2.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 30));
+
+        tblRegistros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellidos", "Usuario"
+            }
+        ));
+        tblRegistros.setFocusable(false);
+        tblRegistros.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
+        tblRegistros.getTableHeader().setResizingAllowed(false);
+        tblRegistros.getTableHeader().setReorderingAllowed(false);
+        tblRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRegistrosMouseClicked(evt);
+            }
+        });
+        scrlUsuarios2.setViewportView(tblRegistros);
+
+        pnlAdministradoresRound2.add(scrlUsuarios2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 680, 470));
+
+        pnlRegistros.add(pnlAdministradoresRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 700, 580));
+
+        bg.add(pnlRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 720, 600));
 
         pnlUsuarios.setBackground(new java.awt.Color(35, 36, 47));
         pnlUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1198,7 +1300,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblGestionUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         lblGestionUsuarios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGestionUsuarios.setText("Gestión de Usuarios");
-        bg.add(lblGestionUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 180, 20));
+        bg.add(lblGestionUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 180, 20));
 
         tabUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         tabUsuarios.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -1218,7 +1320,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 tabUsuariosMouseExited(evt);
             }
         });
-        bg.add(tabUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, 30));
+        bg.add(tabUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 180, 30));
 
         lblUsuarioLogeado.setBackground(new java.awt.Color(255, 255, 255));
         lblUsuarioLogeado.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -1277,7 +1379,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         lblGestionBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGestionBiblioteca.setText("Gestión de Préstamos");
-        bg.add(lblGestionBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 180, 20));
+        bg.add(lblGestionBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 180, 20));
 
         tabLibrosRegistrados.setBackground(new java.awt.Color(255, 255, 255));
         tabLibrosRegistrados.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -1297,14 +1399,14 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 tabLibrosRegistradosMouseExited(evt);
             }
         });
-        bg.add(tabLibrosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 180, 30));
+        bg.add(tabLibrosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 180, 30));
 
         lblGestionBiblioteca1.setBackground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblGestionBiblioteca1.setForeground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGestionBiblioteca1.setText("Gestión de Biblioteca");
-        bg.add(lblGestionBiblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 180, 20));
+        bg.add(lblGestionBiblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 180, 20));
 
         tabPrestamosRegistrados.setBackground(new java.awt.Color(255, 255, 255));
         tabPrestamosRegistrados.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -1324,7 +1426,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 tabPrestamosRegistradosMouseExited(evt);
             }
         });
-        bg.add(tabPrestamosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 180, 30));
+        bg.add(tabPrestamosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 180, 30));
 
         tabBuscador.setBackground(new java.awt.Color(255, 255, 255));
         tabBuscador.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -1344,14 +1446,14 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 tabBuscadorMouseExited(evt);
             }
         });
-        bg.add(tabBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 180, 30));
+        bg.add(tabBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 180, 30));
 
         lblGestionBiblioteca2.setBackground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblGestionBiblioteca2.setForeground(new java.awt.Color(255, 255, 255));
         lblGestionBiblioteca2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGestionBiblioteca2.setText("Informes");
-        bg.add(lblGestionBiblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 180, 20));
+        bg.add(lblGestionBiblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 180, 20));
 
         tabInformes.setBackground(new java.awt.Color(255, 255, 255));
         tabInformes.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
@@ -1371,7 +1473,27 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
                 tabInformesMouseExited(evt);
             }
         });
-        bg.add(tabInformes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 180, 30));
+        bg.add(tabInformes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 180, 30));
+
+        tabAcciones.setBackground(new java.awt.Color(255, 255, 255));
+        tabAcciones.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        tabAcciones.setForeground(new java.awt.Color(255, 255, 255));
+        tabAcciones.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tabAcciones.setText("Historial de Acciones");
+        tabAcciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabAcciones.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        tabAcciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabAccionesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabAccionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tabAccionesMouseExited(evt);
+            }
+        });
+        bg.add(tabAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1706,7 +1828,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 
     private void tblUsuariosInformesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosInformesMouseClicked
 		String cedula = (String) tblUsuariosInformes.getValueAt(tblUsuariosInformes.getSelectedRow(), 0);
-        lblCedulaInforme.setText(cedula);
+		lblCedulaInforme.setText(cedula);
     }//GEN-LAST:event_tblUsuariosInformesMouseClicked
 
     private void cmbTipoInformeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoInformeItemStateChanged
@@ -1747,7 +1869,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 					String.valueOf(cmbInformeGeneralFinalAnio.getSelectedItem())
 					+ "-" + String.valueOf(cmbInformeGeneralFinalMes.getSelectedItem())
 					+ "-" + String.valueOf(cmbInformeGeneralFinalDia.getSelectedItem()));
-                        controlador.insertarRegistro(usuarioActivo.getCedula(), "Generación de informe");
+			controlador.insertarRegistro(usuarioActivo.getCedula(), "Generación de informe");
 		} catch (Exception e) {
 			VistaNotificacion vista = new VistaNotificacion(e.getMessage());
 			vista.setVisible(true);
@@ -1755,25 +1877,55 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarInformeGeneralMouseClicked
 
     private void btnEliminarSeleccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseClicked
-        if (lblCedulaInforme.getText().equals("No seleccionado")) {
-                VistaNotificacion vista = new VistaNotificacion("No se ha seleccionado un usuario");
-                vista.setVisible(true);
-        } else {
-                lblCedulaInforme.setText("No seleccionado");
-        }
+		if (lblCedulaInforme.getText().equals("No seleccionado")) {
+			VistaNotificacion vista = new VistaNotificacion("No se ha seleccionado un usuario");
+			vista.setVisible(true);
+		} else {
+			lblCedulaInforme.setText("No seleccionado");
+		}
     }//GEN-LAST:event_btnEliminarSeleccionMouseClicked
 
     private void btnEliminarSeleccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseEntered
-        btnEliminarSeleccion.setBackground(new Color(204, 204, 204));
+		btnEliminarSeleccion.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_btnEliminarSeleccionMouseEntered
 
     private void btnEliminarSeleccionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionMouseExited
-        
 		btnEliminarSeleccion.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnEliminarSeleccionMouseExited
 
+    private void tabAccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAccionesMouseClicked
+		cambiarPanel();
+		pnlRegistros.setVisible(true);
+		llenarTablaAcciones("placeholder");
+    }//GEN-LAST:event_tabAccionesMouseClicked
+
+    private void tabAccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAccionesMouseEntered
+		tabAcciones.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_tabAccionesMouseEntered
+
+    private void tabAccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAccionesMouseExited
+		tabAcciones.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_tabAccionesMouseExited
+
+    private void txtIdPrestamoFiltro1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltro1FocusGained
+		// TODO add your handling code here:
+    }//GEN-LAST:event_txtIdPrestamoFiltro1FocusGained
+
+    private void txtIdPrestamoFiltro1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltro1FocusLost
+		// TODO add your handling code here:
+    }//GEN-LAST:event_txtIdPrestamoFiltro1FocusLost
+
+    private void txtIdPrestamoFiltro1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltro1KeyReleased
+		// TODO add your handling code here:
+    }//GEN-LAST:event_txtIdPrestamoFiltro1KeyReleased
+
+    private void tblRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrosMouseClicked
+		// TODO add your handling code here:
+    }//GEN-LAST:event_tblRegistrosMouseClicked
+
 	public void cambiarPanel() {
 		pnlResumen.setVisible(false);
+		pnlRegistros.setVisible(false);
 		pnlUsuarios.setVisible(false);
 		pnlLibros.setVisible(false);
 		pnlBuscador.setVisible(false);
@@ -1863,6 +2015,22 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		}
 	}
 
+	public void llenarTablaAcciones(String where) {
+		DefaultTableModel modelo = new DefaultTableModel();
+		ArrayList<Registro> listaRegistros = controlador.obtenerListaRegistros(where);
+		modelo.setColumnIdentifiers(new Object[]{"ID", "Usuario", "Detalles", "Fecha Realización"});
+		tblRegistros.setModel(modelo);
+
+		for (Registro registroAlmacenado : listaRegistros) {
+			modelo.addRow(new Object[]{
+				registroAlmacenado.getId(),
+				registroAlmacenado.getCedulaUsuario(),
+				registroAlmacenado.getDetalles(),
+				GeneralUtils.convertirFechaString(registroAlmacenado.getFechaRealizacion(), true)
+			});
+		}
+	}
+	
 	public void llenarTablaPrestamos() {
 		String id = txtIdFiltroPrestamos.getText();
 		tblPrestamos.setModel(controlador.obtenerListaPrestamos(id));
@@ -1932,6 +2100,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label5;
+    private javax.swing.JLabel label6;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCedulaInforme;
@@ -1960,9 +2129,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.PanelRound panelRound9;
     private com.vistas.PanelRound pnlAdministradoresRound;
     private com.vistas.PanelRound pnlAdministradoresRound1;
+    private com.vistas.PanelRound pnlAdministradoresRound2;
     private javax.swing.JPanel pnlBuscador;
     private com.vistas.PanelRound pnlBusquedaUsuario;
     private com.vistas.PanelRound pnlBusquedaUsuario1;
+    private com.vistas.PanelRound pnlBusquedaUsuario2;
     private com.vistas.PanelRound pnlCategoriasRegistro;
     private javax.swing.JPanel pnlInformes;
     private javax.swing.JPanel pnlLibros;
@@ -1970,6 +2141,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.PanelRound pnlLibrosRegistro1;
     private com.vistas.PanelRound pnlLibrosRegistro2;
     private javax.swing.JPanel pnlPrestamos;
+    private javax.swing.JPanel pnlRegistros;
     private javax.swing.JPanel pnlResumen;
     private javax.swing.JPanel pnlUsuarios;
     private javax.swing.JScrollPane scrlGeneros;
@@ -1978,6 +2150,8 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrlLibros2;
     private javax.swing.JScrollPane scrlUsuarios;
     private javax.swing.JScrollPane scrlUsuarios1;
+    private javax.swing.JScrollPane scrlUsuarios2;
+    private javax.swing.JLabel tabAcciones;
     private javax.swing.JLabel tabBuscador;
     private javax.swing.JLabel tabInformes;
     private javax.swing.JLabel tabLibrosRegistrados;
@@ -1988,11 +2162,13 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private com.vistas.Table tblGeneros;
     private com.vistas.Table tblLibros;
     private com.vistas.Table tblPrestamos;
+    private com.vistas.Table tblRegistros;
     private com.vistas.Table tblUsuarios;
     private com.vistas.Table tblUsuariosInformes;
     private javax.swing.JTextField txtFiltroTermino;
     private javax.swing.JTextField txtIdFiltroPrestamos;
     private javax.swing.JTextField txtIdPrestamoFiltro;
+    private javax.swing.JTextField txtIdPrestamoFiltro1;
     private javax.swing.JTextField txtIsbnFiltroLibro;
     // End of variables declaration//GEN-END:variables
 

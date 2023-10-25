@@ -33,8 +33,8 @@ public class DaoRegistro implements ControladorDao {
 				Registro registroObtenido = new Registro(
 						rs.getInt("id"),
 						rs.getString("usuario"),
-						rs.getString("detalle"),
-						GeneralUtils.convertirStringFecha(rs.getString("fechaRealizacion")));
+						rs.getString("detalles"),
+						GeneralUtils.convertirStringFechaHora(rs.getString("fechaRealizacion")));
 
 				retornoRegistros.add(registroObtenido);
 			}
