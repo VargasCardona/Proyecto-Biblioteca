@@ -55,7 +55,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlRegistros = new javax.swing.JPanel();
         pnlAdministradoresRound2 = new com.vistas.PanelRound();
         pnlBusquedaUsuario2 = new com.vistas.PanelRound();
-        txtIdPrestamoFiltro1 = new javax.swing.JTextField();
+        txtIdRegistro = new javax.swing.JTextField();
         label6 = new javax.swing.JLabel();
         scrlUsuarios2 = new javax.swing.JScrollPane();
         tblRegistros = new com.vistas.Table();
@@ -302,26 +302,26 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         pnlBusquedaUsuario2.setRoundTopRight(20);
         pnlBusquedaUsuario2.setLayout(null);
 
-        txtIdPrestamoFiltro1.setBackground(new java.awt.Color(37, 42, 52));
-        txtIdPrestamoFiltro1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        txtIdPrestamoFiltro1.setForeground(new java.awt.Color(255, 255, 255));
-        txtIdPrestamoFiltro1.setText("Filtrar por Cédula");
-        txtIdPrestamoFiltro1.setBorder(null);
-        txtIdPrestamoFiltro1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdRegistro.setBackground(new java.awt.Color(37, 42, 52));
+        txtIdRegistro.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        txtIdRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdRegistro.setText("Filtrar por Cédula");
+        txtIdRegistro.setBorder(null);
+        txtIdRegistro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtIdPrestamoFiltro1FocusGained(evt);
+                txtIdRegistroFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIdPrestamoFiltro1FocusLost(evt);
+                txtIdRegistroFocusLost(evt);
             }
         });
-        txtIdPrestamoFiltro1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdRegistro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtIdPrestamoFiltro1KeyReleased(evt);
+                txtIdRegistroKeyReleased(evt);
             }
         });
-        pnlBusquedaUsuario2.add(txtIdPrestamoFiltro1);
-        txtIdPrestamoFiltro1.setBounds(10, 10, 660, 20);
+        pnlBusquedaUsuario2.add(txtIdRegistro);
+        txtIdRegistro.setBounds(10, 10, 660, 20);
 
         pnlAdministradoresRound2.add(pnlBusquedaUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 680, 40));
 
@@ -1586,14 +1586,14 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tblUsuariosMouseClicked
 
         private void txtIdPrestamoFiltroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltroFocusGained
-			if (txtIdPrestamoFiltro.getText().equals("Filtrar por cédula")) {
+			if (txtIdPrestamoFiltro.getText().equals("Filtrar por Cédula")) {
 				txtIdPrestamoFiltro.setText("");
 			}
         }//GEN-LAST:event_txtIdPrestamoFiltroFocusGained
 
         private void txtIdPrestamoFiltroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltroFocusLost
 			if (txtIdPrestamoFiltro.getText().equals("")) {
-				txtIdPrestamoFiltro.setText("Filtrar por cédula");
+				txtIdPrestamoFiltro.setText("Filtrar por Cédula");
 			}
         }//GEN-LAST:event_txtIdPrestamoFiltroFocusLost
 
@@ -1907,17 +1907,21 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		tabAcciones.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_tabAccionesMouseExited
 
-    private void txtIdPrestamoFiltro1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltro1FocusGained
-		// TODO add your handling code here:
-    }//GEN-LAST:event_txtIdPrestamoFiltro1FocusGained
+    private void txtIdRegistroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdRegistroFocusGained
+		if (txtIdRegistro.getText().equals("Filtrar por Cédula")) {
+			txtIdRegistro.setText("");
+		}
+    }//GEN-LAST:event_txtIdRegistroFocusGained
 
-    private void txtIdPrestamoFiltro1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltro1FocusLost
-		// TODO add your handling code here:
-    }//GEN-LAST:event_txtIdPrestamoFiltro1FocusLost
+    private void txtIdRegistroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdRegistroFocusLost
+		if (txtIdRegistro.getText().equals("")) {
+			txtIdRegistro.setText("Filtrar por Cédula");
+		}
+    }//GEN-LAST:event_txtIdRegistroFocusLost
 
-    private void txtIdPrestamoFiltro1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltro1KeyReleased
-		// TODO add your handling code here:
-    }//GEN-LAST:event_txtIdPrestamoFiltro1KeyReleased
+    private void txtIdRegistroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdRegistroKeyReleased
+		llenarTablaAcciones(txtIdRegistro.getText());
+    }//GEN-LAST:event_txtIdRegistroKeyReleased
 
     private void tblRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrosMouseClicked
 		// TODO add your handling code here:
@@ -2030,7 +2034,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			});
 		}
 	}
-	
+
 	public void llenarTablaPrestamos() {
 		String id = txtIdFiltroPrestamos.getText();
 		tblPrestamos.setModel(controlador.obtenerListaPrestamos(id));
@@ -2168,7 +2172,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtFiltroTermino;
     private javax.swing.JTextField txtIdFiltroPrestamos;
     private javax.swing.JTextField txtIdPrestamoFiltro;
-    private javax.swing.JTextField txtIdPrestamoFiltro1;
+    private javax.swing.JTextField txtIdRegistro;
     private javax.swing.JTextField txtIsbnFiltroLibro;
     // End of variables declaration//GEN-END:variables
 
