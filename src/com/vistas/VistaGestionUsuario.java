@@ -328,7 +328,7 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
                                 
 				this.dispose();
 
-				vistaPrincipal.llenarTablaUsuarios();
+				vistaPrincipal.llenarTablaUsuarios(vistaPrincipal.getTxtIdPrestamoFiltroText());
 
 				VistaNotificacion vista = new VistaNotificacion("Usuario editado");
 				vista.setVisible(true);
@@ -366,7 +366,7 @@ public class VistaGestionUsuario extends javax.swing.JFrame {
 			}
 
 			this.dispose();
-			vistaPrincipal.llenarTablaUsuarios();
+			vistaPrincipal.llenarTablaUsuarios(vistaPrincipal.getTxtIdPrestamoFiltroText());
 
 			VistaNotificacion vista = new VistaNotificacion("Usuario eliminado del sistema");
 			vista.setVisible(true);

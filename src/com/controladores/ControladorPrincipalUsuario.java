@@ -35,9 +35,13 @@ public class ControladorPrincipalUsuario {
 	}
 
 	public ArrayList<Usuario> obtenerListaUsuarios() {
-		return daoUsuario.obtenerListaUsuarios();
+		return daoUsuario.obtenerListaUsuarios(null);
 	}
-
+        
+        public ArrayList<Usuario> obtenerListaUsuarios(String cedulaUsuario) {
+                return daoUsuario.obtenerListaUsuarios(GeneralUtils.estaVacio(cedulaUsuario, "Filtrar por Cédula") ? null : cedulaUsuario);
+        }
+        
 	public ArrayList<Usuario> buscarCoincidencias(String where) {
 		return daoUsuario.buscarCoincidencias(where);
 	}

@@ -505,7 +505,7 @@ public class VistaRegistroUsuario extends javax.swing.JFrame implements KeyListe
 				if (vistaPrincipal instanceof VistaPrincipalUsuario) {
 					controlador.insertarRegistro(((VistaPrincipalUsuario) vistaPrincipal).usuarioActivo.getCedula(),
                                                 "Registro de usuario");
-                                        ((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios();
+                                        ((VistaPrincipalUsuario) vistaPrincipal).llenarTablaUsuarios(((VistaPrincipalUsuario) vistaPrincipal).getTxtIdPrestamoFiltroText());
 				} else {
                                         controlador.insertarRegistro(txtIdentificacion.getText(),
                                                 "Creación de cuenta");

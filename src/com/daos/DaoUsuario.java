@@ -20,11 +20,19 @@ public class DaoUsuario implements ControladorDao {
 		connection = DatabaseSingleton.getInstance().getConnection();
 	}
 
-	public ArrayList<Usuario> obtenerListaUsuarios() {
+	public ArrayList<Usuario> obtenerListaUsuarios(String cedulaUsuario) {
 		ArrayList<Usuario> retornoUsuarios = new ArrayList<>();
-
+                String where = cedulaUsuario == null 
+                        ? "" 
+                        : cedulaUsuario.charAt(cedulaUsuario.length() - 1) == '.'
+                                ? " WHERE cedula = ?"
+                                : " WHERE cedula LIKE CONCAT('%',?,'%')";
+                
 		try {
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuarios");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuarios" + where);
+                        if (cedulaUsuario != null) {
+                                ps.setString(1, cedulaUsuario.replaceAll("\\.", ""));
+                        }
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {

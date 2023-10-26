@@ -48,21 +48,25 @@ public class DaoRegistro implements ControladorDao {
 	}
         
         public DefaultTableModel obtenerTablaRegistros(String cedulaUsuario) {
-		String where = cedulaUsuario == null ? "" : " WHERE r.cedulaUsuario LIKE CONCAT('%',?,'%')";
+		String where = cedulaUsuario == null 
+                        ? "" 
+                        : cedulaUsuario.charAt(cedulaUsuario.length() - 1) == '.'
+                                ? " WHERE r.cedulaUsuario = ?"
+                                : " WHERE r.cedulaUsuario LIKE CONCAT('%',?,'%')";
                 try {
 			DefaultTableModel modelo = new DefaultTableModel();
 			modelo.setColumnIdentifiers(new Object[]{"Cédula", "Usuario", "Detalles", "Fecha Realización"});
 
-			PreparedStatement ps = connection.prepareStatement("SELECT r.cedulaUsuario, u.usuario, r.detalles, r.fechaRealizacion FROM registros as r INNER JOIN usuarios as u ON r.cedulaUsuario = u.cedula" + where);
+			PreparedStatement ps = connection.prepareStatement("SELECT r.id, r.cedulaUsuario, u.usuario, r.detalles, r.fechaRealizacion FROM registros as r INNER JOIN usuarios as u ON r.cedulaUsuario = u.cedula" + where + " ORDER BY r.id");
 			if (cedulaUsuario != null) {
-                            ps.setString(1, cedulaUsuario);
+                            ps.setString(1, cedulaUsuario.replaceAll("\\.", ""));
                         }
                         ResultSet rs = ps.executeQuery();
 
 			Object[] tabla = new Object[4];
 			while (rs.next()) {
 				for (int i = 0; i < 4; i++) {
-                                        tabla[i] = rs.getObject(i + 1);	
+                                        tabla[i] = rs.getObject(i + 2);	
 				}
 				modelo.addRow(tabla);
 			}

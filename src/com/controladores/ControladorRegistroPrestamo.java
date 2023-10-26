@@ -33,7 +33,7 @@ public class ControladorRegistroPrestamo {
 	}
 
 	public ArrayList<Usuario> obtenerListaUsuarios() {
-		return daoUsuario.obtenerListaUsuarios();
+		return daoUsuario.obtenerListaUsuarios(null);
 	}
 
 	public Usuario obtenerUsuario(String cedula) {

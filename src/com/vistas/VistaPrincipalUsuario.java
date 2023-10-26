@@ -4,13 +4,12 @@ import com.controladores.ControladorPrincipalUsuario;
 import com.modelos.Genero;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
-import com.modelos.Registro;
 import com.modelos.Usuario;
-import com.utils.GeneralUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaPrincipalUsuario extends javax.swing.JFrame {
@@ -1527,7 +1526,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tabResumenMouseClicked
 
 	private void tabUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabUsuariosMouseClicked
-		llenarTablaUsuarios();
+		llenarTablaUsuarios(txtIdPrestamoFiltro.getText());
 		cambiarPanel();
 		pnlUsuarios.setVisible(true);
     }//GEN-LAST:event_tabUsuariosMouseClicked
@@ -1598,9 +1597,7 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
         }//GEN-LAST:event_txtIdPrestamoFiltroFocusLost
 
         private void txtIdPrestamoFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPrestamoFiltroKeyReleased
-			if (!txtIdPrestamoFiltro.getText().equals("Filtrar por cédula")) {
-				llenarTablaUsuarios();
-			}
+                        llenarTablaUsuarios(txtIdPrestamoFiltro.getText());
         }//GEN-LAST:event_txtIdPrestamoFiltroKeyReleased
 
         private void btnRegistrarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioMouseClicked
@@ -1808,14 +1805,6 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		cambiarPanel();
 		llenarTablaInformes();
 		pnlInformes.setVisible(true);
-
-		cmbInformeGeneralInicioDia.setEnabled(false);
-		cmbInformeGeneralInicioMes.setEnabled(false);
-		cmbInformeGeneralInicioAnio.setEnabled(false);
-
-		cmbInformeGeneralFinalDia.setEnabled(false);
-		cmbInformeGeneralFinalMes.setEnabled(false);
-		cmbInformeGeneralFinalAnio.setEnabled(false);
     }//GEN-LAST:event_tabInformesMouseClicked
 
     private void tabInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabInformesMouseEntered
@@ -1832,24 +1821,6 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tblUsuariosInformesMouseClicked
 
     private void cmbTipoInformeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoInformeItemStateChanged
-		if (((String) cmbTipoInforme.getSelectedItem()).equals("Seleccione un tipo de informe")) {
-
-			cmbInformeGeneralInicioDia.setEnabled(false);
-			cmbInformeGeneralInicioMes.setEnabled(false);
-			cmbInformeGeneralInicioAnio.setEnabled(false);
-
-			cmbInformeGeneralFinalDia.setEnabled(false);
-			cmbInformeGeneralFinalMes.setEnabled(false);
-			cmbInformeGeneralFinalAnio.setEnabled(false);
-		} else if (true) {
-			cmbInformeGeneralInicioDia.setEnabled(true);
-			cmbInformeGeneralInicioMes.setEnabled(true);
-			cmbInformeGeneralInicioAnio.setEnabled(true);
-
-			cmbInformeGeneralFinalDia.setEnabled(true);
-			cmbInformeGeneralFinalMes.setEnabled(true);
-			cmbInformeGeneralFinalAnio.setEnabled(true);
-		}
     }//GEN-LAST:event_cmbTipoInformeItemStateChanged
 
     private void btnGenerarInformeGeneralMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarInformeGeneralMouseExited
@@ -1937,9 +1908,9 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 		pnlInformes.setVisible(false);
 	}
 
-	public void llenarTablaUsuarios() {
+	public void llenarTablaUsuarios(String where) {
 		DefaultTableModel modelo = new DefaultTableModel();
-		ArrayList<Usuario> listaUsuarios = controlador.obtenerListaUsuarios();
+		ArrayList<Usuario> listaUsuarios = controlador.obtenerListaUsuarios(where);
 		modelo.setColumnIdentifiers(new Object[]{"Cédula", "Nombre", "Apellidos", "Usuario"});
 		tblUsuarios.setModel(modelo);
 
@@ -2053,6 +2024,11 @@ public class VistaPrincipalUsuario extends javax.swing.JFrame {
 			llenarTablaLibros(isbn, cmbGeneros.getSelectedItem().toString().split(" ")[0]);
 		}
 	}
+
+        public String getTxtIdPrestamoFiltroText() {
+            return txtIdPrestamoFiltro.getText();
+        }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
