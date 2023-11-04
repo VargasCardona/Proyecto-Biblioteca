@@ -9,6 +9,7 @@ import com.excepciones.FechaInformeInvalidaException;
 import com.excepciones.TipoInformeNoSeleccionadoException;
 import com.modelos.Genero;
 import com.modelos.InformePrestamos;
+import com.modelos.InformeRegistros;
 import com.modelos.Libro;
 import com.modelos.Prestamo;
 import com.modelos.Registro;
@@ -66,20 +67,7 @@ public class ControladorPrincipalUsuario {
 		String clave = (GeneralUtils.estaVacio(entrada, "Filtrar por término"))
 				? null
 				: entrada;
-		String atributoTabla = null;
-		switch (atributo) {
-			case "ISBN" ->
-				atributoTabla = "l.isbn";
-			case "Título" ->
-				atributoTabla = "l.titulo";
-			case "Autor" ->
-				atributoTabla = "l.autor";
-			case "Género" ->
-				atributoTabla = "g.nombre";
-			case "Año de publicación" ->
-				atributoTabla = "l.anioPublicacion";
-		}
-		return daoLibro.obtenerListaLibrosFiltroAvanzado(atributoTabla, clave);
+		return daoLibro.obtenerListaLibrosFiltroAvanzado(atributo, clave);
 	}
 
 	public Libro consultarLibro(String idLibro) {
@@ -137,6 +125,32 @@ public class ControladorPrincipalUsuario {
                 String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
                 rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
 		FormUtils.generarInformePrestamos(lista, rango);
+	}
+        
+	public void generarInformeRegistros(String cedulaUsuario, String tipoInforme, String fechaInicio, String fechaFin) {
+
+		GeneralUtils.convertirStringFecha(fechaInicio);
+		GeneralUtils.convertirStringFecha(fechaFin);
+                
+		if (tipoInforme.equals("Seleccione un tipo de informe")){
+			throw new TipoInformeNoSeleccionadoException();
+		}
+		
+		if (GeneralUtils.convertirStringFecha(fechaFin).before(GeneralUtils.convertirStringFecha(fechaInicio))) {
+			throw new FechaInformeInvalidaException();
+		}
+		
+		fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
+		fechaFin = GeneralUtils.formatearFechaString(fechaFin);
+
+		ArrayList<InformeRegistros> lista = daoRegistro.obtenerListaInforme(cedulaUsuario.equals("No seleccionado") ? null : cedulaUsuario,
+				fechaInicio,
+				fechaFin,
+				tipoInforme);
+                
+                String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
+                rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
+		FormUtils.generarInformeRegistros(lista, rango, tipoInforme);
 	}
         
         public void insertarRegistro(String cedulaUsuarioActivo, String detalles) {

@@ -86,9 +86,23 @@ public class DaoLibro implements ControladorDao {
 		return null;
 	}
 
-	public ArrayList<Libro> obtenerListaLibrosFiltroAvanzado(String atributo, String clave) {
+	public ArrayList<Libro> obtenerListaLibrosFiltroAvanzado(String atributoTabla, String clave) {
 		ArrayList<Libro> retornoLibros = new ArrayList<>();
 
+                String atributo = null;
+                switch (atributoTabla) {
+			case "ISBN" ->
+				atributo = "l.isbn";
+			case "Título" ->
+				atributo = "l.titulo";
+			case "Autor" ->
+				atributo = "l.autor";
+			case "Género" ->
+				atributo = "g.nombre";
+			case "Año de publicación" ->
+				atributo = "l.anioPublicacion";
+		}
+                
 		String where = "";
 		if (atributo != null && clave != null) {
 			where += " WHERE " + atributo + " LIKE CONCAT('%',?,'%')";

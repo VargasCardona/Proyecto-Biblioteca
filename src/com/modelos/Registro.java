@@ -1,5 +1,6 @@
 package com.modelos;
 
+import com.utils.GeneralUtils;
 import java.util.Calendar;
 
 public class Registro {
@@ -7,9 +8,9 @@ public class Registro {
     private int id;
     private String cedulaUsuario;
     private String detalles;
-    private Calendar fechaRealizacion;
+    private String fechaRealizacion;
 
-    public Registro(int id, String cedulaUsuario, String detalles, Calendar fechaRealizacion) {
+    public Registro(int id, String cedulaUsuario, String detalles, String fechaRealizacion) {
         this.id = id;
         this.cedulaUsuario = cedulaUsuario;
         this.detalles = detalles;
@@ -20,7 +21,7 @@ public class Registro {
         this.id = id;
         this.cedulaUsuario = cedulaUsuario;
         this.detalles = detalles;
-        this.fechaRealizacion = Calendar.getInstance();
+        this.fechaRealizacion = GeneralUtils.convertirFechaString(Calendar.getInstance());
     }
 
     public int getId() {
@@ -47,11 +48,11 @@ public class Registro {
         this.detalles = detalles;
     }
 
-    public Calendar getFechaRealizacion() {
+    public String getFechaRealizacion() {
         return fechaRealizacion;
     }
 
-    public void setFechaRealizacion(Calendar fechaRealizacion) {
+    public void setFechaRealizacion(String fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
     

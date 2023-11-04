@@ -241,7 +241,9 @@ public class VistaAcceso extends javax.swing.JFrame implements KeyListener {
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
 		try {
 			Usuario usuario = controlador.validarLogin(txtUsuario.getText(), txtContrasenia.getText());
-
+                        controlador.insertarRegistro(usuario.getCedula(),
+                                        "Inicio de Sesión");
+                        
 			VistaPrincipalUsuario vistaPaciente = new VistaPrincipalUsuario(usuario);
 			vistaPaciente.setVisible(true);
 			this.dispose();

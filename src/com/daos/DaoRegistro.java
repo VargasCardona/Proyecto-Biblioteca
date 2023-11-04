@@ -1,6 +1,7 @@
 package com.daos;
 
 import com.interfaces.ControladorDao;
+import com.modelos.InformeRegistros;
 import com.modelos.Registro;
 import com.singleton.DatabaseSingleton;
 import com.utils.GeneralUtils;
@@ -35,7 +36,7 @@ public class DaoRegistro implements ControladorDao {
 						rs.getInt("id"),
 						rs.getString("usuario"),
 						rs.getString("detalles"),
-						GeneralUtils.convertirStringFechaHora(rs.getString("fechaRealizacion")));
+						rs.getString("fechaRealizacion"));
 
 				retornoRegistros.add(registroObtenido);
 			}
@@ -77,6 +78,41 @@ public class DaoRegistro implements ControladorDao {
 		return null;
 	}
 
+        public ArrayList<InformeRegistros> obtenerListaInforme(String cedulaUsuario, String fechaInicio, String fechaFin, String tipo) {
+                ArrayList<InformeRegistros> filas = new ArrayList<>();
+                
+                String where = cedulaUsuario == null ? "" : " AND r.cedulaUsuario = ?";
+                where += tipo.equals(InformeRegistros.INFORME_GENERAL) ? "" : " AND r.detalles = ?";
+                
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT CONCAT(u.nombre,' ',u.apellidos) as 'nombreCompleto', u.cedula, r.detalles, r.fechaRealizacion FROM registros as r INNER JOIN usuarios as u ON r.cedulaUsuario = u.cedula WHERE r.fechaRealizacion BETWEEN ? AND ?"+where);
+                        ps.setString(1, fechaInicio);
+                        ps.setString(2, fechaFin);
+                        if (cedulaUsuario != null) {
+                            ps.setString(3, cedulaUsuario);
+                        }
+                        if (!tipo.equals(InformeRegistros.INFORME_GENERAL)) {
+                            ps.setString(4, tipo);
+                        }
+                        
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+                                InformeRegistros fila = new InformeRegistros(
+                                                rs.getString("nombreCompleto"),
+                                                rs.getString("cedula"),
+                                                rs.getString("detalles"),
+                                                rs.getString("fechaRealizacion"));
+				filas.add(fila);
+			}
+			return filas;
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return null;
+        }
+        
 	@Override
 	public void insertar(Object object) {
 		Registro registro = (Registro) object;
@@ -86,7 +122,7 @@ public class DaoRegistro implements ControladorDao {
 			ps.setString(1, registro.getId() + "");
 			ps.setString(2, registro.getCedulaUsuario());
 			ps.setString(3, registro.getDetalles());
-			ps.setString(4, GeneralUtils.convertirFechaString(registro.getFechaRealizacion()));
+			ps.setString(4, registro.getFechaRealizacion());
 
 			ps.execute();
 
