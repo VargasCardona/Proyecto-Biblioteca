@@ -4,7 +4,6 @@ import com.interfaces.ControladorDao;
 import com.modelos.InformeRegistros;
 import com.modelos.Registro;
 import com.singleton.DatabaseSingleton;
-import com.utils.GeneralUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

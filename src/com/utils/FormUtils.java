@@ -122,7 +122,7 @@ public class FormUtils {
                 tabla.addCell(new Phrase(fila.getFechaRealizacion(), regularFont));
             }
 
-            String title = tipo + ":";
+            String title = "Subreporte General:";
             String footerText = "\nCreado el: " + fechaActual;
             Paragraph footer = new Paragraph(footerText, footerFont);
             footer.setAlignment(Paragraph.ALIGN_RIGHT);

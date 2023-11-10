@@ -38,14 +38,14 @@ public class ControladorPrincipalUsuario {
 	public ArrayList<Usuario> obtenerListaUsuarios() {
 		return daoUsuario.obtenerListaUsuarios(null);
 	}
-        
-        public ArrayList<Usuario> obtenerListaUsuarios(String cedulaUsuario) {
-                return daoUsuario.obtenerListaUsuarios(GeneralUtils.estaVacio(cedulaUsuario, "Filtrar por Cédula") ? null : cedulaUsuario);
-        }
-        
-	public ArrayList<Usuario> buscarCoincidencias(String where) {
-		return daoUsuario.buscarCoincidencias(where);
+
+	public ArrayList<Usuario> obtenerListaUsuarios(String cedulaUsuario) {
+		return daoUsuario.obtenerListaUsuarios(GeneralUtils.estaVacio(cedulaUsuario, "Filtrar por Cédula") ? null : cedulaUsuario);
 	}
+
+//	public ArrayList<Usuario> buscarCoincidencias(String where) {
+//		return daoUsuario.buscarCoincidencias(where);
+//	}
 
 	public Usuario consultarUsuario(String argumento, boolean esConsultaCedula) {
 		return daoUsuario.consultarUsuario(argumento, esConsultaCedula);
@@ -79,7 +79,7 @@ public class ControladorPrincipalUsuario {
 				? daoPrestamo.obtenerTablaPrestamos()
 				: daoPrestamo.obtenerTablaPrestamos(id);
 	}
-        
+
 	public DefaultTableModel obtenerTablaRegistros(String cedulaUsuario) {
 		return daoRegistro.obtenerTablaRegistros(GeneralUtils.estaVacio(cedulaUsuario, "placeholder") ? null : cedulaUsuario);
 	}
@@ -87,24 +87,24 @@ public class ControladorPrincipalUsuario {
 	public Prestamo consultarPrestamo(String id) {
 		return daoPrestamo.consultarPrestamo(id);
 	}
-        
-        public ArrayList<Registro> obtenerListaRegistros(String cedulaUsuario) {
-                return daoRegistro.obtenerListaRegistros(GeneralUtils.estaVacio(cedulaUsuario, "placeholder") ? null : cedulaUsuario);
-        }
+
+	public ArrayList<Registro> obtenerListaRegistros(String cedulaUsuario) {
+		return daoRegistro.obtenerListaRegistros(GeneralUtils.estaVacio(cedulaUsuario, "placeholder") ? null : cedulaUsuario);
+	}
 
 	public void generarInformeGeneral(String cedulaUsuario, String tipoInforme, String fechaInicio, String fechaFin) {
 
 		GeneralUtils.convertirStringFecha(fechaInicio);
 		GeneralUtils.convertirStringFecha(fechaFin);
-                
-		if (tipoInforme.equals("Seleccione un tipo de informe")){
+
+		if (tipoInforme.equals("Seleccione un tipo de informe")) {
 			throw new TipoInformeNoSeleccionadoException();
 		}
-		
+
 		if (GeneralUtils.convertirStringFecha(fechaFin).before(GeneralUtils.convertirStringFecha(fechaInicio))) {
 			throw new FechaInformeInvalidaException();
 		}
-		
+
 		fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
 		fechaFin = GeneralUtils.formatearFechaString(fechaFin);
 		String tipo = null;
@@ -121,25 +121,21 @@ public class ControladorPrincipalUsuario {
 				fechaInicio,
 				fechaFin,
 				tipo);
-                
-                String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
-                rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
+
+		String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
+		rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
 		FormUtils.generarInformePrestamos(lista, rango);
 	}
-        
+
 	public void generarInformeRegistros(String cedulaUsuario, String tipoInforme, String fechaInicio, String fechaFin) {
 
 		GeneralUtils.convertirStringFecha(fechaInicio);
 		GeneralUtils.convertirStringFecha(fechaFin);
-                
-		if (tipoInforme.equals("Seleccione un tipo de informe")){
-			throw new TipoInformeNoSeleccionadoException();
-		}
-		
+
 		if (GeneralUtils.convertirStringFecha(fechaFin).before(GeneralUtils.convertirStringFecha(fechaInicio))) {
 			throw new FechaInformeInvalidaException();
 		}
-		
+
 		fechaInicio = GeneralUtils.formatearFechaString(fechaInicio);
 		fechaFin = GeneralUtils.formatearFechaString(fechaFin);
 
@@ -147,14 +143,14 @@ public class ControladorPrincipalUsuario {
 				fechaInicio,
 				fechaFin,
 				tipoInforme);
-                
-                String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
-                rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
+
+		String rango = "Rango de Fechas: " + fechaInicio + " - " + fechaFin;
+		rango += cedulaUsuario.equals("No seleccionado") ? "" : "\nPara el usuario de cédula: " + cedulaUsuario;
 		FormUtils.generarInformeRegistros(lista, rango, tipoInforme);
 	}
-        
-        public void insertarRegistro(String cedulaUsuarioActivo, String detalles) {
-                Registro registro = new Registro(0, cedulaUsuarioActivo, detalles);
-                daoRegistro.insertar(registro);
-        }
+
+	public void insertarRegistro(String cedulaUsuarioActivo, String detalles) {
+		Registro registro = new Registro(0, cedulaUsuarioActivo, detalles);
+		daoRegistro.insertar(registro);
+	}
 }
